@@ -1,0 +1,11 @@
+<div>
+  <!--<app-dynamic-form [questions]="questions" [postEndpoint]="postEndpoint"></app-dynamic-form>-->
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Contact Information" [(ngModel)]="contactInfo" type="text">
+    </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="requestElevated">Request elevated access?</mat-slide-toggle>
+  </div>
+  <button mat-raised-button class="save-button" (click)="submit()" color="primary">Save</button>
+
+</div>

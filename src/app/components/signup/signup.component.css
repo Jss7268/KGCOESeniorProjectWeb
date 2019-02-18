@@ -1,0 +1,10 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.save-button {
+    float: right;
+    margin-right: 24px;
+}

@@ -1,0 +1,17 @@
+.logo {
+    height: 64px;
+    display: inline;
+}
+
+.login-container {
+    float: right;
+}
+.wrapper {
+    vertical-align: middle;
+}
+.flex-container {
+    height: 75px;
+}
+.spacer {
+    flex: 1 1 auto;
+}

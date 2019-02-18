@@ -1,0 +1,30 @@
+<!--<div class="flex-container">
+  <div class="mat-elevation-z6" style="padding: 8px;">
+    <div class="wrapper">
+      <img class="logo" src="../../../assets/EDCS min.png">
+    </div>
+    <div class="wrapper login-container" style="margin-left: auto; width: min-content">
+      <div *ngIf="auth">
+        <button mat-raised-button color="primary" (click)="signOut()">Sign Out</button>
+      </div>
+      <div *ngIf="!auth">
+        <button mat-raised-button color="primary" (click)="signIn()">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<mat-toolbar class="mat-elevation-z2" color="primary">
+  <mat-toolbar-row>
+    <span>
+      <img class="logo" src="../../../assets/EDCS min.png">
+    </span>
+    <span class="spacer"></span>
+    <div *ngIf="auth">
+    <button mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
+  </div>
+  <div *ngIf="!auth">
+    <button mat-raised-button color="accent" (click)="signIn()">Sign In</button>
+  </div>
+  </mat-toolbar-row>
+</mat-toolbar>
