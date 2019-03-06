@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginService } from './services/login.service';
 import { SignupService } from './services/signup.service';
+import { ApiGetService } from './services/api-get.service';
 
 
 import {MatCardModule} from '@angular/material/card';
@@ -29,6 +30,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExperimentsComponent } from './components/experiments/experiments.component';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     SignupComponent,
+    ExperimentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [LoginService,
     SignupService,
     AppSettings,
+    ApiGetService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

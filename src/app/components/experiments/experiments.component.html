@@ -1,0 +1,14 @@
+<div ng-app="experiments" ng-controller="test">
+  <h1>Download an Experiment</h1>
+
+  <div *ngIf="expData">
+  <ul>
+    <select>
+      <option *ngFor="let data of expData">{{data}}</option>
+    </select>
+  </ul>
+  </div>
+
+  <button mat-raised-button class="button" (click)="downloadCSV()" color="primary">Download</button>
+
+</div>
