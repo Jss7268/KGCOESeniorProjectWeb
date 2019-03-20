@@ -12,16 +12,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginService } from './services/login.service';
 import { SignupService } from './services/signup.service';
 
-
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
+import {
+  MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule
+} from '@angular/material';
 
 
 
@@ -54,6 +52,10 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     MatToolbarModule,
     MatIconModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
   ],
   providers: [LoginService,
     SignupService,
@@ -62,8 +64,8 @@ import { LoginComponent } from './components/login/login.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-      }
-    ],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

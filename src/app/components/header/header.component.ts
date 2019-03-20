@@ -21,8 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signIn() {
-    this.loginService.auth = null;
-    this.document.location.href = AppSettings.API_ENDPOINT + "auth/login" ;
+    this.document.location.href = "/login" ;
   }
 
   signOut() {
