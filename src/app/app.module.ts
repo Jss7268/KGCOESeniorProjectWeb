@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

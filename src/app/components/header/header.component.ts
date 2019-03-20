@@ -10,28 +10,23 @@ import {AppSettings} from '../../app.settings';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private auth = null;
   constructor(@Inject(DOCUMENT) private document: any, private loginService: LoginService) { 
     
   }
 
   ngOnInit() {
-    this.loginService.getUser().subscribe((data: any) => {
-      if (data != undefined && data['email']) {
-        this.auth = true;
-      } else {
-        this.auth = false;
-      }
+    this.loginService.getUser().subscribe((data) => {
+      console.log(data);
     });
   }
 
   signIn() {
-    this.auth = null;
+    this.loginService.auth = null;
     this.document.location.href = AppSettings.API_ENDPOINT + "auth/login" ;
   }
 
   signOut() {
-    this.auth = false;
+    this.loginService.auth = null;
     this.document.location.href = AppSettings.API_ENDPOINT + "auth/logout"
 
   }

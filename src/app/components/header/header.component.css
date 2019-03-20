@@ -1,6 +1,7 @@
 .logo {
     height: 64px;
     display: inline;
+    padding-right: 16px;
 }
 
 .login-container {
