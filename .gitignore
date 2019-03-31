@@ -44,4 +44,4 @@ testem.log
 Thumbs.db
 
 
-/src/app/app.settings.ts
+src/app/app.settings.ts
