@@ -36,7 +36,7 @@ export class AuthService {
     let o: Observable<any> = this.http.post(AppSettings.AUTH_ENDPOINT + "authenticate", {
       email: email,
       password: password
-    });
+    }, {withCredentials: true});
     o.subscribe((data:any) => {
       console.log(data);
       this.setToken(data['token']);

@@ -4,19 +4,22 @@
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="example-form">
+      <form class="example-form" [formGroup]="loginForm">
         <table class="example-full-width" cellspacing="0">
           <tr>
             <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Email" [(ngModel)]="email" name="email" type="email" required>
+              <mat-form-field class="example-full-width"
+                [ngClass]="submitted && loginForm.controls.email.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Email" formControlName="email" name="email" type="email" required>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+              <mat-form-field class="example-full-width"
+                [ngClass]="submitted && loginForm.controls.password.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Password" formControlName="password" type="password" name="password"
+                  required>
               </mat-form-field>
             </td>
           </tr>
@@ -26,6 +29,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button (click)="login()" color="primary">Login</button>
+      <button mat-button (click)="register()" color="basic">Register</button>
     </mat-card-actions>
   </mat-card>
 </div>
