@@ -1,4 +1,4 @@
-import { SignupService } from './../../services/signup.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,17 +8,30 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  contactInfo: string = '';
-  requestElevated: boolean;
+  email: string;
+  name: string;
+  password: string;
+  password2: string;
+  error: string;
  
-  constructor(private service: SignupService) {
+  constructor(private service: AuthService) {
   }
 
   ngOnInit() {
   }
 
-  submit() {
-    this.service.submit(this.contactInfo, this.requestElevated);
+  login() {
+    if (this.password != this.password2) {
+      this.error = "Passwords don't match"
+    } else {
+      this.service.createUser(this.name, this.email, this.password).subscribe((data: any) => {
+
+      });
+    }
   }
+
+  /*submit() {
+    this.service.submit(this.contactInfo, this.requestElevated);
+  }*/
 
 }
