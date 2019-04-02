@@ -12,13 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private isLoggedIn: boolean;
-  constructor(@Inject(DOCUMENT) private document: any, private auth: AuthService, private router: Router) { 
+  constructor(@Inject(DOCUMENT) private document: any, public auth: AuthService, private router: Router) { 
     
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.auth.isLoggedIn();
   }
 
   signIn() {
