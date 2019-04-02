@@ -13,6 +13,9 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard]}
 ];
 
+export const routing = RouterModule.forRoot(routes, { useHash: true });
+
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

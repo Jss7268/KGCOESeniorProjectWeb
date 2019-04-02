@@ -25,7 +25,7 @@ export class AuthService {
       name: name,
       email: email,
       password: password
-    }).pipe(share());
+    });
     return o;
   }
 
