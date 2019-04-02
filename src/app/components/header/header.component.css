@@ -16,3 +16,8 @@
 .spacer {
     flex: 1 1 auto;
 }
+
+.edcs-header {
+    background-image: url("/assets/edcs header.jpg");
+    background-size: 70%;
+}
