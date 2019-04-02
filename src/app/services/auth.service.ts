@@ -3,6 +3,7 @@ import { AppSettings } from '../app.settings';
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
@@ -19,26 +20,21 @@ export class AuthService {
     return AppSettings.API_ENDPOINT + "user/signup";
   }
 
-  createUser(name: string, email: string, password: string):Observable<any> {
+  createUser(name: string, email: string, password: string): Observable<any>{
     let o: Observable<any> = this.http.post(AppSettings.AUTH_ENDPOINT + "register", {
       name: name,
       email: email,
       password: password
-    });
-    o.subscribe((data:any) => {
-      console.log(data);
-      
-    })
+    }).pipe(share());
     return o;
   }
 
-  authenticate(email: string, password: string):Observable<any> {
+  authenticate(email: string, password: string): Observable<any>{
     let o: Observable<any> = this.http.post(AppSettings.AUTH_ENDPOINT + "authenticate", {
       email: email,
       password: password
-    }, {withCredentials: true});
+    }, {withCredentials: true}).pipe(share());
     o.subscribe((data:any) => {
-      console.log(data);
       this.setToken(data['token']);
     })
     return o;
@@ -59,18 +55,5 @@ export class AuthService {
   logout() {
     localStorage.removeItem(this.STORAGE_KEY);
     this.router.navigate(['login']);
-  }
-
-  submit(contactInfo: string, requestElevated: boolean) {
-
-    this.http.post(this.getPostEndpoint(), {
-      contact_info: contactInfo,
-      request_elevatedd: JSON.stringify(requestElevated),
-    }, { withCredentials: true }).subscribe((data: any) => {
-      console.log(data);
-      this.document.location.href = "./";
-
-    });
-
   }
 }

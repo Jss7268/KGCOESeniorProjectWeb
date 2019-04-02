@@ -1,3 +1,5 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { PasswordValidation, EmailValidation, RepeatPasswordValidator, RepeatPasswordEStateMatcher } from './../../validators';
 import { AuthService } from '../../services/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -8,27 +10,29 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  private signupForm: FormGroup;
-  private name: string;
-  private email: string;
-  private password: string;
-  private password2;
-  private submitted: boolean;
+  signupForm: FormGroup;
+  submitted: boolean;
+  passwordsMatcher = new RepeatPasswordEStateMatcher;
 
-  constructor(private service: AuthService, private formBuilder: FormBuilder) {
+  constructor(private service: AuthService, private formBuilder: FormBuilder,
+    private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.signupForm = this.formBuilder.group({
-      name: new FormControl(this.name, [Validators.required]),
-      email: new FormControl(this.email, [Validators.required, Validators.email]),
-      password: new FormControl(this.password, [Validators.required]),
-      password2: new FormControl(this.password2, [Validators.required, () => {
-        return (control: AbstractControl): { [key: string]: any } | null => {
-          return this.password == this.password2 ? { 'nonMatching': { value: control.value } } : null;
-        };
-      }]),
-    })
+    let email = '';
+    this.route.queryParams.subscribe(params => {
+      if (params['email']) {
+        email = params['email'];
+      }
+    });
+    this.signupForm = this.formBuilder.group(
+      {
+        name: new FormControl('', [Validators.required]),
+        email: new FormControl(email, EmailValidation),
+        password: new FormControl('', PasswordValidation),
+        passwordConfirm: new FormControl('', [Validators.required])
+      },
+      { validator: RepeatPasswordValidator })
   }
 
   signup() {
@@ -36,13 +40,21 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.invalid) {
       return;
     }
-    this.service.createUser(this.name, this.email, this.password).subscribe((data: any) => {
-
-    });
+    this.service.createUser(
+      this.signupForm.controls.name.value,
+      this.signupForm.controls.email.value,
+      this.signupForm.controls.password.value
+    ).subscribe(
+      (data: any) => {
+        this.login();
+      },
+      (error: any) => {
+        this.signupForm.controls.email.setErrors({duplicateEmail: 'User already exists with this email'});
+      }
+    );;
   }
 
-  /*submit() {
-    this.service.submit(this.contactInfo, this.requestElevated);
-  }*/
-
+  login() {
+    this.router.navigate(['login'], { queryParams: (this.signupForm.controls.email.value != '' ? { email: this.signupForm.controls.email.value } : {}) });
+  }
 }

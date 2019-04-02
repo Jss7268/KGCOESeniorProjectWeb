@@ -5,21 +5,34 @@
     </mat-card-header>
     <mat-card-content>
       <form class="example-form" [formGroup]="loginForm">
-        <table class="example-full-width" cellspacing="0">
+        <table class="w-100" cellspacing="0">
           <tr>
             <td>
-              <mat-form-field class="example-full-width"
+              <mat-form-field class="w-100"
                 [ngClass]="submitted && loginForm.controls.email.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Email" formControlName="email" name="email" type="email" required>
+                <input matInput placeholder="Email" formControlName="email" name="email" type="email" required
+                  (keyup.enter)="login()">
+                <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                  Email is required.
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('email').hasError('email')">
+                  Email is not valid.
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
-              <mat-form-field class="example-full-width"
+              <mat-form-field class="w-100"
                 [ngClass]="submitted && loginForm.controls.password.errors ? 'mat-form-field-invalid' : ''">
                 <input matInput placeholder="Password" formControlName="password" type="password" name="password"
-                  required>
+                  required (keyup.enter)="login()">
+                <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                  Password is required.
+                </mat-error>
+                <mat-error *ngIf="loginForm.get('password').hasError('invalidCredentials')">
+                  {{loginForm.get('password').getError('invalidCredentials')}}
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>

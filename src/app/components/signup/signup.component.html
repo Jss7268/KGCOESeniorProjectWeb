@@ -13,37 +13,64 @@
     </mat-card-header>
     <mat-card-content>
       <form class="example-form" [formGroup]="signupForm">
-        <table class="example-full-width" cellspacing="0">
+        <table class="w-100" cellspacing="0">
           <tr>
             <td>
-                <mat-form-field class="example-full-width"
+              <mat-form-field class="w-100"
                 [ngClass]="submitted && signupForm.controls.name.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Name" formControlName="name" name="name" required>
+                <input matInput placeholder="Name" formControlName="name" name="name" required (keyup.enter)="signup()">
+                <mat-error *ngIf="signupForm.get('name').hasError('required')">
+                  Name is required.
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
-                <mat-form-field class="example-full-width"
+              <mat-form-field class="w-100"
                 [ngClass]="submitted && signupForm.controls.email.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Email" formControlName="email" name="email" type="email" required>
+                <input matInput placeholder="Email" formControlName="email" name="email" type="email" required
+                  (keyup.enter)="signup()">
+                <mat-error *ngIf="signupForm.get('email').hasError('required')">
+                  Email is required.
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('email').hasError('email')">
+                  Email is not valid.
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('email').hasError('duplicateEmail')">
+                  {{signupForm.get('email').getError('duplicateEmail')}}
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
-                <mat-form-field class="example-full-width"
+              <mat-form-field class="w-100"
                 [ngClass]="submitted && signupForm.controls.password.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+                <input matInput placeholder="Password" formControlName="password" type="password" name="password"
+                  required (keyup.enter)="signup()">
+                <mat-error *ngIf="signupForm.get('password').hasError('required')">
+                  Password is required.
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('password').hasError('minlength')">
+                  Password must be at least 6 characters long.
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('password').hasError('maxlength')">
+                  Password cannot be more than 24 characters long.
+                </mat-error>
+
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
-                <mat-form-field class="example-full-width"
-                [ngClass]="submitted && signupForm.controls.password2.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Re-enter Password" formControlName="password2" type="password" name="password2"
-                  required>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && signupForm.controls.passwordConfirm.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Re-enter Password" formControlName="passwordConfirm" type="password"
+                  name="passwordConfirm" required [errorStateMatcher]="passwordsMatcher" (keyup.enter)="signup()">
+                <mat-error *ngIf="signupForm.hasError('passwordsNotEqual')">Passwords are different. They should be
+                  equal!</mat-error>
+
               </mat-form-field>
             </td>
           </tr>
@@ -53,6 +80,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button (click)="signup()" color="primary">Register</button>
+      <button mat-button (click)="login()" color="basic">Login</button>
     </mat-card-actions>
   </mat-card>
 </div>
