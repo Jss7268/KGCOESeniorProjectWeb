@@ -40,6 +40,10 @@ export class AuthService {
     return o;
   }
 
+  getUsers():Observable<any> {
+    return this.http.get(AppSettings.API_ENDPOINT + '/v1/users');
+  }
+
   setToken(token: string) {
     localStorage.setItem(this.STORAGE_KEY, token);
   }
