@@ -29,4 +29,8 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  home() {
+    this.router.navigate([""]);
+  }
+
 }

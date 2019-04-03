@@ -2,6 +2,7 @@
     height: 64px;
     display: inline;
     padding-right: 16px;
+    cursor: pointer;
 }
 
 .login-container {
@@ -19,5 +20,5 @@
 
 .edcs-header {
     background-image: url("/assets/edcs header.jpg");
-    background-size: 70%;
+    background-size: 100%;
 }

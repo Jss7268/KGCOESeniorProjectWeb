@@ -17,15 +17,17 @@
 <mat-toolbar class="mat-elevation-z2 edcs-header" color="primary">
   <mat-toolbar-row>
     <span>
-      <img class="logo" src="../../../assets/EDCS min.png">
+      <a (click)="home()">
+        <img class="logo" src="../../../assets/EDCS min.png">
+      </a>
     </span>
-    <a mat-button href="/">Home</a>
-    <span class="spacer"></span>
-    <div *ngIf="auth.isLoggedIn()">
-    <button mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
-  </div>
-  <div *ngIf="!auth.isLoggedIn()">
-    <button mat-raised-button color="accent" (click)="signIn()">Sign In</button>
-  </div>
+    <button mat-button mat-button (click)="home()">Home</button>
+      <span class="spacer"></span>
+      <div *ngIf="auth.isLoggedIn()">
+        <button mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
+      </div>
+      <div *ngIf="!auth.isLoggedIn()">
+        <button mat-raised-button color="accent" (click)="signIn()">Sign In</button>
+      </div>
   </mat-toolbar-row>
 </mat-toolbar>
