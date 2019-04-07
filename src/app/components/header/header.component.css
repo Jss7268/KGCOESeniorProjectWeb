@@ -1,6 +1,8 @@
 .logo {
     height: 64px;
     display: inline;
+    padding-right: 16px;
+    cursor: pointer;
 }
 
 .login-container {
@@ -14,4 +16,9 @@
 }
 .spacer {
     flex: 1 1 auto;
+}
+
+.edcs-header {
+    background-image: url("/assets/edcs header.jpg");
+    background-size: 100%;
 }

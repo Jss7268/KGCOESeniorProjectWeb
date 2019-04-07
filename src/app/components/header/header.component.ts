@@ -1,8 +1,10 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Inject } from '@angular/core'
 import { LoginService } from '../../services/login.service';
 import { DOCUMENT } from '@angular/common';
 import {AppSettings} from '../../app.settings';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,30 +12,25 @@ import {AppSettings} from '../../app.settings';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private auth = null;
-  constructor(@Inject(DOCUMENT) private document: any, private loginService: LoginService) { 
+  constructor(@Inject(DOCUMENT) private document: any, public auth: AuthService, private router: Router) { 
     
   }
 
   ngOnInit() {
-    this.loginService.getUser().subscribe((data: any) => {
-      if (data != undefined && data['email']) {
-        this.auth = true;
-      } else {
-        this.auth = false;
-      }
-    });
   }
 
   signIn() {
-    this.auth = null;
-    this.document.location.href = AppSettings.API_ENDPOINT + "auth/login" ;
+    this.router.navigate(["login"]);
   }
 
   signOut() {
-    this.auth = false;
-    this.document.location.href = AppSettings.API_ENDPOINT + "auth/logout"
+    this.auth.getToken();
+    this.auth.logout();
 
+  }
+
+  home() {
+    this.router.navigate([""]);
   }
 
 }
