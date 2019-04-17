@@ -14,6 +14,7 @@ export class ExperimentService {
       {name: "Test Experiment", id: 5, data: [{voltage: 19, pressure: 9001, upTime: 31}, {voltage: 180, pressure: 35000, upTime: 3400}]}
       ]
     if (index == -1) {
+      // return a list of all experiments if index is -1
       return sampleData
     }
     else {

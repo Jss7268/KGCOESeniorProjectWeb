@@ -11,7 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginService } from './services/login.service';
 import { SignupService } from './services/signup.service';
-import { ApiGetService } from './services/api-get.service';
+import { ExperimentService } from './services/experiment.service';
 
 
 import {MatCardModule} from '@angular/material/card';
@@ -59,7 +59,7 @@ import { ExperimentsComponent } from './components/experiments/experiments.compo
   providers: [LoginService,
     SignupService,
     AppSettings,
-    ApiGetService,
+    ExperimentService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

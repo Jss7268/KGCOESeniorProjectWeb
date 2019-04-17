@@ -8,7 +8,6 @@ import { ExperimentService } from '../../services/experiment.service';
 })
 export class ExperimentsComponent implements OnInit {
   private expData: any;
-  private myFunction: any;
 
   constructor(private svc: ExperimentService) { }
 
@@ -17,7 +16,7 @@ export class ExperimentsComponent implements OnInit {
   }
 
   downloadCSV() {
-    var test = document.getElementById('test');
+    var test = document.getElementById('test') as HTMLSelectElement;
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + JSON.stringify(this.svc.getExperiments(test.options.selectedIndex)));
     element.setAttribute('download', "some_csv.txt");
