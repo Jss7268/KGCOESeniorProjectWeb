@@ -1,10 +1,11 @@
-<div ng-app="experiments" ng-controller="test">
+<div id="expDiv" ng-app="experiments" ng-controller="test">
   <h1>Download an Experiment</h1>
 
   <div *ngIf="expData">
+    <h3>Select Experiment by Date and Time</h3>
   <ul>
-    <select>
-      <option *ngFor="let data of expData">{{data}}</option>
+    <select id="test">
+      <option *ngFor="let data of expData">{{data.name}}</option>
     </select>
   </ul>
   </div>
