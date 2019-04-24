@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppSettings } from '../app.settings';
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -8,17 +9,17 @@ import { Observable } from "rxjs";
 export class ExperimentService {
   constructor(private http: HttpClient) { }
 
+  getExpEndpoint() {
+    return AppSettings.API_ENDPOINT + "experiments";
+  }
+
   getExperiments(index) {
-    var sampleData = [
-      {name: "Experiment 1", id: 2, data: [{voltage: 18, pressure: 4000, upTime: 331}, {voltage: 18, pressure: 3500, upTime: 340}]},
-      {name: "Test Experiment", id: 5, data: [{voltage: 19, pressure: 9001, upTime: 31}, {voltage: 180, pressure: 35000, upTime: 3400}]}
-      ]
-    if (index == -1) {
+    if (index == "-1") {
       // return a list of all experiments if index is -1
-      return sampleData
+      return this.http.get('http://kgcoe-st-project.se.rit.edu:8080/api/v1/experiments/');
     }
     else {
-      return sampleData[index]
+      return this.http.get('http://kgcoe-st-project.se.rit.edu:8080/api/v1/experiments/' + index + "/");
     }
   }
 }

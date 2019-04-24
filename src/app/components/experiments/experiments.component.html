@@ -4,12 +4,12 @@
   <div *ngIf="expData">
     <h3>Select Experiment by Date and Time</h3>
   <ul>
-    <select id="test">
-      <option *ngFor="let data of expData">{{data.name}}</option>
+    <select id="test" [ngModel]="selectedExperiment" (ngModelChange)="onChange()">
+      <option *ngFor="let data of expData" [value]="data">{{data.name}}</option>
     </select>
   </ul>
   </div>
 
-  <button mat-raised-button class="button" (click)="downloadCSV()" color="primary">Download</button>
+  <a class="mat-raised-button" [href]="downloadLink" [download]="downloadName">Download</a>
 
 </div>

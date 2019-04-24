@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExperimentService } from '../../services/experiment.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-experiments',
@@ -8,25 +9,19 @@ import { ExperimentService } from '../../services/experiment.service';
 })
 export class ExperimentsComponent implements OnInit {
   private expData: any;
+  private selectedExperiment: any;
+  private downloadLink: string;
+  private downloadName: string;
 
-  constructor(private svc: ExperimentService) { }
+  constructor(private svc: ExperimentService, private sanitizer:DomSanitizer) { }
 
   ngOnInit() {
-    this.expData = this.svc.getExperiments(-1);
+    //this.expData = this.svc.getExperiments("-1");
   }
 
-  downloadCSV() {
-    var test = document.getElementById('test') as HTMLSelectElement;
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + JSON.stringify(this.svc.getExperiments(test.options.selectedIndex)));
-    element.setAttribute('download', "some_csv.txt");
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-   };
-
+  onChange() {
+    //var test = document.getElementById('test') as HTMLSelectElement;
+    //this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(this.svc.getExperiments(test.options.selectedIndex.toString()))) as string;
+    //this.downloadName = this.svc.getExperiments(test.options.selectedIndex.toString()).name;
+  }
 }
