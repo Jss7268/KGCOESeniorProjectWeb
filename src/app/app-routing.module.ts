@@ -10,7 +10,7 @@ const routes: any = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard]},
-  {path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 3, canActivate: [AuthGuard]},
+  {path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard]},
   {path: 'unauthorized', component: HomeComponent, pathMatch: 'full'}
 
 ];
