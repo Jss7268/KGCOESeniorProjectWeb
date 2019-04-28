@@ -16,7 +16,7 @@ const routes: any = [
   {path: 'unauthorized', component: HomeComponent, pathMatch: 'full'},
   {path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard]},
-  {path: 'experiments', componenet: ListExperimentsComponent, pathMatch: 'full', authLevel: 0 , canActivate: [AuthGuard]},
+  {path: 'experiments', component: ListExperimentsComponent, pathMatch: 'full', authLevel: 0 , canActivate: [AuthGuard]},
   {path: 'experiments/create', component: CreateExperimentComponent, authLevel: 2, canActivate: [AuthGuard]},
   {path: 'device-outputs/create', component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard]},
   {path: 'output-type/create', component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard]}
