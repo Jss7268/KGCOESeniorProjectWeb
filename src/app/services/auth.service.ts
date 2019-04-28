@@ -15,6 +15,7 @@ export class AuthService {
 
   }
   private STORAGE_KEY = 'loggedInUser';
+  private ACCESS_KEY = 'userAccess';
 
   getPostEndpoint() {
     return AppSettings.API_ENDPOINT + "user/signup";
@@ -36,6 +37,7 @@ export class AuthService {
     }, {withCredentials: true}).pipe(share());
     o.subscribe((data:any) => {
       this.setToken(data['token']);
+      this.setAccess(data['accessLevel']);
     })
     return o;
   }
@@ -50,6 +52,14 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem(this.STORAGE_KEY)
+  }
+  
+  setAccess(access: string) {
+    localStorage.setItem(this.ACCESS_KEY, access);
+  }
+
+  getAccess() {
+    return localStorage.getItem(this.ACCESS_KEY)
   }
 
   isLoggedIn() {

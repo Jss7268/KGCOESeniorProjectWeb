@@ -6,11 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 
-const routes: Routes = [
+const routes: any = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-  {path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard]}
+  {path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard]},
+  {path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 3, canActivate: [AuthGuard]},
+  {path: 'unauthorized', component: HomeComponent, pathMatch: 'full'}
+
 ];
 
 export const routing = RouterModule.forRoot(routes, { useHash: true });
