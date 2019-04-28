@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExperimentService } from 'src/app/services/experiment.service';
 
 @Component({
   selector: 'app-list-experiments',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-experiments.component.css']
 })
 export class ListExperimentsComponent implements OnInit {
+  experiments: any[];
 
-  constructor() { }
+  constructor(experimentService: ExperimentService) { }
 
   ngOnInit() {
   }
