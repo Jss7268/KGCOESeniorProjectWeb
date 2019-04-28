@@ -10,10 +10,17 @@ import { Observable } from 'rxjs';
 })
 export class ExperimentService {
 
-  constructor(private appSettings: AppSettings,
-    private http: HttpClient, private router: Route) { }
+  constructor(private http: HttpClient, private router: Route) { }
 
   listExperiments(): Observable<any> {
     return this.http.get(AppRoutes.EXPERIMENTS);
+  }
+
+  createExperiment(description: string, startTime: number, notes: string): Observable<any> {
+    return this.http.post(AppRoutes.EXPERIMENTS, {
+      description: description,
+      start_time: startTime,
+      notes: notes
+    });
   }
 }

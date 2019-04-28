@@ -19,7 +19,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule
 } from '@angular/material';
 
 
@@ -35,6 +35,7 @@ import { ListExperimentsComponent } from './components/list-experiments/list-exp
 import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
 import { CreateDeviceOutputComponent } from './components/create-device-output/create-device-output.component';
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { CreateOutputTypeComponent } from './components/create-output-type/creat
     CreateExperimentComponent,
     CreateDeviceOutputComponent,
     CreateOutputTypeComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import { CreateOutputTypeComponent } from './components/create-output-type/creat
     MatDialogModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatTableModule,
   ],
   providers: [LoginService,

@@ -7,6 +7,5 @@ export class AppRoutes {
     public static DEVICE_OUTPUTS=AppRoutes.V1_ENDPOINT + 'device_outputs';
     public static OUTPUT_TYPES=AppRoutes.V1_ENDPOINT + 'output_types';
     public static OUTPUT_TYPES_NAME=AppRoutes.V1_ENDPOINT + 'output_types/name';
-
-
+    public static LIST_DEVICES=AppRoutes.V1_ENDPOINT + 'users/access/1';
  }
