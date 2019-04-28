@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './app/services/auth.service';
+import { AuthService } from './services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,7 @@ export class AuthGuard implements CanActivate {
         console.log('no authLevel for route: ' + next.url);
       }
     if(this.auth.isLoggedIn()){
-      console.log(this.auth.getAccess());
-      console.log(requiredAccess);
-      if (Number(this.auth.getAccess()) >= requiredAccess) {
+      if (this.auth.hasAccessLevel(requiredAccess)) {
         return true;
       } else {
         this.router.navigate(['unauthorized']);

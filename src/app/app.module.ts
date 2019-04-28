@@ -29,8 +29,12 @@ import {
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-import { AuthGuard } from 'src/auth.guard';
+import { AuthGuard } from 'src/app/auth.guard';
 import { HomeComponent } from './components/home/home.component';
+import { ListExperimentsComponent } from './components/list-experiments/list-experiments.component';
+import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
+import { CreateDeviceOutputComponent } from './components/create-device-output/create-device-output.component';
+import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 
 
 @NgModule({
@@ -41,6 +45,10 @@ import { HomeComponent } from './components/home/home.component';
     SignupComponent,
     LoginComponent,
     HomeComponent,
+    ListExperimentsComponent,
+    CreateExperimentComponent,
+    CreateDeviceOutputComponent,
+    CreateOutputTypeComponent,
   ],
   imports: [
     BrowserModule,

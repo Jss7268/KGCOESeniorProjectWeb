@@ -66,6 +66,11 @@ export class AuthService {
     return this.getToken() !== null;
   }
 
+  hasAccessLevel(accessLevel: number) {
+    let access: string =  localStorage.getItem(this.ACCESS_KEY)
+    return access != null && Number(access) >= accessLevel
+  }
+
   logout() {
     localStorage.removeItem(this.STORAGE_KEY);
     this.router.navigate(['login']);
