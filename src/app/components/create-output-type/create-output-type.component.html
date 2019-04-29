@@ -22,7 +22,7 @@
             <mat-form-field class="w-100"
               [ngClass]="submitted && outputTypeForm.controls.units.errors ? 'mat-form-field-invalid' : ''">
               <input matInput placeholder="Units" formControlName="units" type="units" name="units"
-                required (keyup.enter)="login()">
+                required (keyup.enter)="submit()">
               <mat-error *ngIf="outputTypeForm.get('units').hasError('required')">
                 Units is required.
               </mat-error>

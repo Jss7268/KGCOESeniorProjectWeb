@@ -8,27 +8,46 @@
         <tr>
           <td>
             <mat-form-field class="w-100"
-            [ngClass]="submitted && deviceOutputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
+              [ngClass]="submitted && deviceOutputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
               <mat-label>Device Name</mat-label>
-              <mat-select formControlName="deviceId" required>
+              <mat-select formControlName="deviceId" (selectionChange)="updateRoute()" required>
                 <mat-option *ngFor="let device of devices" [value]="device.id">
                   {{device.name}}
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="deviceOutputForm.get('deviceId').hasError('required')">
-                  Device Name is required.
+                Device Name is required.
               </mat-error>
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
+            <mat-form-field class="output-type-select"
+              [ngClass]="submitted && deviceOutputForm.controls.outputTypeName.errors ? 'mat-form-field-invalid' : ''">
+              <mat-label>Output Type Name</mat-label>
+              <mat-select formControlName="outputTypeName" (selectionChange)="updateRoute()" required>
+                <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_name">
+                  {{outputType.output_type_name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="deviceOutputForm.get('outputTypeName').hasError('required')">
+                Output Type Name is required.
+              </mat-error>
+            </mat-form-field>
+            <button mat-icon-button color="accent" (click)="addOutputType()">
+              <mat-icon aria-label="Add new output type">add</mat-icon>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <mat-form-field class="w-100"
-              [ngClass]="submitted && deviceOutputForm.controls.name.errors ? 'mat-form-field-invalid' : ''">
-              <input matInput placeholder="Name" formControlName="name" name="name" type="name" required
-                (keyup.enter)="submit()">
-              <mat-error *ngIf="deviceOutputForm.get('name').hasError('required')">
-                Name is required.
+              [ngClass]="submitted && deviceOutputForm.controls.outputValue.errors ? 'mat-form-field-invalid' : ''">
+              <input matInput placeholder="Output Value" formControlName="outputValue" (change)="updateRoute()"
+                type="number" required (keyup.enter)="submit()">
+              <mat-error *ngIf="deviceOutputForm.get('outputValue').hasError('required')">
+                Output Value is required.
               </mat-error>
             </mat-form-field>
           </td>
@@ -38,5 +57,8 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="submit()" color="primary">Save</button>
+    <span *ngIf="id">
+      Created output id: {{id}} at timestamp: {{timestamp}}
+    </span>
   </mat-card-actions>
 </mat-card>

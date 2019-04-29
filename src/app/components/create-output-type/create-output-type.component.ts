@@ -30,6 +30,9 @@ export class CreateOutputTypeComponent implements OnInit {
       if (params['units']) {
         units = params['units'];
       }
+      if (params['callbackUrl']) {
+        this.callbackUrl = params['callbackUrl'];
+      }
     });
     this.outputTypeForm = this.formBuilder.group({
       name: new FormControl(name, [Validators.required]),
@@ -45,7 +48,7 @@ export class CreateOutputTypeComponent implements OnInit {
     this.outputTypeService.createOutputType(this.outputTypeForm.controls.name.value, this.outputTypeForm.controls.units.value)
       .subscribe(
         (data: any) => {
-          this.router.navigate([this.callbackUrl]);
+          this.router.navigateByUrl(this.callbackUrl + this.outputTypeForm.controls.name.value);
         },
         (error: any) => {
           this.openOverwriteDialog();
@@ -57,7 +60,7 @@ export class CreateOutputTypeComponent implements OnInit {
     this.outputTypeService.updateOutputType(this.outputTypeForm.controls.name.value, this.outputTypeForm.controls.units.value)
     .subscribe(
       (data: any) => {
-        this.router.navigate([this.callbackUrl]);
+        this.router.navigateByUrl(this.callbackUrl + this.outputTypeForm.controls.name.value);
       },
       (error: any) => {
         console.log(error);
@@ -74,10 +77,6 @@ export class CreateOutputTypeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }
-
-  register() {
-    this.router.navigate(["signup"], { queryParams: (this.outputTypeForm.controls.email.value != '' ? { email: this.outputTypeForm.controls.email.value } : {}) });
   }
 
   ngOnDestroy() {
