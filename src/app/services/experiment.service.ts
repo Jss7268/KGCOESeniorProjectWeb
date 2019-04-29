@@ -9,21 +9,11 @@ import { Observable } from "rxjs";
 export class ExperimentService {
   constructor(private http: HttpClient) { }
 
-  getExpEndpoint() {
-    return AppSettings.API_ENDPOINT + "experiments";
+  listExperiments(): Observable<any> {
+    return this.http.get(AppSettings.API_ENDPOINT + 'v1/experiments');
   }
 
-  getExperiments(index) {
-    if (index == "-1") {
-      // return a list of all experiments if index is -1
-      let observable: Observable<any> = this.http.get(AppSettings.API_ENDPOINT + 'v1/experiments', { withCredentials: true });
-      observable.subscribe((data: any) => {console.log(data)});
-      return "hi there";
-    }
-    else {
-      let observable: Observable<any> = this.http.get(AppSettings.API_ENDPOINT + 'v1/experiments/' + index + "/", { withCredentials: true });
-      observable.subscribe((data: any) => {console.log(data)});
-      return "hi";
-    }
+  getExperiment(id: string): Observable<any> {
+      return this.http.get(AppSettings.API_ENDPOINT + 'v1/experiments/' + id);
   }
 }
