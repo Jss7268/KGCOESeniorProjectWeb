@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ExperimentService } from 'src/app/services/experiment.service';
 import { TooltipService } from 'src/app/services/tooltip.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-create-device-output',
@@ -14,17 +15,17 @@ import { TooltipService } from 'src/app/services/tooltip.service';
   styleUrls: ['./create-device-output.component.css']
 })
 export class CreateDeviceOutputComponent implements OnInit {
-  devices: any[];
-  experiments: any[];
-  outputTypes: any[];
+  devices: any[] = [];
+  experiments: any[] = [];
+  outputTypes: any[] = [];
   deviceOutputForm: FormGroup;
   submitted: boolean;
   timestamp: number;
-  id: string;
 
   constructor(private deviceOutputService: DeviceOutputService, private deviceService: DeviceService,
     private route: ActivatedRoute, private formBuilder: FormBuilder, private deviceExperimentService: DeviceExperimentService,
-    private router: Router, private outputTypeService: OutputTypeService, private tooltipService: TooltipService) {
+    private router: Router, private outputTypeService: OutputTypeService, private tooltipService: TooltipService,
+    private snackBar: MatSnackBar) {
 
     this.route.queryParams.subscribe(params => {
       let deviceId = '';
@@ -43,15 +44,21 @@ export class CreateDeviceOutputComponent implements OnInit {
       if (params['outputValue']) {
         outputValue = params['outputValue'];
       }
+      let doUpdate;
+      if (!this.deviceOutputForm || deviceId != this.deviceOutputForm.get('deviceId').value){
+        doUpdate = true;
+      }
       this.deviceOutputForm = this.formBuilder.group({
         deviceId: new FormControl(deviceId, [Validators.required]),
         experimentId: new FormControl(experimentId, [Validators.required]),
         outputTypeName: new FormControl(outputTypeName, [Validators.required]),
         outputValue: new FormControl(outputValue, [Validators.required])
       })
+      if (doUpdate) {
+        this.onDeviceIdUpdate();
+      }
     });
 
-    this.onDeviceIdUpdate();
   }
 
   ngOnInit() {
@@ -78,8 +85,8 @@ export class CreateDeviceOutputComponent implements OnInit {
     this.updateRoute();
   }
 
-  updateRoute() {
-    this.router.navigate(
+  updateRoute(): Promise<boolean> {
+    return this.router.navigate(
       ['/device-outputs/create'], {
         queryParams: {
           deviceId: this.deviceOutputForm.controls.deviceId.value,
@@ -91,7 +98,7 @@ export class CreateDeviceOutputComponent implements OnInit {
   }
 
   submit() {
-    let timestamp = new Date().getMilliseconds();
+    let timestamp = new Date().getTime();
     this.deviceOutputService.createDeviceOuput(
       this.deviceOutputForm.controls.deviceId.value,
       this.deviceOutputForm.controls.experimentId.value,
@@ -101,33 +108,45 @@ export class CreateDeviceOutputComponent implements OnInit {
     ).subscribe(
       (data: any) => {
         this.timestamp = timestamp;
-        this.id = data.id
+        let date = new Date(timestamp);
+        this.snackBar.open('Created new output on: ' +
+          date.toLocaleDateString('en-US') + ' at: ' +
+          date.toLocaleTimeString('en-US'),
+          'Dismiss', {
+            duration: 5000,
+          });
       },
       (error: any) => console.log(error)
     )
   }
 
   addOutputType() {
-    this.router.navigate(['/output-types/create'], {
-      queryParams: {
-        callbackUrl: '/device-outputs/create?deviceId=' +
-          this.deviceOutputForm.controls.deviceId.value + '&experimentId=' +
-          this.deviceOutputForm.controls.experimentId.value + '&outputValue=' +
-          this.deviceOutputForm.controls.outputValue.value + '&outputTypeName=',
-      }
-    })
+    this.updateRoute().then((success: boolean) => {
+      this.router.navigate(['/output-types/create'], {
+        queryParams: {
+          callbackUrl: '/device-outputs/create?deviceId=' +
+            this.deviceOutputForm.controls.deviceId.value + '&experimentId=' +
+            this.deviceOutputForm.controls.experimentId.value + '&outputValue=' +
+            this.deviceOutputForm.controls.outputValue.value + '&outputTypeName=',
+        }
+      })
+    });
+
   }
 
   addDeviceExperiment() {
-    this.router.navigate(['/devices-experiments/create'], {
-      queryParams: {
-        deviceId: this.deviceOutputForm.controls.deviceId.value,
-        callbackUrl: '/device-outputs/create?deviceId=' +
-          this.deviceOutputForm.controls.deviceId.value + '&outputTypeName=' +
-          this.deviceOutputForm.controls.outputTypeName.value + '&outputValue=' +
-          this.deviceOutputForm.controls.outputValue.value + '&experimentId=',
-      }
-    })
+    this.updateRoute().then((success: boolean) => {
+      this.router.navigate(['/devices-experiments/create'], {
+        queryParams: {
+          deviceId: this.deviceOutputForm.controls.deviceId.value,
+          callbackUrl: '/device-outputs/create?deviceId=' +
+            this.deviceOutputForm.controls.deviceId.value + '&outputTypeName=' +
+            this.deviceOutputForm.controls.outputTypeName.value + '&outputValue=' +
+            this.deviceOutputForm.controls.outputValue.value + '&experimentId=',
+        }
+      })
+    }
+    );
   }
 
 }

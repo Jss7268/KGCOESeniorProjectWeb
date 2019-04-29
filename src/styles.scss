@@ -21,3 +21,10 @@ html, body {
 mat-tooltip-component > .mat-tooltip {
   white-space: pre;
 }
+
+.card-container mat-card {
+  width: 50%;
+  min-width: 350px;
+  margin: auto;
+  margin-top: 16px;
+}

@@ -42,7 +42,7 @@ export class CreateOutputTypeComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      ['/device-outputs/create'], {
+      ['/output-types/create'], {
         queryParams: {
           name: this.outputTypeForm.controls.name.value,
           units: this.outputTypeForm.controls.units.value,
