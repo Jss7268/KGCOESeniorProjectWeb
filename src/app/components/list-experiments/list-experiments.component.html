@@ -1,3 +1,16 @@
-<p>
-  list-experiments works!
-</p>
+<div id="expDiv" ng-app="list-experiments" ng-controller="test">
+    <h1>Download an Experiment</h1>
+  
+    <div *ngIf="experiments">
+      <h3>Select Experiment by Date and Time</h3>
+    <ul>
+      <select id="test" [(ngModel)]="selectedExperiment" (ngModelChange)="onChange()">
+        <option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}</option>
+      </select>
+    </ul>
+    </div>
+  
+    <a class="mat-raised-button" [href]="downloadLink" [download]="downloadName">Download</a>
+  
+  </div>
+  

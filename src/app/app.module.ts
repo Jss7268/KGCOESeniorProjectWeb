@@ -31,7 +31,6 @@ import {
 
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
@@ -49,7 +48,6 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
     HeaderComponent,
     FooterComponent,
     SignupComponent,
-    ExperimentsComponent,
     LoginComponent,
     HomeComponent,
     ListExperimentsComponent,

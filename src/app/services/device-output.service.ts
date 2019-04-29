@@ -24,4 +24,8 @@ export class DeviceOutputService {
       timestamp: timestamp,
     });
   }
+
+  listByExperiment(experimentId: string): Observable<any> {
+    return this.http.get(AppRoutes.DEVICE_OUTPUTS + '/experiment/' + experimentId);
+  }
 }
