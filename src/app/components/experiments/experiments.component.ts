@@ -16,7 +16,7 @@ export class ExperimentsComponent implements OnInit {
   constructor(private svc: ExperimentService, private sanitizer:DomSanitizer) { }
 
   ngOnInit() {
-    //this.expData = this.svc.getExperiments("-1");
+    this.expData = this.svc.getExperiments("-1");
   }
 
   onChange() {

@@ -16,10 +16,14 @@ export class ExperimentService {
   getExperiments(index) {
     if (index == "-1") {
       // return a list of all experiments if index is -1
-      return this.http.get('http://kgcoe-st-project.se.rit.edu:8080/api/v1/experiments/');
+      let observable: Observable<any> = this.http.get(AppSettings.API_ENDPOINT + 'v1/experiments', { withCredentials: true });
+      observable.subscribe((data: any) => {console.log(data)});
+      return "hi there";
     }
     else {
-      return this.http.get('http://kgcoe-st-project.se.rit.edu:8080/api/v1/experiments/' + index + "/");
+      let observable: Observable<any> = this.http.get(AppSettings.API_ENDPOINT + 'v1/experiments/' + index + "/", { withCredentials: true });
+      observable.subscribe((data: any) => {console.log(data)});
+      return "hi";
     }
   }
 }
