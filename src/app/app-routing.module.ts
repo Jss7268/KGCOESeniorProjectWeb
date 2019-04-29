@@ -4,7 +4,6 @@ import { ListExperimentsComponent } from './components/list-experiments/list-exp
 import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/auth.guard';
@@ -18,7 +17,7 @@ const routes: any = [
   { path: 'unauthorized', component: HomeComponent, pathMatch: 'full' },
   { path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
-  { path: 'experiments', component: ListExperimentsComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
+  { path: ListExperimentsComponent.path, component: ListExperimentsComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
   { path: 'experiments/create', component: CreateExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
   { path: 'device-outputs/create', component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: 'output-types/create', component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard] },
