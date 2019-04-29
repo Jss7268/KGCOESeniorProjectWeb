@@ -22,4 +22,8 @@ export class ExperimentService {
       notes: notes
     });
   }
+
+  getExperiment(id: string): Observable<any> {
+    return this.http.get(AppRoutes.EXPERIMENTS + '/' + id);
+  }
 }

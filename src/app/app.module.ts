@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginService } from './services/login.service';
+import { ExperimentService } from './services/experiment.service';
 import { AuthService } from './services/auth.service';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,6 +31,7 @@ import {
 
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
@@ -47,6 +49,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
     HeaderComponent,
     FooterComponent,
     SignupComponent,
+    ExperimentsComponent,
     LoginComponent,
     HomeComponent,
     ListExperimentsComponent,
@@ -82,6 +85,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
   providers: [LoginService,
     AuthService,
     AppSettings,
+    ExperimentService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

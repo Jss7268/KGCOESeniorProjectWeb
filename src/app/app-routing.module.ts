@@ -4,6 +4,7 @@ import { ListExperimentsComponent } from './components/list-experiments/list-exp
 import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/auth.guard';
