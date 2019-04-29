@@ -8,4 +8,5 @@ export class AppRoutes {
     public static OUTPUT_TYPES=AppRoutes.V1_ENDPOINT + 'output_types';
     public static OUTPUT_TYPES_NAME=AppRoutes.V1_ENDPOINT + 'output_types/name';
     public static LIST_DEVICES=AppRoutes.V1_ENDPOINT + 'users/access/1';
+    public static DEVICE_EXPERIMENT=AppRoutes.V1_ENDPOINT + 'devices_experiments';
  }

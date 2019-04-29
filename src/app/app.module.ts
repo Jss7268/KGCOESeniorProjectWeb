@@ -36,6 +36,7 @@ import { CreateExperimentComponent } from './components/create-experiment/create
 import { CreateDeviceOutputComponent } from './components/create-device-output/create-device-output.component';
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     CreateDeviceOutputComponent,
     CreateOutputTypeComponent,
     ConfirmationDialogComponent,
+    CreateDeviceExperimentComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@
             <mat-form-field class="w-100"
               [ngClass]="submitted && deviceOutputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
               <mat-label>Device Name</mat-label>
-              <mat-select formControlName="deviceId" (selectionChange)="updateRoute()" required>
+              <mat-select formControlName="deviceId" (selectionChange)="onDeviceIdUpdate()" required>
                 <mat-option *ngFor="let device of devices" [value]="device.id">
                   {{device.name}}
                 </mat-option>
@@ -23,7 +23,26 @@
         </tr>
         <tr>
           <td>
-            <mat-form-field class="output-type-select"
+            <mat-form-field class="action-form-field"
+              [ngClass]="submitted && deviceOutputForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
+              <mat-label>Experiment Name</mat-label>
+              <mat-select formControlName="experimentId" (selectionChange)="updateRoute()" required>
+                <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">
+                  {{experiment.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="deviceOutputForm.get('experimentId').hasError('required')">
+                Experiment Name is required.
+              </mat-error>
+            </mat-form-field>
+            <button mat-icon-button color="accent" (click)="addDeviceExperiment()">
+              <mat-icon aria-label="Link to experiment">link</mat-icon>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="action-form-field"
               [ngClass]="submitted && deviceOutputForm.controls.outputTypeName.errors ? 'mat-form-field-invalid' : ''">
               <mat-label>Output Type Name</mat-label>
               <mat-select formControlName="outputTypeName" (selectionChange)="updateRoute()" required>

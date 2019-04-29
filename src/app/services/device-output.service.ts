@@ -15,9 +15,10 @@ export class DeviceOutputService {
     return this.http.get(AppRoutes.OUTPUT_TYPES);
   }
 
-  createDeviceOuput(deviceId: string, outputTypeName: string, outputValue: string, timestamp: number): Observable<any> {
+  createDeviceOuput(deviceId: string, experimentId: string, outputTypeName: string, outputValue: string, timestamp: number): Observable<any> {
     return this.http.post(AppRoutes.DEVICE_OUTPUTS, {
       device_id: deviceId,
+      experiment_id: experimentId,
       output_type_name: outputTypeName,
       output_value: outputValue,
       timestamp: timestamp,

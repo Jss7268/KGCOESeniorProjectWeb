@@ -1,3 +1,4 @@
+import { DeviceExperimentService } from './../../services/device-experiment.service';
 import { OutputTypeService } from './../../services/output-type.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceService } from './../../services/device.service';
@@ -13,6 +14,7 @@ import { ExperimentService } from 'src/app/services/experiment.service';
 })
 export class CreateDeviceOutputComponent implements OnInit {
   devices: any[];
+  experiments: any[];
   outputTypes: any[];
   deviceOutputForm: FormGroup;
   submitted: boolean;
@@ -20,7 +22,7 @@ export class CreateDeviceOutputComponent implements OnInit {
   id: string;
 
   constructor(private deviceOutputService: DeviceOutputService, private deviceService: DeviceService,
-    private route: ActivatedRoute, private formBuilder: FormBuilder, private experimentService: ExperimentService,
+    private route: ActivatedRoute, private formBuilder: FormBuilder, private deviceExperimentService: DeviceExperimentService,
     private router: Router, private outputTypeService: OutputTypeService) {
     let deviceId = '';
     let experimentId = '';
@@ -47,6 +49,14 @@ export class CreateDeviceOutputComponent implements OnInit {
       outputTypeName: new FormControl(outputTypeName, [Validators.required]),
       outputValue: new FormControl(outputValue, [Validators.required])
     })
+  }
+
+  onDeviceIdUpdate() {
+    this.deviceExperimentService.listByDevice(this.deviceOutputForm.controls.deviceId.value).subscribe(
+      (data: any) => this.experiments = data,
+      (error: any) => console.log(error)
+    );
+    this.updateRoute();
   }
 
   updateRoute() {
@@ -90,13 +100,25 @@ export class CreateDeviceOutputComponent implements OnInit {
       )
   }
 
+  getCallbackUrl() {
+    return '/device-outputs/create?deviceId=' +
+          this.deviceOutputForm.controls.deviceId.value + '&experimentId=' + 
+          this.deviceOutputForm.controls.experimentId.value + '&outputValue=' +
+          this.deviceOutputForm.controls.outputValue.value + '&outputTypeName=';
+  }
+
   addOutputType() {
     this.router.navigate(['/output-types/create'], {
       queryParams: {
-        callbackUrl: '/device-outputs/create?deviceId=' +
-          this.deviceOutputForm.controls.deviceId.value + '&experimentId=' + 
-          this.deviceOutputForm.controls.experimentId.value + '&outputValue=' +
-          this.deviceOutputForm.controls.outputValue.value + '&outputTypeName='
+        callbackUrl: this.getCallbackUrl()
+      }
+    })
+  }
+
+  addDeviceExperiment() {
+    this.router.navigate(['/devices-experiments/create'], {
+      queryParams: {
+        callbackUrl: this.getCallbackUrl()
       }
     })
   }
