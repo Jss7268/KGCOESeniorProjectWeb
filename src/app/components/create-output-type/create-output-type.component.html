@@ -9,8 +9,8 @@
           <td>
             <mat-form-field class="w-100"
               [ngClass]="submitted && outputTypeForm.controls.name.errors ? 'mat-form-field-invalid' : ''">
-              <input matInput placeholder="Name" formControlName="name" name="name" type="name" required
-                (keyup.enter)="submit()">
+              <input matInput placeholder="Name" formControlName="name" name="name" type="name" (change)="updateRoute()"
+                required (keyup.enter)="submit()">
               <mat-error *ngIf="outputTypeForm.get('name').hasError('required')">
                 Name is required.
               </mat-error>
@@ -22,7 +22,7 @@
             <mat-form-field class="w-100"
               [ngClass]="submitted && outputTypeForm.controls.units.errors ? 'mat-form-field-invalid' : ''">
               <input matInput placeholder="Units" formControlName="units" type="units" name="units"
-                required (keyup.enter)="submit()">
+                (change)="updateRoute()" required (keyup.enter)="submit()">
               <mat-error *ngIf="outputTypeForm.get('units').hasError('required')">
                 Units is required.
               </mat-error>

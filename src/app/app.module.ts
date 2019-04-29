@@ -19,7 +19,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule,
+  MatTooltipModule
 } from '@angular/material';
 
 
@@ -74,6 +75,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
     MatProgressSpinnerModule,
     MatSelectModule,
     MatTableModule,
+    MatTooltipModule,
   ],
   providers: [LoginService,
     AuthService,

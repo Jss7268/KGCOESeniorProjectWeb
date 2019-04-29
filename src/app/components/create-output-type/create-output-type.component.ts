@@ -21,9 +21,9 @@ export class CreateOutputTypeComponent implements OnInit {
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
-    let name = '';
-    let units = '';
     this.route.queryParams.subscribe(params => {
+      let name = '';
+      let units = '';
       if (params['name']) {
         name = params['name'];
       }
@@ -33,11 +33,21 @@ export class CreateOutputTypeComponent implements OnInit {
       if (params['callbackUrl']) {
         this.callbackUrl = params['callbackUrl'];
       }
+      this.outputTypeForm = this.formBuilder.group({
+        name: new FormControl(name, [Validators.required]),
+        units: new FormControl(units, [Validators.required])
+      })
     });
-    this.outputTypeForm = this.formBuilder.group({
-      name: new FormControl(name, [Validators.required]),
-      units: new FormControl(units, [Validators.required])
-    })
+  }
+
+  updateRoute() {
+    this.router.navigate(
+      ['/device-outputs/create'], {
+        queryParams: {
+          name: this.outputTypeForm.controls.name.value,
+          units: this.outputTypeForm.controls.units.value,
+        }
+      });
   }
 
   submit() {
@@ -58,20 +68,20 @@ export class CreateOutputTypeComponent implements OnInit {
 
   overwrite() {
     this.outputTypeService.updateOutputType(this.outputTypeForm.controls.name.value, this.outputTypeForm.controls.units.value)
-    .subscribe(
-      (data: any) => {
-        this.router.navigateByUrl(this.callbackUrl + this.outputTypeForm.controls.name.value);
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+      .subscribe(
+        (data: any) => {
+          this.router.navigateByUrl(this.callbackUrl + this.outputTypeForm.controls.name.value);
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
 
   openOverwriteDialog() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: {info: 'Do you wish to overwrite existing output type?', cancelDialog: 'Cancel', confirmDialog: 'Continue', callback: this.overwrite}
+      data: { info: 'Do you wish to overwrite existing output type?', cancelDialog: 'Cancel', confirmDialog: 'Continue', callback: this.overwrite }
     });
 
     dialogRef.afterClosed().subscribe(result => {

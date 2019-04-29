@@ -11,7 +11,8 @@
               [ngClass]="submitted && deviceOutputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
               <mat-label>Device Name</mat-label>
               <mat-select formControlName="deviceId" (selectionChange)="onDeviceIdUpdate()" required>
-                <mat-option *ngFor="let device of devices" [value]="device.id">
+                <mat-option *ngFor="let device of devices" [value]="device.id"
+                  [matTooltip]="tooltipService.generateDeviceTooltip(device)" matTooltipClass>
                   {{device.name}}
                 </mat-option>
               </mat-select>
@@ -27,8 +28,9 @@
               [ngClass]="submitted && deviceOutputForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
               <mat-label>Experiment Name</mat-label>
               <mat-select formControlName="experimentId" (selectionChange)="updateRoute()" required>
-                <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">
-                  {{experiment.name}}
+                <mat-option *ngFor="let experiment of experiments" [value]="experiment.id"
+                  [matTooltip]="tooltipService.generateExperimentTooltip(experiment)" matTooltipClass>
+                  {{experiment.description}}
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="deviceOutputForm.get('experimentId').hasError('required')">
@@ -46,7 +48,8 @@
               [ngClass]="submitted && deviceOutputForm.controls.outputTypeName.errors ? 'mat-form-field-invalid' : ''">
               <mat-label>Output Type Name</mat-label>
               <mat-select formControlName="outputTypeName" (selectionChange)="updateRoute()" required>
-                <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_name">
+                <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_name"
+                  [matTooltip]="tooltipService.generateOutputTypeTooltip(outputType)" matTooltipClass>
                   {{outputType.output_type_name}}
                 </mat-option>
               </mat-select>
