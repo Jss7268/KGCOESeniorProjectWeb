@@ -1,9 +1,9 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ExperimentService } from 'src/app/services/experiment.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceOutputService } from 'src/app/services/device-output.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ExperimentService } from 'src/app/services/experiment.service';
 
 @Component({
   selector: 'app-list-experiments',
@@ -55,12 +55,32 @@ export class ListExperimentsComponent implements OnInit {
     );
   }
 
+  getDeviceOutputFields(data) {
+    let list = [];
+    for (let output of data) {
+      list.push({
+        device_name: output.name,
+        output_type_name: output.output_type_name,
+        output_value: output.output_value,
+        units: output.units,
+        timestamp: output.timestamp
+      })
+    }
+    return list;
+  }
+
   onChange() {
     //var test = document.getElementById('test') as HTMLSelectElement;
     this.deviceOutputService.listByExperiment(this.listExperimentsForm.get('experimentId').value).subscribe(
-      (data: any) => this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(data)) as string,
+      (data: any) => {
+        this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(this.getDeviceOutputFields(data))) as string
+        if (data.length > 0) {
+          this.downloadName = data[0].description + '.json';
+        } else {
+          this.downloadName = this.listExperimentsForm.get('experimentId').value + '.json';
+        }
+      },
       (error: any) => console.log(error)
     );
-    this.downloadName = this.listExperimentsForm.get('experimentId').value + '.json';
   }
 }
