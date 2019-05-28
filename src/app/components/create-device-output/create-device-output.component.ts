@@ -99,7 +99,7 @@ export class CreateDeviceOutputComponent implements OnInit {
 
   submit() {
     let timestamp = new Date().getTime();
-    this.deviceOutputService.createDeviceOuput(
+    this.deviceOutputService.createDeviceOutput(
       this.deviceOutputForm.controls.deviceId.value,
       this.deviceOutputForm.controls.experimentId.value,
       this.deviceOutputForm.controls.outputTypeName.value,

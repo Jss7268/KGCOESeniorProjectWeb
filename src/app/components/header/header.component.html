@@ -23,7 +23,7 @@
     </span>
     <button mat-button mat-button (click)="home()">Home</button>
     <button mat-button mat-button (click)="experiments()">Experiments</button>
-    <button *ngIf="auth.hasAccessLevel(1)" mat-button mat-button (click)="outputData()">Ouput data</button>
+    <button *ngIf="auth.hasAccessLevel(1)" mat-button mat-button (click)="outputData()">Output data</button>
 
       <span class="spacer"></span>
       <div *ngIf="auth.isLoggedIn()">
