@@ -25,7 +25,8 @@ describe('HeaderComponent', () => {
       providers: [
         AppSettings,
         {provide: AuthService, useClass: MockAuthService},
-        {provide: Router, useClass: MockRouter}],
+        {provide: Router, useClass: MockRouter}
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();

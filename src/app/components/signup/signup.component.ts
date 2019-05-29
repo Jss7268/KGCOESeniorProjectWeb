@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     let email = '';
-    this.route.queryParams.subscribe(params => {
+    this.router.queryParams.subscribe(params => {
       if (params['email']) {
         email = params['email'];
       }
