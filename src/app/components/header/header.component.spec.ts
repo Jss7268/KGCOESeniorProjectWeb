@@ -11,7 +11,9 @@ class MockAuthService{
     return true;
   }
 };
-class MockRouter{};
+class MockRouter{
+  navigate(someString) {}
+};
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -38,4 +40,23 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('navigates home on clicking home', () => {
+    const MockRouter = fixture.debugElement.injector.get(Router);
+    spyOn(MockRouter, 'navigate');
+
+    component.home();
+
+    expect(MockRouter.navigate).toHaveBeenCalledWith([""]);
+  });
+
+  it('navigates to login on clicking sign in', () => {
+    const MockRouter = fixture.debugElement.injector.get(Router);
+    spyOn(MockRouter, 'navigate');
+
+    component.signIn();
+
+    expect(MockRouter.navigate).toHaveBeenCalledWith(["login"]);
+  });
+
 });
