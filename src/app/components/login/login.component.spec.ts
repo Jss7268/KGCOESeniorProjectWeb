@@ -15,10 +15,11 @@ class MockQueryParams{
   subscribe() {}
 };
 class MockRouter{
-  queryParams = new MockQueryParams();
-  navigate(someString) {};
+  navigate(someString, someObservable) {};
 };
-class MockActivatedRoute{};
+class MockActivatedRoute{
+  queryParams = new MockQueryParams();
+};
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -50,5 +51,15 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should pass the value from email to the router', () => {
+    const MockRouter = fixture.debugElement.injector.get(Router);
+    spyOn(MockRouter, 'navigate');
+
+    component.loginForm.controls.email.setValue('suqah');
+    component.register();
+
+    expect(MockRouter.navigate).toHaveBeenCalledWith(["signup"], Object({queryParams: Object({email: 'suqah'})}));
   });
 });

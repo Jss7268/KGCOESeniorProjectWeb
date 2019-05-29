@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let email = '';
-    this.router.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       if (params['email']) {
         email = params['email'];
       }

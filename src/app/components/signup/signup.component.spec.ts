@@ -15,10 +15,11 @@ class MockQueryParams{
   subscribe() {}
 };
 class MockRouter{
-  queryParams = new MockQueryParams();
   navigate(someString) {};
 };
-class MockActivatedRoute{};
+class MockActivatedRoute{
+    queryParams = new MockQueryParams();
+};
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
