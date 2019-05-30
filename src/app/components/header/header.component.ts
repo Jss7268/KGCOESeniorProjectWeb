@@ -33,4 +33,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([""]);
   }
 
+  experiments() {
+    this.router.navigate(["experiments"]);
+  }
+
+  outputData() {
+    this.router.navigate(["device-outputs/create"]);
+  }
+
 }

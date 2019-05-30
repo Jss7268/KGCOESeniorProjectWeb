@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  info: any;
+
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
@@ -16,6 +18,7 @@ export class HomeComponent implements OnInit {
   test() {
     this.auth.getUsers().subscribe((data: any) => {
       console.log(data);
+      this.info = data;
     })
   }
 
