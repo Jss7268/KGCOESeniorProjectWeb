@@ -73,7 +73,7 @@ export class ListExperimentsComponent implements OnInit {
     //var test = document.getElementById('test') as HTMLSelectElement;
     this.deviceOutputService.listByExperiment(this.listExperimentsForm.get('experimentId').value).subscribe(
       (data: any) => {
-        this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(this.getDeviceOutputFields(data))) as string
+        this.downloadLink = this.sanitizer.bypassSecurityTrustUrl(`data:text/plain;charset=utf-8, ${JSON.stringify(this.getDeviceOutputFields(data))}`) as string
         if (data.length > 0) {
           this.downloadName = data[0].description + '.json';
         } else {
