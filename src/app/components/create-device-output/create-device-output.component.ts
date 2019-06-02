@@ -45,7 +45,7 @@ export class CreateDeviceOutputComponent implements OnInit {
         outputValue = params['outputValue'];
       }
       let doUpdate;
-      if (!this.deviceOutputForm || deviceId != this.deviceOutputForm.get('deviceId').value){
+      if (!this.deviceOutputForm || deviceId != this.deviceOutputForm.get('deviceId').value) {
         doUpdate = true;
       }
       this.deviceOutputForm = this.formBuilder.group({
@@ -109,9 +109,9 @@ export class CreateDeviceOutputComponent implements OnInit {
       (data: any) => {
         this.timestamp = timestamp;
         let date = new Date(timestamp);
-        this.snackBar.open('Created new output on: ' +
-          date.toLocaleDateString('en-US') + ' at: ' +
-          date.toLocaleTimeString('en-US'),
+        this.snackBar.open(`Created new output on: 
+        ${date.toLocaleDateString('en-US')} at: 
+        ${date.toLocaleTimeString('en-US')}`,
           'Dismiss', {
             duration: 5000,
           });
@@ -124,10 +124,10 @@ export class CreateDeviceOutputComponent implements OnInit {
     this.updateRoute().then((success: boolean) => {
       this.router.navigate(['/output-types/create'], {
         queryParams: {
-          callbackUrl: '/device-outputs/create?deviceId=' +
-            this.deviceOutputForm.controls.deviceId.value + '&experimentId=' +
-            this.deviceOutputForm.controls.experimentId.value + '&outputValue=' +
-            this.deviceOutputForm.controls.outputValue.value + '&outputTypeName=',
+          callbackUrl: `/device-outputs/create?deviceId=
+            ${this.deviceOutputForm.controls.deviceId.value}&experimentId=
+            ${this.deviceOutputForm.controls.experimentId.value}&outputValue=
+            ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`,
         }
       })
     });
@@ -139,10 +139,10 @@ export class CreateDeviceOutputComponent implements OnInit {
       this.router.navigate(['/devices-experiments/create'], {
         queryParams: {
           deviceId: this.deviceOutputForm.controls.deviceId.value,
-          callbackUrl: '/device-outputs/create?deviceId=' +
-            this.deviceOutputForm.controls.deviceId.value + '&outputTypeName=' +
-            this.deviceOutputForm.controls.outputTypeName.value + '&outputValue=' +
-            this.deviceOutputForm.controls.outputValue.value + '&experimentId=',
+          callbackUrl: `/device-outputs/create?deviceId=
+            ${this.deviceOutputForm.controls.deviceId.value}&outputTypeName=
+            ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
+            ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`,
         }
       })
     }

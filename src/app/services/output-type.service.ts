@@ -23,7 +23,7 @@ export class OutputTypeService {
   }
 
   updateOutputType(name: string, units: string): Observable<any> {
-    return this.http.put(AppRoutes.OUTPUT_TYPES + `/ ${name}/units` , {
+    return this.http.put(`${AppRoutes.OUTPUT_TYPES}/${name}/units` , {
       units: units,
     });
   }

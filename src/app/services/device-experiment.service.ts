@@ -22,6 +22,6 @@ export class DeviceExperimentService {
     });
   }
   listByDevice(deviceId: string) {
-    return this.http.get(AppRoutes.DEVICE_EXPERIMENT + `/ ${deviceId}/experiments`);
+    return this.http.get(`${AppRoutes.DEVICE_EXPERIMENT}/${deviceId}/experiments`);
   }
 }

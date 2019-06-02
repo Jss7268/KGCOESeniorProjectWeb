@@ -26,6 +26,6 @@ export class DeviceOutputService {
   }
 
   listByExperiment(experimentId: string): Observable<any> {
-    return this.http.get(AppRoutes.DEVICE_OUTPUTS + `/experiment/ ${experimentId}`);
+    return this.http.get(`${AppRoutes.DEVICE_OUTPUTS}/experiment/${experimentId}`);
  }
 }

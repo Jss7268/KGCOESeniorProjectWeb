@@ -24,6 +24,6 @@ export class ExperimentService {
   }
 
   getExperiment(id: string): Observable<any> {
-    return this.http.get(AppRoutes.EXPERIMENTS + `/ ${id}`);
+    return this.http.get(`${AppRoutes.EXPERIMENTS}/${id}`);
  }
 }
