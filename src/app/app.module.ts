@@ -19,7 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule,
   MatTooltipModule,
   MatSnackBarModule
@@ -40,6 +40,7 @@ import { CreateDeviceOutputComponent } from './components/create-device-output/c
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
     CreateOutputTypeComponent,
     ConfirmationDialogComponent,
     CreateDeviceExperimentComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
     MatToolbarModule,
     MatIconModule,
     MatDialogModule,
+    MatExpansionModule,
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSelectModule,

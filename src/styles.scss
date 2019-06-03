@@ -3,6 +3,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  background-color: rgb(240, 245, 250)
 }
 .wrapper {
   min-height: 100%;
@@ -27,4 +28,9 @@ mat-tooltip-component > .mat-tooltip {
   min-width: 350px;
   margin: auto;
   margin-top: 16px;
+}
+
+.mat-menu-content {
+  padding: 0!important;
+  background-color: rgba(0,0,0,.01);
 }
