@@ -32,7 +32,6 @@ export class CreateDeviceOutputComponent implements OnInit {
     ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
     ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`;
 
-
   constructor(private deviceOutputService: DeviceOutputService, private deviceService: DeviceService,
     private route: ActivatedRoute, private formBuilder: FormBuilder, private deviceExperimentService: DeviceExperimentService,
     private router: Router, private outputTypeService: OutputTypeService, private tooltipService: TooltipService,
@@ -135,7 +134,7 @@ export class CreateDeviceOutputComponent implements OnInit {
     this.updateRoute().then((success: boolean) => {
       this.router.navigate(['/output-types/create'], {
         queryParams: {
-          callbackUrl: ADD_OUTPUT_TYPE_CALLBACK,
+          callbackUrl: this.ADD_OUTPUT_TYPE_CALLBACK,
         }
       })
     });
@@ -147,7 +146,7 @@ export class CreateDeviceOutputComponent implements OnInit {
       this.router.navigate(['/devices-experiments/create'], {
         queryParams: {
           deviceId: this.deviceOutputForm.controls.deviceId.value,
-          callbackUrl: ADD_DEVICE_EXPERIMENT_CALLBACK,
+          callbackUrl: this.ADD_DEVICE_EXPERIMENT_CALLBACK,
         }
       })
     }
