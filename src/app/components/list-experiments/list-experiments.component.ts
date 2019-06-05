@@ -89,7 +89,7 @@ export class ListExperimentsComponent implements OnInit {
         this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(this.getDeviceOutputFields(data))) as string
         if (data.length > 0) {
           for (let obj of data) {
-            this.output_types.indexOf(obj.output_type_name) === -1 ? this.output_types.push(obj.output_type_name) : {};
+            this.containsOutputType({name: obj.output_type_name, output_type_id: obj.output_type_id}, this.output_types) ? {} : this.output_types.push({name: obj.output_type_name, output_type_id: obj.output_type_id});
             this.containsDevice({device_id: obj.device_id, name: obj.name}, this.devices) ? {} : this.devices.push({device_id: obj.device_id, name: obj.name});
           }
           this.downloadName = data[0].description + '.json';
@@ -105,6 +105,17 @@ export class ListExperimentsComponent implements OnInit {
     var i;
     for (i = 0; i < list.length; i++) {
         if (list[i].name === device.name && list[i].device_id === device.device_id) {
+            return true;
+        }
+    }
+
+    return false;
+  }
+
+  containsOutputType(outputType, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i].name === outputType.name && list[i].output_type_id === outputType.output_type_id) {
             return true;
         }
     }

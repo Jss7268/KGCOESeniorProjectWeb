@@ -31,7 +31,7 @@
               <mat-form-field class="w-100">
                 <mat-label>Type</mat-label>
                 <mat-select id="type_field" formControlName="outputType" (selectionChange)="updateRoute()">
-                  <mat-option *ngFor="let output_type of output_types" [value]="output_type">{{output_type}}
+                  <mat-option *ngFor="let output_type of output_types" [value]="output_type.output_type_id">{{output_type.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

@@ -25,13 +25,16 @@ export class DeviceOutputService {
     });
   }
 
-  listByExperiment(experimentId: string, outputType = '', deviceId = ''): Observable<any> {
+  listByExperiment(experimentId: string, outputTypeId = '', deviceId = ''): Observable<any> {
     let requestString = AppRoutes.DEVICE_OUTPUTS + '/experiment/' + experimentId;
-    if (outputType !== '') {
-      requestString = requestString + '/outputType/' + outputType;
+    if (outputTypeId !== '' || deviceId !== ''){
+      requestString = requestString + '?';
+    }
+    if (outputTypeId !== '') {
+      requestString = requestString + 'output_type_id=' + outputTypeId;
     }
     if (deviceId !== '') {
-      requestString = requestString + '/deviceId/' + deviceId;
+      requestString = requestString + 'device_id=' + deviceId;
     }
     return this.http.get(requestString);
   }
