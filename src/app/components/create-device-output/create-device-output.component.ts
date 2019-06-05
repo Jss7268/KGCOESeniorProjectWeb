@@ -15,12 +15,22 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./create-device-output.component.css']
 })
 export class CreateDeviceOutputComponent implements OnInit {
+
   devices: any[] = [];
   experiments: any[] = [];
   outputTypes: any[] = [];
   deviceOutputForm: FormGroup;
   submitted: boolean;
   timestamp: number;
+
+  ADD_OUTPUT_TYPE_CALLBACK = `/device-outputs/create?deviceId=
+    ${this.deviceOutputForm.controls.deviceId.value}&experimentId=
+    ${this.deviceOutputForm.controls.experimentId.value}&outputValue=
+    ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
+  ADD_DEVICE_EXPERIMENT_CALLBACK = `/device-outputs/create?deviceId=
+    ${this.deviceOutputForm.controls.deviceId.value}&outputTypeName=
+    ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
+    ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`;
 
   constructor(private deviceOutputService: DeviceOutputService, private deviceService: DeviceService,
     private route: ActivatedRoute, private formBuilder: FormBuilder, private deviceExperimentService: DeviceExperimentService,
@@ -124,10 +134,7 @@ export class CreateDeviceOutputComponent implements OnInit {
     this.updateRoute().then((success: boolean) => {
       this.router.navigate(['/output-types/create'], {
         queryParams: {
-          callbackUrl: `/device-outputs/create?deviceId=
-            ${this.deviceOutputForm.controls.deviceId.value}&experimentId=
-            ${this.deviceOutputForm.controls.experimentId.value}&outputValue=
-            ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`,
+          callbackUrl: this.ADD_OUTPUT_TYPE_CALLBACK,
         }
       })
     });
@@ -139,10 +146,7 @@ export class CreateDeviceOutputComponent implements OnInit {
       this.router.navigate(['/devices-experiments/create'], {
         queryParams: {
           deviceId: this.deviceOutputForm.controls.deviceId.value,
-          callbackUrl: `/device-outputs/create?deviceId=
-            ${this.deviceOutputForm.controls.deviceId.value}&outputTypeName=
-            ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
-            ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`,
+          callbackUrl: this.ADD_DEVICE_EXPERIMENT_CALLBACK,
         }
       })
     }
