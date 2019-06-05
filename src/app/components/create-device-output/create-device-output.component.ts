@@ -9,27 +9,29 @@ import { ExperimentService } from 'src/app/services/experiment.service';
 import { TooltipService } from 'src/app/services/tooltip.service';
 import { MatSnackBar } from '@angular/material';
 
-const ADD_OUTPUT_TYPE_CALLBACK = `/device-outputs/create?deviceId=
-  ${this.deviceOutputForm.controls.deviceId.value}&experimentId=
-  ${this.deviceOutputForm.controls.experimentId.value}&outputValue=
-  ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
-const ADD_DEVICE_EXPERIMENT_CALLBACK = `/device-outputs/create?deviceId=
-  ${this.deviceOutputForm.controls.deviceId.value}&outputTypeName=
-  ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
-  ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`;
-
 @Component({
   selector: 'app-create-device-output',
   templateUrl: './create-device-output.component.html',
   styleUrls: ['./create-device-output.component.css']
 })
 export class CreateDeviceOutputComponent implements OnInit {
+
   devices: any[] = [];
   experiments: any[] = [];
   outputTypes: any[] = [];
   deviceOutputForm: FormGroup;
   submitted: boolean;
   timestamp: number;
+
+  ADD_OUTPUT_TYPE_CALLBACK = `/device-outputs/create?deviceId=
+    ${this.deviceOutputForm.controls.deviceId.value}&experimentId=
+    ${this.deviceOutputForm.controls.experimentId.value}&outputValue=
+    ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
+  ADD_DEVICE_EXPERIMENT_CALLBACK = `/device-outputs/create?deviceId=
+    ${this.deviceOutputForm.controls.deviceId.value}&outputTypeName=
+    ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
+    ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`;
+
 
   constructor(private deviceOutputService: DeviceOutputService, private deviceService: DeviceService,
     private route: ActivatedRoute, private formBuilder: FormBuilder, private deviceExperimentService: DeviceExperimentService,
