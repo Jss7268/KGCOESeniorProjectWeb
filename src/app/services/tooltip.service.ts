@@ -11,14 +11,14 @@ export class TooltipService {
   constructor() { }
 
   generateDeviceTooltip(device: Device) {
-    return 'Email: ' + device.email + '\nId: ' + device.id;
-  }
+    return `Email: ${device.email}\nId: ${device.id}`;
+ }
 
   generateExperimentTooltip(experiment: Experiment) {
-    return 'Notes: ' + experiment.notes + '\nId: ' + experiment.id;
-  }
+    return `Notes: ${experiment.notes}\nId: ${experiment.id}`;
+ }
 
   generateOutputTypeTooltip(outputType: OutputType) {
-    return 'Units: ' + outputType.units;
-  }
+    return `Units: ${outputType.units}`;
+ }
 }

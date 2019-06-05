@@ -17,8 +17,8 @@ export class AuthGuard implements CanActivate {
       try {
         requiredAccess = next.routeConfig['authLevel'];
       } catch (err) {
-        console.log('no authLevel for route: ' + next.url);
-      }
+        console.log(`no authLevel for route: ${next.url}`);
+     }
     if(this.auth.isLoggedIn()){
       if (this.auth.hasAccessLevel(requiredAccess)) {
         return true;

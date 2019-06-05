@@ -9,6 +9,15 @@ import { ExperimentService } from 'src/app/services/experiment.service';
 import { TooltipService } from 'src/app/services/tooltip.service';
 import { MatSnackBar } from '@angular/material';
 
+const ADD_OUTPUT_TYPE_CALLBACK = `/device-outputs/create?deviceId=
+  ${this.deviceOutputForm.controls.deviceId.value}&experimentId=
+  ${this.deviceOutputForm.controls.experimentId.value}&outputValue=
+  ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
+const ADD_DEVICE_EXPERIMENT_CALLBACK = `/device-outputs/create?deviceId=
+  ${this.deviceOutputForm.controls.deviceId.value}&outputTypeName=
+  ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
+  ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`;
+
 @Component({
   selector: 'app-create-device-output',
   templateUrl: './create-device-output.component.html',
@@ -45,7 +54,7 @@ export class CreateDeviceOutputComponent implements OnInit {
         outputValue = params['outputValue'];
       }
       let doUpdate;
-      if (!this.deviceOutputForm || deviceId != this.deviceOutputForm.get('deviceId').value){
+      if (!this.deviceOutputForm || deviceId != this.deviceOutputForm.get('deviceId').value) {
         doUpdate = true;
       }
       this.deviceOutputForm = this.formBuilder.group({
@@ -109,9 +118,9 @@ export class CreateDeviceOutputComponent implements OnInit {
       (data: any) => {
         this.timestamp = timestamp;
         let date = new Date(timestamp);
-        this.snackBar.open('Created new output on: ' +
-          date.toLocaleDateString('en-US') + ' at: ' +
-          date.toLocaleTimeString('en-US'),
+        this.snackBar.open(`Created new output on: 
+        ${date.toLocaleDateString('en-US')} at: 
+        ${date.toLocaleTimeString('en-US')}`,
           'Dismiss', {
             duration: 5000,
           });
@@ -124,10 +133,7 @@ export class CreateDeviceOutputComponent implements OnInit {
     this.updateRoute().then((success: boolean) => {
       this.router.navigate(['/output-types/create'], {
         queryParams: {
-          callbackUrl: '/device-outputs/create?deviceId=' +
-            this.deviceOutputForm.controls.deviceId.value + '&experimentId=' +
-            this.deviceOutputForm.controls.experimentId.value + '&outputValue=' +
-            this.deviceOutputForm.controls.outputValue.value + '&outputTypeName=',
+          callbackUrl: ADD_OUTPUT_TYPE_CALLBACK,
         }
       })
     });
@@ -139,10 +145,7 @@ export class CreateDeviceOutputComponent implements OnInit {
       this.router.navigate(['/devices-experiments/create'], {
         queryParams: {
           deviceId: this.deviceOutputForm.controls.deviceId.value,
-          callbackUrl: '/device-outputs/create?deviceId=' +
-            this.deviceOutputForm.controls.deviceId.value + '&outputTypeName=' +
-            this.deviceOutputForm.controls.outputTypeName.value + '&outputValue=' +
-            this.deviceOutputForm.controls.outputValue.value + '&experimentId=',
+          callbackUrl: ADD_DEVICE_EXPERIMENT_CALLBACK,
         }
       })
     }

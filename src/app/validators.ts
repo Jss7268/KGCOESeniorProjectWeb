@@ -17,5 +17,5 @@ export function RepeatPasswordValidator(group: FormGroup) {
   let password = group.controls.password.value;
   let passwordConfirm = group.controls.passwordConfirm.value;
 
-  return password === passwordConfirm ? null : { passwordsNotEqual: true }     
+  return password === passwordConfirm ? null : { passwordsNotEqual: true }    
 }
