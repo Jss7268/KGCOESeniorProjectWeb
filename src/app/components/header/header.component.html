@@ -21,11 +21,32 @@
         <img class="logo" src="../../../assets/EDCS min.png">
       </a>
     </span>
-    <button mat-button mat-button (click)="home()">Home</button>
-    <button mat-button mat-button (click)="experiments()">Experiments</button>
-    <button *ngIf="auth.hasAccessLevel(1)" mat-button mat-button (click)="outputData()">Output data</button>
+    <button mat-button (click)="home()">Home</button>
+    <button mat-button (click)="experiments()">Experiments</button>
+    <button *ngIf="auth.hasAccessLevel(1)"  mat-button (click)="outputData()">Output data</button>
+
 
       <span class="spacer"></span>
+      <app-notification *ngIf="auth.hasAccessLevel(3)"></app-notification>
+      <button *ngIf="auth.hasAccessLevel(1)" mat-icon-button [matMenuTriggerFor]="add" aria-label="Add new">
+        <mat-icon>add</mat-icon>
+      </button>
+      
+      <mat-menu #add="matMenu">
+        <button mat-menu-item>
+          <span>Add new Experiment</span>
+        </button>
+        <button mat-menu-item>
+          <span>Add new Device</span>
+        </button>
+        <button mat-menu-item>
+          <span>Add new User Input</span>
+        </button>
+        <button mat-menu-item>
+          <span>Add new Device Output</span>
+        </button>
+      </mat-menu>
+
       <div *ngIf="auth.isLoggedIn()">
         <button mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
       </div>

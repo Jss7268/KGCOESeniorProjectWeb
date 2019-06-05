@@ -15,11 +15,13 @@ export class AuthService {
   private STORAGE_KEY = 'loggedInUser';
   private ACCESS_KEY = 'userAccess';
 
-  createUser(name: string, email: string, password: string): Observable<any>{
+  createUser(name: string, email: string, password: string, requestedAccessLevel: number, requestedReason: string): Observable<any>{
     let o: Observable<any> = this.http.post(`${AppSettings.AUTH_ENDPOINT}/register`, {
       name: name,
       email: email,
-      password: password
+      password: password,
+      requested_access_level: requestedAccessLevel,
+      requested_reason: requestedReason
     });
     return o;
   }
