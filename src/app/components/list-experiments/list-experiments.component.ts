@@ -16,6 +16,8 @@ export class ListExperimentsComponent implements OnInit {
   listExperimentsForm: FormGroup;
   downloadLink: string;
   downloadName: string;
+  output_types: any[] = [];
+  devices: any[] = [];
 
   constructor(private experimentService: ExperimentService, private deviceOutputService: DeviceOutputService,
     private sanitizer: DomSanitizer, private route: ActivatedRoute, private formBuilder: FormBuilder,
@@ -70,11 +72,15 @@ export class ListExperimentsComponent implements OnInit {
   }
 
   onChange() {
-    //var test = document.getElementById('test') as HTMLSelectElement;
     this.deviceOutputService.listByExperiment(this.listExperimentsForm.get('experimentId').value).subscribe(
       (data: any) => {
         this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(this.getDeviceOutputFields(data))) as string
         if (data.length > 0) {
+          for (let obj of data) {
+            this.output_types.indexOf(obj.output_type_name) === -1 ? this.output_types.push(obj.output_type_name) : {};
+            this.devices.indexOf(obj.device_id) === -1 ? this.devices.push({device_id: obj.device_id, name: obj.name}) : {};
+          }
+          console.log(this.devices);
           this.downloadName = data[0].description + '.json';
         } else {
           this.downloadName = this.listExperimentsForm.get('experimentId').value + '.json';

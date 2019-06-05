@@ -8,7 +8,7 @@
         <table class="w-100" cellspacing="0">
 
           <tr *ngIf="experiments">
-            <td>
+            <td colspan="2">
               <mat-form-field class="w-100"
                 [ngClass]="submitted && listExperimentsForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
                 <mat-label>Experiment</mat-label>
@@ -18,6 +18,35 @@
                 </mat-select>
               </mat-form-field>
 
+            </td>
+          </tr>
+
+          <tr *ngIf="experiments">
+            <td>
+              <mat-card-header>Filter Data By</mat-card-header>
+            </td>
+          </tr>
+          <tr *ngIf="experiments">
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && listExperimentsForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Type</mat-label>
+                <mat-select id="test" formControlName="experimentId" (selectionChange)="updateRoute()">
+                  <mat-option *ngFor="let output_type of output_types" [value]="output_type">{{output_type}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && listExperimentsForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Device/User</mat-label>
+                <mat-select id="test" formControlName="experimentId" (selectionChange)="updateRoute()">
+                  <mat-option *ngFor="let device of devices" [value]="device.device_id">{{device.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </td>
           </tr>
         </table>
