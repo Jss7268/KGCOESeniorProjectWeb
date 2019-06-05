@@ -25,7 +25,14 @@ export class DeviceOutputService {
     });
   }
 
-  listByExperiment(experimentId: string): Observable<any> {
-    return this.http.get(AppRoutes.DEVICE_OUTPUTS + '/experiment/' + experimentId);
+  listByExperiment(experimentId: string, outputType = '', deviceId = ''): Observable<any> {
+    let requestString = AppRoutes.DEVICE_OUTPUTS + '/experiment/' + experimentId;
+    if (outputType !== '') {
+      requestString = requestString + '/outputType/' + outputType;
+    }
+    if (deviceId !== '') {
+      requestString = requestString + '/deviceId/' + deviceId;
+    }
+    return this.http.get(requestString);
   }
 }

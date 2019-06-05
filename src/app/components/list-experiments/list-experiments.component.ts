@@ -24,8 +24,16 @@ export class ListExperimentsComponent implements OnInit {
     private router: Router) {
     this.route.queryParams.subscribe(params => {
       let experimentId = '';
+      let outputType = '';
+      let user = '';
       if (params['experimentId']) {
         experimentId = params['experimentId'];
+      }
+      if (params['outputType']) {
+        outputType = params['outputType'];
+      }
+      if (params['user']) {
+        user = params['user'];
       }
       let doUpdate;
       if (!this.listExperimentsForm || experimentId != this.listExperimentsForm.get('experimentId').value) {
@@ -33,6 +41,8 @@ export class ListExperimentsComponent implements OnInit {
       }
       this.listExperimentsForm = this.formBuilder.group({
         experimentId: new FormControl(experimentId, [Validators.required]),
+        outputType: new FormControl(outputType),
+        user: new FormControl(user)
       })
       if (doUpdate && this.listExperimentsForm.get('experimentId').value) {
         this.updateRoute();
@@ -50,7 +60,9 @@ export class ListExperimentsComponent implements OnInit {
   updateRoute() {
     this.router.navigate([ListExperimentsComponent.path], {
       queryParams: {
-        experimentId: this.listExperimentsForm.get('experimentId').value
+        experimentId: this.listExperimentsForm.get('experimentId').value,
+        outputType: this.listExperimentsForm.get('outputType').value,
+        user: this.listExperimentsForm.get('user').value
       }
     }).then(
       (success: boolean) => this.onChange()
@@ -72,15 +84,14 @@ export class ListExperimentsComponent implements OnInit {
   }
 
   onChange() {
-    this.deviceOutputService.listByExperiment(this.listExperimentsForm.get('experimentId').value).subscribe(
+    this.deviceOutputService.listByExperiment(this.listExperimentsForm.get('experimentId').value, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value).subscribe(
       (data: any) => {
         this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(this.getDeviceOutputFields(data))) as string
         if (data.length > 0) {
           for (let obj of data) {
             this.output_types.indexOf(obj.output_type_name) === -1 ? this.output_types.push(obj.output_type_name) : {};
-            this.devices.indexOf(obj.device_id) === -1 ? this.devices.push({device_id: obj.device_id, name: obj.name}) : {};
+            this.containsDevice({device_id: obj.device_id, name: obj.name}, this.devices) ? {} : this.devices.push({device_id: obj.device_id, name: obj.name});
           }
-          console.log(this.devices);
           this.downloadName = data[0].description + '.json';
         } else {
           this.downloadName = this.listExperimentsForm.get('experimentId').value + '.json';
@@ -88,5 +99,16 @@ export class ListExperimentsComponent implements OnInit {
       },
       (error: any) => console.log(error)
     );
+  }
+
+  containsDevice(device, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i].name === device.name && list[i].device_id === device.device_id) {
+            return true;
+        }
+    }
+
+    return false;
   }
 }

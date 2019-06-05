@@ -28,10 +28,9 @@
           </tr>
           <tr *ngIf="experiments">
             <td>
-              <mat-form-field class="w-100"
-                [ngClass]="submitted && listExperimentsForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
+              <mat-form-field class="w-100">
                 <mat-label>Type</mat-label>
-                <mat-select id="test" formControlName="experimentId" (selectionChange)="updateRoute()">
+                <mat-select id="type_field" formControlName="outputType" (selectionChange)="updateRoute()">
                   <mat-option *ngFor="let output_type of output_types" [value]="output_type">{{output_type}}
                   </mat-option>
                 </mat-select>
@@ -39,10 +38,9 @@
             </td>
 
             <td>
-              <mat-form-field class="w-100"
-                [ngClass]="submitted && listExperimentsForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
+              <mat-form-field class="w-100">
                 <mat-label>Device/User</mat-label>
-                <mat-select id="test" formControlName="experimentId" (selectionChange)="updateRoute()">
+                <mat-select id="user_field" formControlName="user" (selectionChange)="updateRoute()">
                   <mat-option *ngFor="let device of devices" [value]="device.device_id">{{device.name}}
                   </mat-option>
                 </mat-select>
