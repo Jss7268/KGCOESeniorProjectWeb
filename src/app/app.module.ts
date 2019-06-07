@@ -41,7 +41,6 @@ import { CreateOutputTypeComponent } from './components/create-output-type/creat
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
 import { NotificationComponent } from './components/notification/notification.component';
-import { CreatedeviceComponent } from './components/createdevice/createdevice.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 
 
@@ -60,7 +59,6 @@ import { CreateNewDeviceComponent } from './components/create-new-device/create-
     ConfirmationDialogComponent,
     CreateDeviceExperimentComponent,
     NotificationComponent,
-    CreatedeviceComponent,
     CreateNewDeviceComponent,
   ],
   imports: [

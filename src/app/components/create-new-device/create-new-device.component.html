@@ -1,3 +1,87 @@
-<p>
-  create-new-device works!
-</p>
+<div class="card-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Create New Device</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="deviceOutputForm">
+        <table class="w-100" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && deviceOutputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Device Name</mat-label>
+                <mat-select formControlName="deviceId" (selectionChange)="onDeviceIdUpdate()" required>
+                  <mat-option *ngFor="let device of devices" [value]="device.id"
+                    [matTooltip]="tooltipService.generateDeviceTooltip(device)" matTooltipClass>
+                    {{device.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="deviceOutputForm.get('deviceId').hasError('required')">
+                  Device Name is required.
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="action-form-field"
+                [ngClass]="submitted && deviceOutputForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Experiment Name</mat-label>
+                <mat-select formControlName="experimentId" (selectionChange)="updateRoute()" required>
+                  <mat-option *ngFor="let experiment of experiments" [value]="experiment.id"
+                    [matTooltip]="tooltipService.generateExperimentTooltip(experiment)" matTooltipClass>
+                    {{experiment.description}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="deviceOutputForm.get('experimentId').hasError('required')">
+                  Experiment Name is required.
+                </mat-error>
+              </mat-form-field>
+              <button mat-icon-button color="accent" (click)="addDeviceExperiment()">
+                <mat-icon aria-label="Link device to experiment" matTooltip="Link device to experiment"
+                  matTooltipClass>link</mat-icon>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="action-form-field"
+                [ngClass]="submitted && deviceOutputForm.controls.outputTypeName.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Output Type Name</mat-label>
+                <mat-select formControlName="outputTypeName" (selectionChange)="updateRoute()" required>
+                  <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_name"
+                    [matTooltip]="tooltipService.generateOutputTypeTooltip(outputType)" matTooltipClass>
+                    {{outputType.output_type_name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="deviceOutputForm.get('outputTypeName').hasError('required')">
+                  Output Type Name is required.
+                </mat-error>
+              </mat-form-field>
+              <button mat-icon-button color="accent" (click)="addOutputType()">
+                <mat-icon aria-label="Add new output type" matTooltip="Add new output type" matTooltipClass>add
+                </mat-icon>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && deviceOutputForm.controls.outputValue.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Output Value" formControlName="outputValue" (change)="updateRoute()"
+                  type="number" required (keyup.enter)="submit()">
+                <mat-error *ngIf="deviceOutputForm.get('outputValue').hasError('required')">
+                  Output Value is required.
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="submit()" color="primary">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
