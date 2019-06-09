@@ -1,0 +1,32 @@
+<button *ngIf="auth.hasAccessLevel(3)" mat-icon-button [matMenuTriggerFor]="notifications" aria-label="Add new">
+  <mat-icon>notifications</mat-icon>
+  <div *ngIf="requestedUsers && requestedUsers.length > 0">
+    <div class="mat-elevation-z1 notification-box" color="warn"></div>
+    <div class="notification-count">{{getNotificationCountText()}}</div>
+  </div>
+</button>
+
+<mat-menu #notifications="matMenu">
+  <div (click)="$event.stopPropagation()">
+    <h2 class="mat-menu-title">Notifications</h2>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let user of requestedUsers">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{user.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div>Wants to have <b>{{userService.getAccessName(user.requested_access_level)}}</b> access.</div>
+        <div>Current access: <i>{{userService.getAccessName(user.access_level)}}</i></div>
+        <div>Reason: <b>{{user.requested_reason || '*No reason specified*'}}</b></div>
+        <div>User: <i>{{user.email}}</i></div>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="rejectRequestedAccessLevel(user)">Reject</button>
+          <button mat-button color="primary" (click)="changeAccess(user)">Change Access</button>
+        </mat-action-row>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</mat-menu>

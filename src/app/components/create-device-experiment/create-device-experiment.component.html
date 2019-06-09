@@ -1,0 +1,53 @@
+<div class="card-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Link Device to Experiment</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="deviceExperimentForm">
+        <table class="w-100" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && deviceExperimentForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Device Name</mat-label>
+                <mat-select formControlName="deviceId" required>
+                  <mat-option *ngFor="let device of devices" [value]="device.id"
+                    [matTooltip]="tooltipService.generateDeviceTooltip(device)" matTooltipClass>
+                    {{device.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="deviceExperimentForm.get('deviceId').hasError('required')">
+                  Device Name is required.
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && deviceExperimentForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Experiment Name</mat-label>
+                <mat-select formControlName="experimentId" required>
+                  <mat-option *ngFor="let experiment of experiments" [value]="experiment.id"
+                    [matTooltip]="tooltipService.generateExperimentTooltip(experiment)" matTooltipClass>
+                    {{experiment.description}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="deviceExperimentForm.get('experimentId').hasError('required')">
+                  Experiment Name is required.
+                </mat-error>
+                <mat-error *ngIf="deviceExperimentForm.get('experimentId').hasError('duplicate')">
+                  {{deviceExperimentForm.get('experimentId').getError('duplicate')}}
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="submit()" color="primary">Save</button>
+    </mat-card-actions>
+  </mat-card>
+  <div class="card-container">

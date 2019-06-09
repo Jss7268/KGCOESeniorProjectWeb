@@ -10,10 +10,10 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $edcs-app-primary: mat-palette($mat-blue-gray);
-$edcs-app-accent:  mat-palette($mat-orange, 900);
+$edcs-app-accent: mat-palette($mat-orange, 900);
 
 // The warn palette is optional (defaults to red).
-$edcs-app-warn:    mat-palette($mat-red);
+$edcs-app-warn:   mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $edcs-app-theme: mat-light-theme($edcs-app-primary, $edcs-app-accent, $edcs-app-warn);
