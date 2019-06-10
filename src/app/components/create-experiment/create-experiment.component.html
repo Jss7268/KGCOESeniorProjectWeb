@@ -1,3 +1,62 @@
-<p>
-  create-experiment works!
-</p>
+<div class="card-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Create Experiment</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="experimentForm">
+        <table class="w-100" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && experimentForm.controls.description.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Experiment Name" formControlName="description"  (change)="updateRoute()" required>
+                <mat-error *ngIf="experimentForm.get('description').hasError('required')">
+                  Experiment Name is required.
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && experimentForm.controls.startTime.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Start Time" formControlName="startTime" (focus)="picker.open()" (change)="updateRoute()" [matDatepicker]="picker" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker type="datetime" #picker></mat-datepicker>
+                <mat-error *ngIf="experimentForm.get('startTime').hasError('required')">
+                  Start Time is required.
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && experimentForm.controls.notes.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Notes (Optional)" (change)="updateRoute()" formControlName="notes">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && experimentForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Attach Devices <i>(Optional)</i></mat-label>
+                <mat-select formControlName="deviceId" (selectionChange)="updateRoute()" multiple>
+                  <mat-option *ngFor="let device of devices" [value]="device.id"
+                    [matTooltip]="tooltipService.generateDeviceTooltip(device)" matTooltipClass>
+                    {{device.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="submit()" color="primary">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
