@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./create-experiment.component.css']
 })
 export class CreateExperimentComponent implements OnInit {
+  static PATH: any = 'experiments/create';
 
   devices: any[] = [];
   experimentForm: FormGroup;
