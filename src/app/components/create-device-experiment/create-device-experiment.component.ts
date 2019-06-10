@@ -19,6 +19,7 @@ export class CreateDeviceExperimentComponent implements OnInit {
   deviceExperimentForm: FormGroup;
   submitted: boolean;
   @Input('callbackUrl') callbackUrl: string = '';
+  static PATH: any = 'device-experiments/create';
 
   constructor(private deviceExperimentService: DeviceExperimentService, private deviceService: DeviceService,
     private experimentService: ExperimentService, private formBuilder: FormBuilder,
@@ -58,7 +59,7 @@ export class CreateDeviceExperimentComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      ['/devices-experiments/create'], {
+      [CreateDeviceExperimentComponent.PATH], {
         queryParams: {
           deviceId: this.deviceExperimentForm.controls.deviceId.value,
           experimentId: this.deviceExperimentForm.controls.experimentId.value,

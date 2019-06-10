@@ -16,6 +16,7 @@ export class CreateOutputTypeComponent implements OnInit {
   outputTypeForm: FormGroup;
   submitted: boolean;
   @Input('callbackUrl') callbackUrl: string = '';
+  static PATH: any = 'output-types/create';
 
   constructor(private outputTypeService: OutputTypeService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog) { }
@@ -42,7 +43,7 @@ export class CreateOutputTypeComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      ['/output-types/create'], {
+      [CreateOutputTypeComponent.PATH], {
         queryParams: {
           name: this.outputTypeForm.controls.name.value,
           units: this.outputTypeForm.controls.units.value,

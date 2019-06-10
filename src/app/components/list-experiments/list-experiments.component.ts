@@ -11,7 +11,7 @@ import { ExperimentService } from 'src/app/services/experiment.service';
   styleUrls: ['./list-experiments.component.css']
 })
 export class ListExperimentsComponent implements OnInit {
-  static path = 'experiments';
+  static PATH = 'experiments';
   experiments: any[] = [];
   listExperimentsForm: FormGroup;
   downloadLink: string;
@@ -46,7 +46,7 @@ export class ListExperimentsComponent implements OnInit {
   }
 
   updateRoute() {
-    this.router.navigate([ListExperimentsComponent.path], {
+    this.router.navigate([ListExperimentsComponent.PATH], {
       queryParams: {
         experimentId: this.listExperimentsForm.get('experimentId').value
       }
