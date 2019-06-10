@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-experiment.component.css']
 })
 export class CreateExperimentComponent implements OnInit {
+  static PATH: any = 'experiments/create';
 
   constructor() { }
 

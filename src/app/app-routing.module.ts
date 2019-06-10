@@ -13,18 +13,17 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 
 const routes: any = [
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: LoginComponent.PATH, component: LoginComponent },
+  { path: SignupComponent.PATH, component: SignupComponent },
   { path: 'unauthorized', component: HomeComponent, pathMatch: 'full' },
-  { path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0 },
-  { path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 0 },
-  { path: ListExperimentsComponent.path, component: ListExperimentsComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
-  { path: 'experiments/create', component: CreateExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
-  { path: 'device-outputs/create', component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
-  { path: 'output-types/create', component: CreateOutputTypeComponent, authLevel: 1},
-  { path: 'devices-experiments/create', component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
-  { path: 'devices/create', component: CreateNewDeviceComponent, authLevel: 2},
-
+  { path: HomeComponent.PATH, component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
+  { path: ListExperimentsComponent.PATH, component: ListExperimentsComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
+  { path: CreateExperimentComponent.PATH, component: CreateExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: CreateDeviceOutputComponent.PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
+  { path: CreateOutputTypeComponent.PATH, component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard] },
+  { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: CreateNewDeviceComponent.PATH, component: CreateNewDeviceComponent}
 ];
 
 export const routing = RouterModule.forRoot(routes, { useHash: true });
