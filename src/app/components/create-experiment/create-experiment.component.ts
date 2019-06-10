@@ -1,3 +1,4 @@
+import { DeviceExperimentService } from './../../services/device-experiment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceService } from './../../services/device.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,12 +22,12 @@ export class CreateExperimentComponent implements OnInit {
   constructor(private experimentService: ExperimentService, private deviceService: DeviceService,
     private route: ActivatedRoute, private formBuilder: FormBuilder,
     private router: Router, public tooltipService: TooltipService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar, private deviceExperimentService: DeviceExperimentService) {
 
     this.route.queryParams.subscribe(params => {
       let deviceId = '';
       let description = '';
-      let startTime = '';
+      let startTime = null;
       let notes = '';
       if (params['deviceId']) {
         deviceId = params['deviceId'];
@@ -35,7 +36,7 @@ export class CreateExperimentComponent implements OnInit {
         description = params['description'];
       }
       if (params['startTime']) {
-        startTime = params['startTime'];
+        startTime = new Date(Number(params['startTime']));
       }
       if (params['notes']) {
         notes = params['notes'];
@@ -58,6 +59,7 @@ export class CreateExperimentComponent implements OnInit {
   }
 
   updateRoute(): Promise<boolean> {
+    console.log(this.experimentForm.controls)
     return this.router.navigate(
       [CreateExperimentComponent.PATH], {
         queryParams: {
@@ -72,7 +74,7 @@ export class CreateExperimentComponent implements OnInit {
   submit() {
     this.experimentService.createExperiment(
       this.experimentForm.controls.description.value,
-      this.experimentForm.controls.startTime.value,
+      this.experimentForm.controls.startTime.value.getTime(),
       this.experimentForm.controls.notes.value,
     ).subscribe(
       (data: any) => {
@@ -80,6 +82,9 @@ export class CreateExperimentComponent implements OnInit {
           'Dismiss', {
             duration: 5000,
           });
+        for (let deviceId of this.experimentForm.controls.deviceId.value) {
+          this.deviceExperimentService.createDeviceExperiment(deviceId, data.id);
+        }
       },
       (error: any) => console.log(error)
     )

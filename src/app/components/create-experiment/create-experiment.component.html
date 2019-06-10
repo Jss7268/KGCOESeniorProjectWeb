@@ -21,7 +21,7 @@
             <td>
               <mat-form-field class="w-100"
                 [ngClass]="submitted && experimentForm.controls.startTime.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Start Time" formControlName="startTime" (focus)="picker.open()" (change)="updateRoute()" [matDatepicker]="picker" required>
+                <input matInput placeholder="Start Time" formControlName="startTime" (focus)="picker.open()" (dateChange)="updateRoute()" [matDatepicker]="picker" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker type="datetime" #picker></mat-datepicker>
                 <mat-error *ngIf="experimentForm.get('startTime').hasError('required')">
