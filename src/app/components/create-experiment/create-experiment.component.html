@@ -34,7 +34,9 @@
             <td>
               <mat-form-field class="w-100"
                 [ngClass]="submitted && experimentForm.controls.notes.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Notes (Optional)" (change)="updateRoute()" formControlName="notes">
+                <mat-label>Notes <i>(Optional)</i></mat-label>
+
+                <input matInput (change)="updateRoute()" formControlName="notes">
               </mat-form-field>
             </td>
           </tr>

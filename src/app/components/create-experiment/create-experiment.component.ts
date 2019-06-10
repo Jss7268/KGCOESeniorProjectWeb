@@ -58,9 +58,8 @@ export class CreateExperimentComponent implements OnInit {
   }
 
   updateRoute(): Promise<boolean> {
-    console.log('?');
     return this.router.navigate(
-      ['/experiments/create'], {
+      [CreateExperimentComponent.PATH], {
         queryParams: {
           deviceId: this.experimentForm.controls.deviceId.value,
           description: this.experimentForm.controls.description.value,
