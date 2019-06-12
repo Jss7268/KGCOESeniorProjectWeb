@@ -26,16 +26,17 @@ export class DeviceOutputService {
   }
 
   listByExperiment(experimentId: string, outputTypeId = '', deviceId = ''): Observable<any> {
-    let requestString = AppRoutes.DEVICE_OUTPUTS + '/experiment/' + experimentId;
+    let queryParams = '';
     if (outputTypeId !== '' || deviceId !== ''){
-      requestString = requestString + '?';
+      queryParams = '?';
+      if (outputTypeId !== '') {
+        queryParams = `${queryParams}output_type_id=${outputTypeId}`;
+      }
+      if (deviceId !== '') {
+        queryParams = `${queryParams}device_id=${deviceId}`;
+      }
     }
-    if (outputTypeId !== '') {
-      requestString = requestString + 'output_type_id=' + outputTypeId;
-    }
-    if (deviceId !== '') {
-      requestString = requestString + 'device_id=' + deviceId;
-    }
-    return this.http.get(requestString);
+    
+    return this.http.get(`${AppRoutes.DEVICE_OUTPUTS}/experiment/${experimentId}${queryParams}`);
   }
 }

@@ -15,21 +15,19 @@ export class AuthService {
   private STORAGE_KEY = 'loggedInUser';
   private ACCESS_KEY = 'userAccess';
 
-  getPostEndpoint() {
-    return AppSettings.API_ENDPOINT + "user/signup";
-  }
-
-  createUser(name: string, email: string, password: string): Observable<any>{
-    let o: Observable<any> = this.http.post(AppSettings.AUTH_ENDPOINT + "register", {
+  createUser(name: string, email: string, password: string, requestedAccessLevel: number, requestedReason: string): Observable<any>{
+    let o: Observable<any> = this.http.post(`${AppSettings.AUTH_ENDPOINT}/register`, {
       name: name,
       email: email,
-      password: password
+      password: password,
+      requested_access_level: requestedAccessLevel,
+      requested_reason: requestedReason
     });
     return o;
   }
 
   authenticate(email: string, password: string): Observable<any>{
-    let o: Observable<any> = this.http.post(AppSettings.AUTH_ENDPOINT + "authenticate", {
+    let o: Observable<any> = this.http.post(`${AppSettings.AUTH_ENDPOINT}/authenticate`, {
       email: email,
       password: password
     }, {withCredentials: true}).pipe(share());
@@ -41,7 +39,7 @@ export class AuthService {
   }
 
   getUsers():Observable<any> {
-    return this.http.get(AppSettings.API_ENDPOINT + '/v1/users');
+    return this.http.get(`${AppSettings.API_ENDPOINT}/v1/users`);
   }
 
   setToken(token: string) {
@@ -65,7 +63,7 @@ export class AuthService {
   }
 
   hasAccessLevel(accessLevel: number) {
-    let access: string =  localStorage.getItem(this.ACCESS_KEY)
+    let access: string = localStorage.getItem(this.ACCESS_KEY)
     return access != null && Number(access) >= accessLevel
   }
 

@@ -74,7 +74,34 @@
               </mat-form-field>
             </td>
           </tr>
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && signupForm.controls.requestedAccessLevel.errors ? 'mat-form-field-invalid' : ''">
+                <mat-label>Request Elevated Access <i>(Optional)</i></mat-label>
+                <mat-select formControlName="requestedAccessLevel">
+                  <mat-option *ngFor="let access of userService.ACCESSES"
+                    [value]="access.access_level ? access.access_level : null">
+                    {{access.description}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          
         </table>
+        <div *ngIf="signupForm.controls.requestedAccessLevel.value" [@requestedReasonAnimation] class="w-100">
+            <div class="w-100">
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && signupForm.controls.requestedReason.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Reason for requesting access level" formControlName="requestedReason"
+                  name="requestedReason">
+                <mat-error *ngIf="signupForm.get('requestedReason').hasError('maxlength')">
+                  Reason cannot be more than 256 characters long.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
       </form>
     </mat-card-content>
     <mat-card-actions>

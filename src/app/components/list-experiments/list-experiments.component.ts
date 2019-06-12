@@ -31,7 +31,7 @@ import {
   styleUrls: ['./list-experiments.component.css']
 })
 export class ListExperimentsComponent implements OnInit {
-  static path = 'experiments';
+  static PATH = 'experiments';
   experiments: any[] = [];
   listExperimentsForm: FormGroup;
   downloadLink: string;
@@ -78,7 +78,7 @@ export class ListExperimentsComponent implements OnInit {
   }
 
   updateRoute() {
-    this.router.navigate([ListExperimentsComponent.path], {
+    this.router.navigate([ListExperimentsComponent.PATH], {
       queryParams: {
         experimentId: this.listExperimentsForm.get('experimentId').value,
         outputType: this.listExperimentsForm.get('outputType').value,
@@ -106,15 +106,15 @@ export class ListExperimentsComponent implements OnInit {
   onChange() {
     this.deviceOutputService.listByExperiment(this.listExperimentsForm.get('experimentId').value, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value).subscribe(
       (data: any) => {
-        this.downloadLink = this.sanitizer.bypassSecurityTrustUrl('data:text/plain;charset=utf-8,' + JSON.stringify(this.getDeviceOutputFields(data))) as string
+        this.downloadLink = this.sanitizer.bypassSecurityTrustUrl(`data:text/plain;charset=utf-8, ${JSON.stringify(this.getDeviceOutputFields(data))}`) as string
         if (data.length > 0) {
           for (let obj of data) {
             this.containsOutputType({name: obj.output_type_name, output_type_id: obj.output_type_id}, this.output_types) ? {} : this.output_types.push({name: obj.output_type_name, output_type_id: obj.output_type_id});
             this.containsDevice({device_id: obj.device_id, name: obj.name}, this.devices) ? {} : this.devices.push({device_id: obj.device_id, name: obj.name});
           }
-          this.downloadName = data[0].description + '.json';
+          this.downloadName = `${data[0].description}.json`;
         } else {
-          this.downloadName = this.listExperimentsForm.get('experimentId').value + '.json';
+          this.downloadName = `${this.listExperimentsForm.get('experimentId').value}.json`;
         }
       },
       (error: any) => console.log(error)

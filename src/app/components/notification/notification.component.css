@@ -1,0 +1,51 @@
+.close-button {
+    color: red;
+}
+
+.check-button {
+    color: green;
+}
+
+.m-8 {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+button.mat-menu-item {
+    display: inline-block;
+}
+
+.text-button {
+    width: calc(100% - 80px);
+}
+
+.icon-button {
+    width: auto;
+    padding: 0;
+    float: right;
+}
+.mat-menu-title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 16px;
+    width: 264px;
+}
+.notification-count {
+    position: absolute;
+    top: -6px;
+    right: 7px;
+    height: 10px;
+}
+
+.notification-box {
+    position: absolute;
+    top: 6px;
+    right: 3px;
+    background-color: #f44336;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+}

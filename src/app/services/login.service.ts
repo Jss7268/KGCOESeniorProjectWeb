@@ -13,7 +13,7 @@ export class LoginService {
 
   getUser(): Observable<any> {
 
-    let observable: Observable<any> = this.http.get(AppSettings.API_ENDPOINT + 'auth/user', { withCredentials: true });
+    let observable: Observable<any> = this.http.get(`${AppSettings.API_ENDPOINT}auth/user`, { withCredentials: true });
     observable.subscribe((data: any) => {
       if (data != undefined && data['email']) {
         this.auth = data;
@@ -29,7 +29,7 @@ export class LoginService {
   }
 
   signIn(email: string, pass: string): Observable<any> {
-    let observable: Observable<any> = this.http.post(AppSettings.AUTH_ENDPOINT + 'authenticate', { withCredentials: true });
+    let observable: Observable<any> = this.http.post(`${AppSettings.AUTH_ENDPOINT}authenticate`, { withCredentials: true });
     observable.subscribe((data: any) => {
       if (data != undefined && data['email']) {
         this.auth = data;
