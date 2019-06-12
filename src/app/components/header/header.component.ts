@@ -8,6 +8,7 @@ import { DOCUMENT } from '@angular/common';
 import {AppSettings} from '../../app.settings';
 import { Router } from '@angular/router';
 import { ListExperimentsComponent } from '../list-experiments/list-experiments.component';
+import { CreateNewDeviceComponent } from '../create-new-device/create-new-device.component';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +16,8 @@ import { ListExperimentsComponent } from '../list-experiments/list-experiments.c
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(@Inject(DOCUMENT) private document: any, public auth: AuthService, private router: Router) { 
-    
+  constructor(@Inject(DOCUMENT) private document: any, public auth: AuthService, private router: Router) {
+
   }
 
   ngOnInit() {
@@ -45,7 +46,7 @@ export class HeaderComponent implements OnInit {
   }
 
   newDevice() {
-    this.router.navigate(["devices/create"]);
+    this.router.navigate(CreateNewDeviceComponent.PATH);
   }
 
   newUserInput() {
@@ -59,5 +60,4 @@ export class HeaderComponent implements OnInit {
   newExperiment() {
     this.router.navigate([CreateExperimentComponent.PATH]);
   }
-
 }

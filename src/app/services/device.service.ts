@@ -14,4 +14,13 @@ export class DeviceService {
   listDevices(): Observable<any> {
     return this.http.get(AppRoutes.LIST_DEVICES);
   }
+
+  createDevice(name: string, id: string, password: string, accessLevel: string): Observable<any> {
+    return this.http.post(AppRoutes.AUTH_REGISTER, {
+      name: name,
+      email: id,
+      password: password,
+      requested_access_level: accessLevel
+    });
+  }
 }
