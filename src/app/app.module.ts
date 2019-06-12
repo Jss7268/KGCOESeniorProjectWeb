@@ -57,6 +57,8 @@ import { NotificationComponent } from './components/notification/notification.co
     CreateDeviceExperimentComponent,
     NotificationComponent,
   ],
+  entryComponents: [ConfirmationDialogComponent],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

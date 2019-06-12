@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-create-output-type',
   templateUrl: './create-output-type.component.html',
-  styleUrls: ['./create-output-type.component.css']
+  styleUrls: ['./create-output-type.component.css'],
 })
 export class CreateOutputTypeComponent implements OnInit {
   ngUnsubscribe = new Subject();
