@@ -41,7 +41,7 @@ export class NotificationComponent implements OnInit {
     this.currentUser = user;
     this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: { info: `Are you sure you want to grant ${user.name} access level: ${user.requested_access_level}?`, cancelDialog: 'Cancel', confirmDialog: 'Continue', callback: this.changeAccessLevel }
+      data: { info: `Are you sure you want to grant ${user.name} access level: ${this.userService.getAccessName(user.requested_access_level)}?`, cancelDialog: 'Cancel', confirmDialog: 'Continue', callback: this.changeAccessLevel }
     });
   }
 
