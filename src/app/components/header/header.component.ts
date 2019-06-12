@@ -1,3 +1,5 @@
+import { CreateExperimentComponent } from './../create-experiment/create-experiment.component';
+import { CreateDeviceOutputComponent } from './../create-device-output/create-device-output.component';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Inject } from '@angular/core'
@@ -5,6 +7,7 @@ import { LoginService } from '../../services/login.service';
 import { DOCUMENT } from '@angular/common';
 import {AppSettings} from '../../app.settings';
 import { Router } from '@angular/router';
+import { ListExperimentsComponent } from '../list-experiments/list-experiments.component';
 
 @Component({
   selector: 'app-header',
@@ -34,11 +37,27 @@ export class HeaderComponent implements OnInit {
   }
 
   experiments() {
-    this.router.navigate(["experiments"]);
+    this.router.navigate([ListExperimentsComponent.PATH]);
   }
 
   outputData() {
-    this.router.navigate(["device-outputs/create"]);
+    this.router.navigate([CreateDeviceOutputComponent.PATH]);
+  }
+
+  newDevice() {
+    this.router.navigate(["devices/create"]);
+  }
+
+  newUserInput() {
+    this.router.navigate(["user-input/create"]);
+  }
+
+  newDeviceOutput() {
+    this.router.navigate([CreateDeviceOutputComponent.PATH]);
+  }
+
+  newExperiment() {
+    this.router.navigate([CreateExperimentComponent.PATH]);
   }
 
 }
