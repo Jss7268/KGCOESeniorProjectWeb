@@ -31,12 +31,12 @@
       <button *ngIf="auth.hasAccessLevel(1)" mat-icon-button [matMenuTriggerFor]="add" aria-label="Add new">
         <mat-icon>add</mat-icon>
       </button>
-      
+
       <mat-menu #add="matMenu">
         <button mat-menu-item>
           <span>Add new Experiment</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="createDevice()">
           <span>Add new Device</span>
         </button>
         <button mat-menu-item>

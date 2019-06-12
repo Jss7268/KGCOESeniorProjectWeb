@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(@Inject(DOCUMENT) private document: any, public auth: AuthService, private router: Router) { 
-    
+  constructor(@Inject(DOCUMENT) private document: any, public auth: AuthService, private router: Router) {
+
   }
 
   ngOnInit() {
@@ -39,6 +39,10 @@ export class HeaderComponent implements OnInit {
 
   outputData() {
     this.router.navigate(["device-outputs/create"]);
+  }
+
+  createDevice() {
+    this.router.navigate(["devices/create"]);
   }
 
 }
