@@ -10,7 +10,7 @@ export class NotificationService {
 
   constructor(private http: HttpClient) { }
 
-  getRequestedAccessUsers(): Observable<any> {
+  getRequestedAccessLevelUsers(): Observable<any> {
     let o: Observable<any> = this.http.get(`${AppRoutes.USERS}?requested_access_level__!null`);
     return o;
   }
@@ -20,8 +20,13 @@ export class NotificationService {
     return o;
   }
 
-  acceptRequestedAccessUser(id: string, accessLevel: number): Observable<any>  {
+  acceptRequestedAccessLevelUser(id: string, accessLevel: number): Observable<any>  {
     let o: Observable<any> = this.http.put(`${AppRoutes.USERS}/${id}/access`, { access_level: accessLevel });
+    return o;
+  }
+
+  undoAccessLevelChange(id: string, currentAccessLevel: number, previousAccessLevel: number): Observable<any> {
+    let o: Observable<any> = this.http.put(`${AppRoutes.USERS}/${id}/access`, { access_level: previousAccessLevel });
     return o;
   }
 }
