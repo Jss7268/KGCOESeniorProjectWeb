@@ -19,27 +19,27 @@ export class CreateOutputTypeComponent implements OnInit {
   static PATH: any = 'output-types/create';
 
   constructor(private outputTypeService: OutputTypeService, private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private router: Router, public dialog: MatDialog) { }
+    private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
+      this.route.queryParams.subscribe(params => {
+        let name = '';
+        let units = '';
+        if (params['name']) {
+          name = params['name'];
+        }
+        if (params['units']) {
+          units = params['units'];
+        }
+        if (params['callbackUrl']) {
+          this.callbackUrl = params['callbackUrl'];
+        }
+        this.outputTypeForm = this.formBuilder.group({
+          name: new FormControl(name, [Validators.required]),
+          units: new FormControl(units, [Validators.required])
+        });
+      });
+     }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      let name = '';
-      let units = '';
-      if (params['name']) {
-        name = params['name'];
-      }
-      if (params['units']) {
-        units = params['units'];
-      }
-      if (params['callbackUrl']) {
-        this.callbackUrl = params['callbackUrl'];
-      }
-      this.outputTypeForm = this.formBuilder.group({
-        name: new FormControl(name, [Validators.required]),
-        units: new FormControl(units, [Validators.required])
-      })
-    });
-  }
+  ngOnInit() {}
 
   updateRoute() {
     this.router.navigate(
