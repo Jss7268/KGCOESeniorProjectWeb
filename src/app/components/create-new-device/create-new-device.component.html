@@ -22,7 +22,7 @@
               <td>
                 <mat-form-field class="w-100"
                   [ngClass]="submitted && createDeviceForm.controls.id.errors ? 'mat-form-field-invalid' : ''">
-                  <input matInput placeholder="Device ID" formControlName="id" type="id" name="id"
+                  <input title = "Must be a unique id for your device to use to login" matInput placeholder="Device ID" formControlName="id" type="id" name="id"
                     required (keyup.enter)="submit()">
                   <mat-error *ngIf="createDeviceForm.get('id').hasError('required')">
                     Device ID is required.
@@ -34,7 +34,7 @@
             <td>
               <mat-form-field class="w-100"
                 [ngClass]="submitted && createDeviceForm.controls.password.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="Device Secret" formControlName="password" type="password" name="password"
+                <input title = "A password to login with device" matInput placeholder="Device Secret" formControlName="password" type="password" name="password"
                   required (keyup.enter)="submit()">
                 <mat-error *ngIf="createDeviceForm.get('password').hasError('required')">
                   Device Secret is required.
