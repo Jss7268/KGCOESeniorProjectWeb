@@ -14,7 +14,6 @@ import { MatDialog } from '@angular/material';
 export class NotificationComponent implements OnInit {
 
   private requestedUsers: User[]
-  private currentUser: User;
   constructor(public auth: AuthService, private notificationService: NotificationService, public userService: UserService,
     public dialog: MatDialog) { }
 
@@ -38,15 +37,19 @@ export class NotificationComponent implements OnInit {
   }
 
   changeAccessLevelConfirmation(user: User) {
-    this.currentUser = user;
-    this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: { info: `Are you sure you want to grant ${user.name} access level: ${this.userService.getAccessName(user.requested_access_level)}?`, cancelDialog: 'Cancel', confirmDialog: 'Continue', callback: this.changeAccessLevel }
+      data: { info: `Are you sure you want to grant ${user.name} access level: ${this.userService.getAccessName(user.requested_access_level)}?`, cancelDialog: 'Cancel', confirmDialog: 'Continue'}
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.changeAccessLevel(user);
+      }
+    })
   }
 
-  changeAccessLevel() {
-    this.notificationService.acceptRequestedAccessUser(this.currentUser.id, this.currentUser.requested_access_level).subscribe((data: any) => {
+  changeAccessLevel(user: User) {
+    this.notificationService.acceptRequestedAccessLevelUser(user.id, user.requested_access_level).subscribe((data: any) => {
       this.ngOnInit();
     });
   }

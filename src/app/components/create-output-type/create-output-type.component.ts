@@ -82,11 +82,13 @@ export class CreateOutputTypeComponent implements OnInit {
   openOverwriteDialog() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: { info: 'Do you wish to overwrite existing output type?', cancelDialog: 'Cancel', confirmDialog: 'Continue', callback: this.overwrite }
+      data: { info: 'Do you wish to overwrite existing output type?', cancelDialog: 'Cancel', confirmDialog: 'Continue'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.overwrite();
+      }
     });
   }
 

@@ -3,5 +3,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button color="warn" (click)="onNoClick()">{{data.cancelDialog}}</button>
-  <button mat-button color="primary" (click)="executeCallback()" cdkFocusInitial>{{data.confirmDialog}}</button>
+  <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>{{data.confirmDialog}}</button>
 </div>
