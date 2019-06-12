@@ -125,7 +125,7 @@ export class CreateDeviceOutputComponent implements OnInit {
   }
 
   addOutputType() {
-    let cb = `${CreateDeviceExperimentComponent.PATH}?deviceId=
+    let cb = `${CreateDeviceOutputComponent.PATH}?deviceId=
       ${this.deviceOutputForm.controls.deviceId.value}&experimentId=
       ${this.deviceOutputForm.controls.experimentId.value}&outputValue=
       ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
@@ -141,7 +141,7 @@ export class CreateDeviceOutputComponent implements OnInit {
   }
 
   addDeviceExperiment() {
-    let cb = `${CreateDeviceExperimentComponent.PATH}?deviceId=
+    let cb = `${CreateDeviceOutputComponent.PATH}?deviceId=
       ${this.deviceOutputForm.controls.deviceId.value}&outputTypeName=
       ${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=
       ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`;
