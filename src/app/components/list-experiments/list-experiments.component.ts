@@ -4,9 +4,29 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceOutputService } from 'src/app/services/device-output.service';
 import { ExperimentService } from 'src/app/services/experiment.service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-list-experiments',
+  animations: [
+    trigger('showInputAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateY(-58px)', opacity: 0, height: 0 }),
+        animate('100ms', style({ transform: 'translateY(0)', opacity: 1, height: '*' }))
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateY(0)', opacity: 1, height: '*' }),
+        animate('100ms', style({ transform: 'translateY(-58px)', opacity: 0, height: 0 }))
+      ])
+    ])
+  ],
   templateUrl: './list-experiments.component.html',
   styleUrls: ['./list-experiments.component.css']
 })

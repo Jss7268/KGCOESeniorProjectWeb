@@ -20,17 +20,16 @@
 
             </td>
           </tr>
-
-          <tr *ngIf="experiments">
+          <tr *ngIf="listExperimentsForm.controls.experimentId.value" [@showInputAnimation]>
             <td>
               <mat-card-header>Filter Data By</mat-card-header>
             </td>
           </tr>
-          <tr *ngIf="experiments">
+          <tr *ngIf="listExperimentsForm.controls.experimentId.value" [@showInputAnimation]>
             <td>
               <mat-form-field class="w-100">
-                <mat-label>Type</mat-label>
-                <mat-select id="type_field" formControlName="outputType" (selectionChange)="updateRoute()">
+                <mat-label>(Optional) Type</mat-label>
+                <mat-select id="type_field" formControlName="outputType" (selectionChange)="updateRoute()" multiple>
                   <mat-option *ngFor="let output_type of output_types" [value]="output_type.output_type_id">{{output_type.name}}
                   </mat-option>
                 </mat-select>
@@ -39,8 +38,8 @@
 
             <td>
               <mat-form-field class="w-100">
-                <mat-label>Device/User</mat-label>
-                <mat-select id="user_field" formControlName="user" (selectionChange)="updateRoute()">
+                <mat-label>(Optional) Device</mat-label>
+                <mat-select id="user_field" formControlName="user" (selectionChange)="updateRoute()" multiple>
                   <mat-option *ngFor="let device of devices" [value]="device.device_id">{{device.name}}
                   </mat-option>
                 </mat-select>
