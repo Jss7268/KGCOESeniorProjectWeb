@@ -1,0 +1,52 @@
+<div class="card-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Add New Device</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="createDeviceForm">
+        <table class="w-100" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && createDeviceForm.controls.name.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Name" formControlName="name" name="name" type="name"
+                  required (keyup.enter)="submit()">
+                <mat-error *ngIf="createDeviceForm.get('name').hasError('required')">
+                  Name is required.
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+              <td>
+                <mat-form-field class="w-100"
+                  [ngClass]="submitted && createDeviceForm.controls.id.errors ? 'mat-form-field-invalid' : ''">
+                  <input title = "Must be a unique id for your device to use to login" matInput placeholder="Device ID" formControlName="id" type="id" name="id"
+                    required (keyup.enter)="submit()">
+                  <mat-error *ngIf="createDeviceForm.get('id').hasError('required')">
+                    Device ID is required.
+                  </mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+          <tr>
+            <td>
+              <mat-form-field class="w-100"
+                [ngClass]="submitted && createDeviceForm.controls.password.errors ? 'mat-form-field-invalid' : ''">
+                <input title = "A password to login with device" matInput placeholder="Device Secret" formControlName="password" type="password" name="password"
+                  required (keyup.enter)="submit()">
+                <mat-error *ngIf="createDeviceForm.get('password').hasError('required')">
+                  Device Secret is required.
+                </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="submit()" color="primary">Save</button>
+    </mat-card-actions>
+  </mat-card>
+  <div class="card-container">

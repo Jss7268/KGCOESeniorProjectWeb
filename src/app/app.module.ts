@@ -39,6 +39,7 @@ import { CreateOutputTypeComponent } from './components/create-output-type/creat
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 
 
 @NgModule({
@@ -56,7 +57,10 @@ import { NotificationComponent } from './components/notification/notification.co
     ConfirmationDialogComponent,
     CreateDeviceExperimentComponent,
     NotificationComponent,
+    CreateNewDeviceComponent,
   ],
+  entryComponents: [ConfirmationDialogComponent],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

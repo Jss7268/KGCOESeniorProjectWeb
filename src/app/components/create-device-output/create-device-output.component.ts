@@ -113,8 +113,8 @@ export class CreateDeviceOutputComponent implements OnInit {
       (data: any) => {
         this.timestamp = timestamp;
         let date = new Date(timestamp);
-        this.snackBar.open(`Created new output on: 
-        ${date.toLocaleDateString('en-US')} at: 
+        this.snackBar.open(`Created new output on:
+        ${date.toLocaleDateString('en-US')} at:
         ${date.toLocaleTimeString('en-US')}`,
           'Dismiss', {
             duration: 5000,

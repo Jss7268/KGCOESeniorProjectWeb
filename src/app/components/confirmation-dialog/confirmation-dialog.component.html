@@ -1,7 +1,7 @@
 <div mat-dialog-content>
-  <p>{{data.info}}</p>
+  <p class="mat-expansion-panel-content">{{data.info}}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">{{data.cancelDialog}}</button>
-  <button mat-button (click)="executeCallback()" cdkFocusInitial>{{data.confirmDialog}}</button>
+  <button mat-button color="warn" (click)="onNoClick()">{{data.cancelDialog}}</button>
+  <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>{{data.confirmDialog}}</button>
 </div>
