@@ -33,16 +33,16 @@
       </button>
 
       <mat-menu #add="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="newExperiment()">
           <span>Add new Experiment</span>
         </button>
-        <button mat-menu-item (click)="createDevice()">
+        <button mat-menu-item (click)="newDevice()">
           <span>Add new Device</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="newUserInput()">
           <span>Add new User Input</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="newDeviceOutput()">
           <span>Add new Device Output</span>
         </button>
       </mat-menu>

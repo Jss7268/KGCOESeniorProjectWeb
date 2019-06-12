@@ -22,9 +22,12 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@coachcare/datepicker": "^1.0.0",
     "@types/angular": "~1.6.5",
     "@types/jquery": "~2.0.40",
     "core-js": "^2.5.4",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

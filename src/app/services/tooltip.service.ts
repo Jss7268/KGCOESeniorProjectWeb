@@ -11,7 +11,7 @@ export class TooltipService {
   constructor() { }
 
   generateDeviceTooltip(device: Device) {
-    return `Email: ${device.email}\nId: ${device.id}`;
+    return `Device ID: ${device.email}\nGUID: ${device.id}`;
  }
 
   generateExperimentTooltip(experiment: Experiment) {

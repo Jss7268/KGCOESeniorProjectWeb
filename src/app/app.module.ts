@@ -25,9 +25,7 @@ import {
   MatSnackBarModule
 } from '@angular/material';
 
-
-
-
+import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -84,6 +82,8 @@ import { CreateNewDeviceComponent } from './components/create-new-device/create-
     MatSnackBarModule,
     MatTableModule,
     MatTooltipModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
   ],
   providers: [LoginService,
     AuthService,
