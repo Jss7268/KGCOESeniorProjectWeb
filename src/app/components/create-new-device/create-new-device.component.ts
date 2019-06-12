@@ -38,20 +38,11 @@ export class CreateNewDeviceComponent implements OnInit {
         deviceSecret = params.password;
       }
 
-      let doUpdate;
-      if (!this.createDeviceForm || deviceId !== this.createDeviceForm.get('id').value) {
-        doUpdate = true;
-      }
-
       this.createDeviceForm = this.formBuilder.group({
         name: new FormControl(name, [Validators.required]),
         id: new FormControl(deviceId, [Validators.required]),
         password: new FormControl(deviceSecret, [Validators.required]),
       });
-
-      if (doUpdate) {
-        return;
-      }
     });
   }
 
