@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppRoutes } from '../app.routes';
 import { Router } from '@angular/router';
+import * as querystring from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -26,14 +27,10 @@ export class DeviceOutputService {
   }
 
   listByExperiment(experimentId: string, outputTypeId = '', deviceId = ''): Observable<any> {
-    var params = {
+  let queryParams = querystring.stringify({
       output_type_id: outputTypeId,
       device_id: deviceId
-    };
-    var esc = encodeURIComponent;
-    var queryParams = Object.keys(params)
-      .map(k => esc(k) + '=' + esc(params[k]))
-      .join('&');
+    });
     
     return this.http.get(`${AppRoutes.DEVICE_OUTPUTS}/experiment/${experimentId}?${queryParams}`);
   }
