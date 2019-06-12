@@ -20,7 +20,7 @@ export class NotificationService {
     return o;
   }
 
-  acceptRequestedAccessUser(id: string, accessLevel: number): Observable<any>  {
+  acceptRequestedAccessLevelUser(id: string, accessLevel: number): Observable<any>  {
     let o: Observable<any> = this.http.put(`${AppRoutes.USERS}/${id}/access`, { access_level: accessLevel });
     return o;
   }
