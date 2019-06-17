@@ -1,4 +1,6 @@
 @import '~@angular/material/theming';
+@import '~@coachcare/datepicker/theming';
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -22,3 +24,4 @@ $edcs-app-theme: mat-light-theme($edcs-app-primary, $edcs-app-accent, $edcs-app-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($edcs-app-theme);
+@include mat-datepicker-theme($edcs-app-theme);

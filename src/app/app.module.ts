@@ -25,9 +25,7 @@ import {
   MatSnackBarModule
 } from '@angular/material';
 
-
-
-
+import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,6 +41,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
 import { CreateUserInputComponent } from './components/create-user-input/create-user-input.component';
 
 import { NotificationComponent } from './components/notification/notification.component';
+import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 
 
 @NgModule({
@@ -61,7 +60,10 @@ import { NotificationComponent } from './components/notification/notification.co
     CreateDeviceExperimentComponent,
     NotificationComponent,
     CreateUserInputComponent,
+    CreateNewDeviceComponent,
   ],
+  entryComponents: [ConfirmationDialogComponent],
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -85,6 +87,8 @@ import { NotificationComponent } from './components/notification/notification.co
     MatSnackBarModule,
     MatTableModule,
     MatTooltipModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
   ],
   providers: [LoginService,
     AuthService,

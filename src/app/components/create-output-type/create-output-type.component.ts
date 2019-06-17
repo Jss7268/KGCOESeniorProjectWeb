@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-create-output-type',
   templateUrl: './create-output-type.component.html',
-  styleUrls: ['./create-output-type.component.css']
+  styleUrls: ['./create-output-type.component.css'],
 })
 export class CreateOutputTypeComponent implements OnInit {
   ngUnsubscribe = new Subject();
@@ -19,27 +19,27 @@ export class CreateOutputTypeComponent implements OnInit {
   static PATH: any = 'output-types/create';
 
   constructor(private outputTypeService: OutputTypeService, private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private router: Router, public dialog: MatDialog) { }
+    private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
+      this.route.queryParams.subscribe(params => {
+        let name = '';
+        let units = '';
+        if (params['name']) {
+          name = params['name'];
+        }
+        if (params['units']) {
+          units = params['units'];
+        }
+        if (params['callbackUrl']) {
+          this.callbackUrl = params['callbackUrl'];
+        }
+        this.outputTypeForm = this.formBuilder.group({
+          name: new FormControl(name, [Validators.required]),
+          units: new FormControl(units, [Validators.required])
+        });
+      });
+     }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      let name = '';
-      let units = '';
-      if (params['name']) {
-        name = params['name'];
-      }
-      if (params['units']) {
-        units = params['units'];
-      }
-      if (params['callbackUrl']) {
-        this.callbackUrl = params['callbackUrl'];
-      }
-      this.outputTypeForm = this.formBuilder.group({
-        name: new FormControl(name, [Validators.required]),
-        units: new FormControl(units, [Validators.required])
-      })
-    });
-  }
+  ngOnInit() {}
 
   updateRoute() {
     this.router.navigate(
@@ -82,11 +82,13 @@ export class CreateOutputTypeComponent implements OnInit {
   openOverwriteDialog() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: { info: 'Do you wish to overwrite existing output type?', cancelDialog: 'Cancel', confirmDialog: 'Continue', callback: this.overwrite }
+      data: { info: 'Do you wish to overwrite existing output type?', cancelDialog: 'Cancel', confirmDialog: 'Continue'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (result) {
+        this.overwrite();
+      }
     });
   }
 

@@ -2,6 +2,7 @@ import { AppSettings } from './app.settings';
 
 export class AppRoutes {
     public static AUTH_ENDPOINT=`${AppSettings.API_ENDPOINT}/auth`;
+    public static AUTH_REGISTER=`${AppSettings.API_ENDPOINT}/auth/register`;
     public static V1_ENDPOINT=`${AppSettings.API_ENDPOINT}/v1`;
     public static USERS=`${AppRoutes.V1_ENDPOINT}/users`;
     public static EXPERIMENTS=`${AppRoutes.V1_ENDPOINT}/experiments`;
