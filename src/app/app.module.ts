@@ -32,14 +32,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
-import { ListExperimentsComponent } from './components/list-experiments/list-experiments.component';
+import { ListExperimentsComponent } from './components/experiment-subheader/list-experiments/list-experiments.component';
 import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
-import { CreateDeviceOutputComponent } from './components/create-device-output/create-device-output.component';
+import { CreateDeviceOutputComponent } from './components/experiment-subheader/create-device-output/create-device-output.component';
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
+import { CreateDeviceExperimentComponent } from './components/experiment-subheader/create-device-experiment/create-device-experiment.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
+import { ExperimentSubheaderComponent } from './components/experiment-subheader/experiment-subheader.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { CreateNewDeviceComponent } from './components/create-new-device/create-
     CreateDeviceExperimentComponent,
     NotificationComponent,
     CreateNewDeviceComponent,
+    ExperimentSubheaderComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 

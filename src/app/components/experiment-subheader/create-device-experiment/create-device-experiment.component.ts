@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { TooltipService } from 'src/app/services/tooltip.service';
-import { DeviceExperimentService } from './../../services/device-experiment.service';
-import { DeviceService } from './../../services/device.service';
-import { ExperimentService } from './../../services/experiment.service';
+import { DeviceExperimentService } from '../../../services/device-experiment.service';
+import { DeviceService } from '../../../services/device.service';
+import { ExperimentService } from '../../../services/experiment.service';
 
 @Component({
   selector: 'app-create-device-experiment',

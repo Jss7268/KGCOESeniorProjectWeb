@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -38,17 +38,14 @@ export class ListExperimentsComponent implements OnInit {
   downloadName: string;
   output_types: any[] = [];
   devices: any[] = [];
+  @Input('experimentId') experimentId: string;
 
   constructor(private experimentService: ExperimentService, private deviceOutputService: DeviceOutputService,
     private sanitizer: DomSanitizer, private route: ActivatedRoute, private formBuilder: FormBuilder,
     private router: Router) {
     this.route.queryParams.subscribe(params => {
-      let experimentId = '';
       let outputType = '';
       let user = '';
-      if (params['experimentId']) {
-        experimentId = params['experimentId'];
-      }
       if (params['outputType']) {
         outputType = params['outputType'];
       }
@@ -56,11 +53,11 @@ export class ListExperimentsComponent implements OnInit {
         user = params['user'];
       }
       let doUpdate;
-      if (!this.listExperimentsForm || experimentId != this.listExperimentsForm.get('experimentId').value) {
+      if (!this.listExperimentsForm || this.experimentId != this.listExperimentsForm.get('experimentId').value) {
         doUpdate = true;
       }
       this.listExperimentsForm = this.formBuilder.group({
-        experimentId: new FormControl(experimentId, [Validators.required]),
+        experimentId: new FormControl(this.experimentId, [Validators.required]),
         outputType: new FormControl(outputType),
         user: new FormControl(user)
       })
@@ -78,9 +75,8 @@ export class ListExperimentsComponent implements OnInit {
   }
 
   updateRoute() {
-    this.router.navigate([ListExperimentsComponent.PATH], {
+    this.router.navigate([this.listExperimentsForm.get('experimentId').value, ListExperimentsComponent.PATH], {
       queryParams: {
-        experimentId: this.listExperimentsForm.get('experimentId').value,
         outputType: this.listExperimentsForm.get('outputType').value,
         user: this.listExperimentsForm.get('user').value
       }

@@ -1,10 +1,10 @@
-import { CreateDeviceExperimentComponent } from './../create-device-experiment/create-device-experiment.component';
-import { CreateOutputTypeComponent } from './../create-output-type/create-output-type.component';
-import { DeviceExperimentService } from './../../services/device-experiment.service';
-import { OutputTypeService } from './../../services/output-type.service';
+import { CreateDeviceExperimentComponent } from '../create-device-experiment/create-device-experiment.component';
+import { CreateOutputTypeComponent } from '../../create-output-type/create-output-type.component';
+import { DeviceExperimentService } from '../../../services/device-experiment.service';
+import { OutputTypeService } from '../../../services/output-type.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DeviceService } from './../../services/device.service';
-import { DeviceOutputService } from './../../services/device-output.service';
+import { DeviceService } from '../../../services/device.service';
+import { DeviceOutputService } from '../../../services/device-output.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ExperimentService } from 'src/app/services/experiment.service';
