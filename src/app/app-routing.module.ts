@@ -10,11 +10,8 @@ import { AuthGuard } from 'src/app/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
 import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
-<<<<<<< HEAD
 import { CreateUserInputComponent } from './components/create-user-input/create-user-input.component';
-=======
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
->>>>>>> bc88535dedeee34788108cf352c21539fde0c3f6
 
 const routes: any = [
   { path: LoginComponent.PATH, component: LoginComponent },
@@ -27,12 +24,8 @@ const routes: any = [
   { path: CreateDeviceOutputComponent.PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: CreateOutputTypeComponent.PATH, component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
-<<<<<<< HEAD
   { path: CreateUserInputComponent.PATH, component: CreateUserInputComponent, authLevel: 1, canActivate: [AuthGuard] },
-
-=======
   { path: CreateNewDeviceComponent.PATH, component: CreateNewDeviceComponent, authLevel: 2, canActivate: [AuthGuard]}
->>>>>>> bc88535dedeee34788108cf352c21539fde0c3f6
 ];
 
 export const routing = RouterModule.forRoot(routes, { useHash: true });
