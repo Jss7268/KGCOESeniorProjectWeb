@@ -5,6 +5,7 @@ import { LoginService } from '../../services/login.service';
 import { DOCUMENT } from '@angular/common';
 import {AppSettings} from '../../app.settings';
 import { Router } from '@angular/router';
+import { CreateUserInputComponent } from './../create-user-input/create-user-input.component';
 
 @Component({
   selector: 'app-header',
@@ -41,4 +42,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["device-outputs/create"]);
   }
 
+  userInputs() {
+    this.router.navigate([CreateUserInputComponent.PATH]);
+  }
 }

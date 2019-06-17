@@ -40,6 +40,8 @@ import { CreateDeviceOutputComponent } from './components/create-device-output/c
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
+import { CreateUserInputComponent } from './components/create-user-input/create-user-input.component';
+
 import { NotificationComponent } from './components/notification/notification.component';
 
 
@@ -58,6 +60,7 @@ import { NotificationComponent } from './components/notification/notification.co
     ConfirmationDialogComponent,
     CreateDeviceExperimentComponent,
     NotificationComponent,
+    CreateUserInputComponent,
   ],
   imports: [
     BrowserModule,
