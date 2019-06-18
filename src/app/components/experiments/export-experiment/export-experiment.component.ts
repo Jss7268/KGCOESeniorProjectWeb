@@ -12,6 +12,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-export-experiment',
@@ -38,40 +39,46 @@ export class ExportExperimentComponent implements OnInit {
   downloadName: string;
   output_types: any[] = [];
   devices: any[] = [];
-  @Input('experimentId') experimentId: string;
 
   constructor(private experimentService: ExperimentService, private deviceOutputService: DeviceOutputService,
     private sanitizer: DomSanitizer, private route: ActivatedRoute, private formBuilder: FormBuilder,
-    private router: Router) {
-    this.route.queryParams.subscribe(params => {
-      let outputType = '';
-      let user = '';
-      if (params['outputType']) {
-        outputType = params['outputType'];
-      }
-      if (params['user']) {
-        user = params['user'];
-      }
-      let doUpdate;
-      if (!this.listExperimentsForm || this.experimentId != this.listExperimentsForm.get('experimentId').value) {
-        doUpdate = true;
-      }
-      this.listExperimentsForm = this.formBuilder.group({
-        experimentId: new FormControl(this.experimentId, [Validators.required]),
-        outputType: new FormControl(outputType),
-        user: new FormControl(user)
-      })
-      if (doUpdate && this.listExperimentsForm.get('experimentId').value) {
-        this.updateRoute();
-      }
-    });
-  }
+    private router: Router) {}
 
   ngOnInit() {
+    this.updateForm(this.experimentService.experimentId, []);
+    combineLatest(this.experimentService.$experimentId, this.route.queryParams, 
+      (experimentId, queryParams) => ({ experimentId, queryParams }))
+      .subscribe(({experimentId, queryParams}) => {
+        this.updateForm(experimentId, queryParams);
+      });
+
     this.experimentService.listExperiments().subscribe(
       (data: any) => this.experiments = data,
       (error: any) => console.log(error)
     )
+  }
+
+  updateForm(experimentId, queryParams) {
+    let outputType = '';
+        let user = '';
+        if (queryParams['outputType']) {
+          outputType = queryParams['outputType'];
+        }
+        if (queryParams['user']) {
+          user = queryParams['user'];
+        }
+        let doUpdate;
+        if (!this.listExperimentsForm || experimentId != this.listExperimentsForm.get('experimentId').value) {
+          doUpdate = true;
+        }
+        this.listExperimentsForm = this.formBuilder.group({
+          experimentId: new FormControl(experimentId, [Validators.required]),
+          outputType: new FormControl(outputType),
+          user: new FormControl(user)
+        })
+        if (doUpdate && this.listExperimentsForm.get('experimentId').value) {
+          this.updateRoute();
+        }
   }
 
   updateRoute() {

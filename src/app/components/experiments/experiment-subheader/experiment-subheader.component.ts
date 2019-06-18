@@ -12,14 +12,15 @@ import { ExportExperimentComponent } from '../export-experiment/export-experimen
 export class ExperimentSubheaderComponent implements OnInit {
   listExperimentsPath = ExportExperimentComponent.PATH;
   experiments: Experiment[];
-  selectedExperiment: string;
+  experimentId: string;
   constructor(private experimentService: ExperimentService, private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       if (params['experimentId']) {
-        this.selectedExperiment = params['experimentId'];
+        this.experimentId = params['experimentId'];
+        this.onExperimentChange();
       }
     })
     this.experimentService.listExperiments().subscribe((data: any) => {
@@ -28,8 +29,10 @@ export class ExperimentSubheaderComponent implements OnInit {
   }
 
   onExperimentChange() {
-    this.experimentService.selectedExperiment = this.selectedExperiment;
-    this.router.navigate(['experiment', this.selectedExperiment, this.route.firstChild.snapshot.url.toString()]);
+    this.experimentService.$experimentId.next(this.experimentId);
+    this.router.navigate(this.route.children.length
+      ? ['experiment', this.experimentId, this.route.firstChild.snapshot.url.toString()]
+      : ['experiment', this.experimentId]);
   }
 
 }

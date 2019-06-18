@@ -1,9 +1,10 @@
-
-<mat-toolbar class="mat-elevation-z2 edcs-header">
-  <mat-toolbar-row>
-    <mat-select class="experiment-select" [(value)]="selectedExperiment" (selectionChange)="onExperimentChange()">
-      <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}</mat-option>
-    </mat-select>
-    <button mat-button [routerLink]="[listExperimentsPath]">Export</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<mat-card class="sub-header">
+    <mat-form-field class="experiment-select">
+      <mat-label>Experiment</mat-label>
+      <mat-select [(value)]="experimentId" (selectionChange)="onExperimentChange()">
+        <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button [routerLink]="[listExperimentsPath]" [disabled]="!experimentId">Export</button>
+  </mat-card>
