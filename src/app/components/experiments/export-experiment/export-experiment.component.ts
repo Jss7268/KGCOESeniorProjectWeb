@@ -14,7 +14,7 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'app-list-experiments',
+  selector: 'app-export-experiment',
   animations: [
     trigger('showInputAnimation', [
       transition(':enter', [
@@ -27,10 +27,10 @@ import {
       ])
     ])
   ],
-  templateUrl: './list-experiments.component.html',
-  styleUrls: ['./list-experiments.component.css']
+  templateUrl: './export-experiment.component.html',
+  styleUrls: ['./export-experiment.component.css']
 })
-export class ListExperimentsComponent implements OnInit {
+export class ExportExperimentComponent implements OnInit {
   static PATH = 'experiments';
   experiments: any[] = [];
   listExperimentsForm: FormGroup;
@@ -75,7 +75,7 @@ export class ListExperimentsComponent implements OnInit {
   }
 
   updateRoute() {
-    this.router.navigate([this.listExperimentsForm.get('experimentId').value, ListExperimentsComponent.PATH], {
+    this.router.navigate([this.listExperimentsForm.get('experimentId').value, ExportExperimentComponent.PATH], {
       queryParams: {
         outputType: this.listExperimentsForm.get('outputType').value,
         user: this.listExperimentsForm.get('user').value

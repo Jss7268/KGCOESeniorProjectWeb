@@ -1,5 +1,4 @@
 import { CreateExperimentComponent } from './../create-experiment/create-experiment.component';
-import { CreateDeviceOutputComponent } from '../experiment-subheader/create-device-output/create-device-output.component';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Inject } from '@angular/core'
@@ -7,8 +6,8 @@ import { LoginService } from '../../services/login.service';
 import { DOCUMENT } from '@angular/common';
 import {AppSettings} from '../../app.settings';
 import { Router } from '@angular/router';
-import { ListExperimentsComponent } from '../experiment-subheader/list-experiments/list-experiments.component';
 import { CreateNewDeviceComponent } from '../create-new-device/create-new-device.component';
+import { CreateDeviceOutputComponent } from '../experiments/create-device-output/create-device-output.component';
 
 @Component({
   selector: 'app-header',
@@ -38,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   experiments() {
-    this.router.navigate([ListExperimentsComponent.PATH]);
+    this.router.navigate(['experiment']);
   }
 
   outputData() {

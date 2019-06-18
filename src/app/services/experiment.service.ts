@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ExperimentService {
+  public selectedExperiment: string;
 
   constructor(private http: HttpClient, private router: Router) { }
 

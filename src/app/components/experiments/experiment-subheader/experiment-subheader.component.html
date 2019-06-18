@@ -4,6 +4,6 @@
     <mat-select class="experiment-select" [(value)]="selectedExperiment" (selectionChange)="onExperimentChange()">
       <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}</mat-option>
     </mat-select>
-    <button mat-button [routerLink]="[selectedExperiment, 'ListExperimentsComponent.PATH']">Export</button>
+    <button mat-button [routerLink]="[listExperimentsPath]">Export</button>
   </mat-toolbar-row>
 </mat-toolbar>

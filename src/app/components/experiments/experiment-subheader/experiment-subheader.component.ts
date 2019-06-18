@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Experiment } from 'src/app/classes/experiment';
 import { ExperimentService } from 'src/app/services/experiment.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ExportExperimentComponent } from '../export-experiment/export-experiment.component';
 
 @Component({
   selector: 'app-experiment-subheader',
@@ -9,8 +10,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./experiment-subheader.component.css']
 })
 export class ExperimentSubheaderComponent implements OnInit {
+  listExperimentsPath = ExportExperimentComponent.PATH;
   experiments: Experiment[];
-  selectedExperiment: number;
+  selectedExperiment: string;
   constructor(private experimentService: ExperimentService, private router: Router,
     private route: ActivatedRoute) { }
 
@@ -26,15 +28,8 @@ export class ExperimentSubheaderComponent implements OnInit {
   }
 
   onExperimentChange() {
-    if (!Object.keys(this.route.snapshot.params).length) {
-      this.router.navigate(['experiments', this.selectedExperiment]);
-    } else {
-      this.router.createUrlTree([
-        {...{'experimentId': this.selectedExperiment}, ...this.route.snapshot.params}
-      ], {relativeTo: this.route});
-    }
+    this.experimentService.selectedExperiment = this.selectedExperiment;
+    this.router.navigate(['experiment', this.selectedExperiment, this.route.firstChild.snapshot.url.toString()]);
   }
-
-
 
 }

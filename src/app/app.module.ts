@@ -32,15 +32,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
-import { ListExperimentsComponent } from './components/experiment-subheader/list-experiments/list-experiments.component';
 import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
-import { CreateDeviceOutputComponent } from './components/experiment-subheader/create-device-output/create-device-output.component';
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-import { CreateDeviceExperimentComponent } from './components/experiment-subheader/create-device-experiment/create-device-experiment.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
-import { ExperimentSubheaderComponent } from './components/experiment-subheader/experiment-subheader.component';
+import { ExperimentSubheaderComponent } from './components/experiments/experiment-subheader/experiment-subheader.component';
+import { ExperimentsComponent } from './components/experiments/experiments.component';
+import { ExportExperimentComponent } from "./components/experiments/export-experiment/export-experiment.component";
+import { CreateDeviceOutputComponent } from './components/experiments/create-device-output/create-device-output.component';
+import { CreateDeviceExperimentComponent } from './components/experiments/create-device-experiment/create-device-experiment.component';
+import { ExperimentsRoutingModule } from './components/experiments/experiments-routing/experiments-routing.module';
 
 
 @NgModule({
@@ -51,7 +53,7 @@ import { ExperimentSubheaderComponent } from './components/experiment-subheader/
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    ListExperimentsComponent,
+    ExportExperimentComponent,
     CreateExperimentComponent,
     CreateDeviceOutputComponent,
     CreateOutputTypeComponent,
@@ -60,6 +62,7 @@ import { ExperimentSubheaderComponent } from './components/experiment-subheader/
     NotificationComponent,
     CreateNewDeviceComponent,
     ExperimentSubheaderComponent,
+    ExperimentsComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 
@@ -67,6 +70,7 @@ import { ExperimentSubheaderComponent } from './components/experiment-subheader/
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ExperimentsRoutingModule,
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
