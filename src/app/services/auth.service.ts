@@ -67,6 +67,14 @@ export class AuthService {
     return access != null && Number(access) >= accessLevel
   }
 
+  getLoggedInId() {
+    return 'testId'
+  }
+
+  getLoggedInEmail() {
+    return 'testEmail'
+  }
+
   logout() {
     localStorage.removeItem(this.STORAGE_KEY);
     localStorage.removeItem(this.ACCESS_KEY);

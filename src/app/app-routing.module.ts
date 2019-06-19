@@ -12,6 +12,8 @@ import { CreateExperimentComponent } from './components/create-experiment/create
 import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { RequestAccessComponent } from './components/request-access/request-access.component';
+
 
 const routes: any = [
   { path: LoginComponent.PATH, component: LoginComponent },
@@ -25,7 +27,8 @@ const routes: any = [
   { path: CreateOutputTypeComponent.PATH, component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
   { path: CreateNewDeviceComponent.PATH, component: CreateNewDeviceComponent, authLevel: 2, canActivate: [AuthGuard]},
-  { path: SettingsComponent.PATH, component: SettingsComponent, authLevel: 0, canActivate: [AuthGuard]}
+  { path: SettingsComponent.PATH, component: SettingsComponent, authLevel: 0, canActivate: [AuthGuard]},
+  { path: RequestAccessComponent.PATH, component: RequestAccessComponent, authLevel: 0, canActivate: [AuthGuard]}
 ];
 
 export const routing = RouterModule.forRoot(routes, { useHash: true });

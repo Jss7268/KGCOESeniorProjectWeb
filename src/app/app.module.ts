@@ -43,6 +43,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
 import { NotificationComponent } from './components/notification/notification.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { RequestAccessComponent } from './components/request-access/request-access.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     NotificationComponent,
     CreateNewDeviceComponent,
     SettingsComponent,
+    RequestAccessComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 

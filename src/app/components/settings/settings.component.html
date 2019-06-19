@@ -12,7 +12,9 @@
     		<mat-card-title>Settings</mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
-			Quality Content
+			Current access level: {{userService.ACCESSES[auth.getAccess()].description}}
+			<br>
+			Current email address: {{auth.getLoggedInEmail()}}
 		</mat-card-content>
 		</mat-card>
 	</mat-drawer-content>

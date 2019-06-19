@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -9,7 +10,7 @@ import { AuthService } from './../../services/auth.service';
 export class SettingsComponent implements OnInit {
   static PATH = 'settings';
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService, public userService: UserService) { }
 
   ngOnInit() {
   }
