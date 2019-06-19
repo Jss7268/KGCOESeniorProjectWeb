@@ -16,6 +16,21 @@ export class DeviceOutputService {
     return this.http.get(AppRoutes.OUTPUT_TYPES);
   }
 
+  listByQuery(experimentId: string, outputTypeId: string, deviceId: string): Observable<any> {
+    return this.http.get(this.getQueryUrl(experimentId, outputTypeId, deviceId));
+  }
+
+  getQueryUrl(experimentId: string, outputTypeId: string, deviceId: string): string {
+    let obj = {};
+    if (experimentId) obj['experiment_id'] = experimentId;
+    if (outputTypeId) obj['output_type_id'] = outputTypeId;
+    if (deviceId) obj['device_id'] = deviceId;
+
+    let queryParams = querystring.stringify(obj);
+
+    return `${AppRoutes.DEVICE_OUTPUTS}?${queryParams}`;
+  }
+
   createDeviceOutput(deviceId: string, experimentId: string, outputTypeName: string, outputValue: string, timestamp: number): Observable<any> {
     return this.http.post(AppRoutes.DEVICE_OUTPUTS, {
       device_id: deviceId,
@@ -27,11 +42,11 @@ export class DeviceOutputService {
   }
 
   listByExperiment(experimentId: string, outputTypeId = '', deviceId = ''): Observable<any> {
-  let queryParams = querystring.stringify({
+    let queryParams = querystring.stringify({
       output_type_id: outputTypeId,
       device_id: deviceId
     });
-    
+
     return this.http.get(`${AppRoutes.DEVICE_OUTPUTS}/experiment/${experimentId}?${queryParams}`);
   }
 }
