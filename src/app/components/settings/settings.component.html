@@ -1,19 +1,19 @@
-<mat-card class="example-card">
-	<mat-card-header>
-	    <mat-card-title>Settings</mat-card-title>
-	</mat-card-header>
-	<mat-card-content>
-		
-	</mat-card-content>
-	<mat-card-actions>
-		<button mat-raised-button (click)="toChangeEmailPage()">
-        	Change Email
-        </button>
-        <button *ngIf="auth.getAccess() < 3" mat-raised-button (click)="toRequestAccessPage()">
-        	Request Elevated Access
-        </button>
-        <button *ngIf="auth.hasAccessLevel(3)" mat-raised-button (click)="toManageAccessPage()">
-        	Manage User Access Levels
-        </button>
-    </mat-card-actions>
-</mat-card>
+<mat-drawer-container class="example-container">
+	<mat-drawer mode="side" opened>
+		<mat-nav-list>
+   			<a mat-list-item href="settings/email"> Change Email </a>
+   			<a *ngIf="auth.getAccess() < 3" mat-list-item href="settings/request"> Request Elevated Access </a>
+   			<a *ngIf="auth.hasAccessLevel(3)" mat-list-item href="settings/manage"> Manage User Access Levels </a>
+		</mat-nav-list>
+	</mat-drawer>
+	<mat-drawer-content>
+		<mat-card>
+		<mat-card-header>
+    		<mat-card-title>Settings</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			Quality Content
+		</mat-card-content>
+		</mat-card>
+	</mat-drawer-content>
+</mat-drawer-container>

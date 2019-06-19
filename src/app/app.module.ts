@@ -18,11 +18,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
+import {MatListModule} from '@angular/material/list';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule,
   MatTooltipModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSidenavModule
 } from '@angular/material';
 
 import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
@@ -88,6 +90,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     MatTooltipModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [LoginService,
     AuthService,
