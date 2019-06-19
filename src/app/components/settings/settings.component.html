@@ -1,0 +1,19 @@
+<mat-card class="example-card">
+	<mat-card-header>
+	    <mat-card-title>Settings</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-raised-button (click)="toChangeEmailPage()">
+        	Change Email
+        </button>
+        <button *ngIf="auth.getAccess() < 3" mat-raised-button (click)="toRequestAccessPage()">
+        	Request Elevated Access
+        </button>
+        <button *ngIf="auth.hasAccessLevel(3)" mat-raised-button (click)="toManageAccessPage()">
+        	Manage User Access Levels
+        </button>
+    </mat-card-actions>
+</mat-card>

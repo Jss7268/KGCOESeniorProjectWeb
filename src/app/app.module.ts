@@ -40,6 +40,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { CreateDeviceExperimentComponent } from './components/create-device-experiment/create-device-experiment.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { CreateNewDeviceComponent } from './components/create-new-device/create-
     CreateDeviceExperimentComponent,
     NotificationComponent,
     CreateNewDeviceComponent,
+    SettingsComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 
