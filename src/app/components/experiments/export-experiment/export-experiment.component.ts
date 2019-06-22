@@ -46,11 +46,14 @@ export class ExportExperimentComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.updateForm(this.experimentService.experimentId, []);
-    combineLatest(this.experimentService.$experimentId, this.route.queryParams,
-      (experimentId, queryParams) => ({ experimentId, queryParams }))
-      .subscribe(({ experimentId, queryParams }) => {
-        this.updateForm(experimentId, queryParams);
+    this.experimentId = this.experimentService.experimentId;
+    this.updateForm([]);
+    this.experimentService.$experimentId.subscribe((experimentId) => {
+      this.experimentId = experimentId;
+      this.onChange();
+    })
+    this.route.queryParams.subscribe(( queryParams) => {
+        this.updateForm(queryParams);
       });
 
     this.experimentService.listExperiments().subscribe(
@@ -59,7 +62,7 @@ export class ExportExperimentComponent implements OnInit {
     )
   }
 
-  updateForm(experimentId, queryParams) {
+  updateForm(queryParams) {
     let outputType = '';
     let user = '';
     if (queryParams['outputType']) {
@@ -69,10 +72,9 @@ export class ExportExperimentComponent implements OnInit {
       user = queryParams['user'];
     }
     let doUpdate;
-    if (!this.listExperimentsForm || experimentId != this.experimentId) {
+    if (!this.listExperimentsForm) {
       doUpdate = true;
     }
-    this.experimentId = experimentId;
     this.listExperimentsForm = this.formBuilder.group({
       outputType: new FormControl(outputType),
       user: new FormControl(user)
@@ -111,6 +113,8 @@ export class ExportExperimentComponent implements OnInit {
     this.deviceOutputService.listByQuery(this.experimentId, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value).subscribe(
       (data: any) => {
         this.downloadLink = this.sanitizer.bypassSecurityTrustUrl(`data:text/plain;charset=utf-8, ${JSON.stringify(this.getDeviceOutputFields(data))}`) as string
+        this.devices = [];
+        this.output_types = [];
         if (data.length > 0) {
           for (let obj of data) {
             this.containsOutputType({ name: obj.output_type_name, output_type_id: obj.output_type_id }, this.output_types) ? {} : this.output_types.push({ name: obj.output_type_name, output_type_id: obj.output_type_id });

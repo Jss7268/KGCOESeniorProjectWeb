@@ -18,7 +18,7 @@ export class ExperimentSubheaderComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      if (params['experimentId']) {
+      if (params['experimentId'] && params['experimentId'] != this.experimentId) {
         this.experimentId = params['experimentId'];
         this.onExperimentChange();
       }
