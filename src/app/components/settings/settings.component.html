@@ -1,6 +1,7 @@
 <mat-drawer-container class="example-container">
 	<mat-drawer mode="side" opened>
 		<mat-nav-list>
+			<a mat-list-item> Overview </a>
    			<a mat-list-item href="settings/email"> Change Email </a>
    			<a *ngIf="auth.getAccess() < 3" mat-list-item href="settings/request"> Request Elevated Access </a>
    			<a *ngIf="auth.hasAccessLevel(3)" mat-list-item href="settings/manage"> Manage User Access Levels </a>
@@ -9,12 +10,11 @@
 	<mat-drawer-content>
 		<mat-card>
 		<mat-card-header>
-    		<mat-card-title>Settings</mat-card-title>
+    		<mat-card-title>Settings Overview</mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
-			Current access level: {{userService.ACCESSES[auth.getAccess()].description}}
-			<br>
-			Current email address: {{auth.getLoggedInEmail()}}
+			<h2>Current access level: {{userService.ACCESSES[auth.getAccess()].description}}</h2>
+			<h2>Current email address: {{auth.getLoggedInEmail()}}</h2>
 		</mat-card-content>
 		</mat-card>
 	</mat-drawer-content>

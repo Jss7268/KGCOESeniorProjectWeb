@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./request-access.component.css']
 })
 export class RequestAccessComponent implements OnInit {
-  static PATH = 'request';
+  static PATH = 'settings/request';
   requestForm: FormGroup;
 
   constructor(public auth: AuthService, private formBuilder: FormBuilder, public userService: UserService,
