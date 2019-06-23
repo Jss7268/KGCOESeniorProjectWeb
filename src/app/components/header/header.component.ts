@@ -9,6 +9,7 @@ import {AppSettings} from '../../app.settings';
 import { Router } from '@angular/router';
 import { ListExperimentsComponent } from '../list-experiments/list-experiments.component';
 import { CreateNewDeviceComponent } from '../create-new-device/create-new-device.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
   selector: 'app-header',
@@ -59,5 +60,9 @@ export class HeaderComponent implements OnInit {
 
   newExperiment() {
     this.router.navigate([CreateExperimentComponent.PATH]);
+  }
+
+  settings() {
+    this.router.navigate([SettingsComponent.PATH])
   }
 }
