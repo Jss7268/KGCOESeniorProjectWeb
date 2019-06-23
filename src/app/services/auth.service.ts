@@ -67,12 +67,8 @@ export class AuthService {
     return access != null && Number(access) >= accessLevel
   }
 
-  getLoggedInId() {
-    return 'testId'
-  }
-
-  getLoggedInEmail() {
-    return 'testEmail'
+  getLoggedInUser() {
+    return this.http.get(`${AppSettings.API_ENDPOINT}/v1/users/current`)
   }
 
   logout() {
