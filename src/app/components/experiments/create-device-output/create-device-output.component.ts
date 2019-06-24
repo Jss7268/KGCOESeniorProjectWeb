@@ -91,7 +91,7 @@ export class CreateDeviceOutputComponent implements OnInit {
 
   updateRoute(): Promise<boolean> {
     return this.router.navigate(
-      [CreateDeviceOutputComponent.PATH], {
+      [], {
         queryParams: {
           deviceId: this.deviceOutputForm.controls.deviceId.value,
           experimentId: this.deviceOutputForm.controls.experimentId.value,

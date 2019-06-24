@@ -1,4 +1,4 @@
-<mat-card class="sub-header">
+<!--<mat-card class="sub-header">
     <mat-form-field class="experiment-select">
       <mat-label>Experiment</mat-label>
       <mat-select [(value)]="experimentId" (selectionChange)="onExperimentChange()">
@@ -6,5 +6,25 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button [routerLink]="[listExperimentsPath]" [disabled]="!experimentId">Export</button>
+    <button mat-button [routerLink]="listExperimentsPath" [disabled]="!experimentId">Export</button>
+    <button mat-button [routerLink]="listDeviceOutputsPath" [disabled]="!experimentId"></button>
   </mat-card>
+-->
+
+  <nav mat-tab-nav-bar>
+      <mat-form-field class="experiment-select">
+          <mat-label>Experiment</mat-label>
+          <mat-select [(value)]="experimentId" (selectionChange)="onExperimentChange()">
+            <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    <a mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="link.link"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive"
+    [disabled]="!experimentId">
+    {{link.label}}
+    </a>
+    </nav>

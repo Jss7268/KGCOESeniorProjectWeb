@@ -1,3 +1,5 @@
+import { CreateDeviceExperimentComponent } from './../create-device-experiment/create-device-experiment.component';
+import { CreateDeviceOutputComponent } from './../create-device-output/create-device-output.component';
 import { Component, OnInit } from '@angular/core';
 import { Experiment } from 'src/app/classes/experiment';
 import { ExperimentService } from 'src/app/services/experiment.service';
@@ -13,8 +15,26 @@ export class ExperimentSubheaderComponent implements OnInit {
   listExperimentsPath = ExportExperimentComponent.PATH;
   experiments: Experiment[];
   experimentId: string;
+  navLinks: any[];
+
   constructor(private experimentService: ExperimentService, private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+      this.navLinks = [
+        {
+            label: 'Export',
+            link: ExportExperimentComponent.PATH,
+            index: 0
+        }, {
+            label: 'Device Outputs',
+            link: CreateDeviceOutputComponent.PATH, // todo make list component
+            index: 1
+        }, {
+            label: 'Linked Devices',
+            link: CreateDeviceExperimentComponent.PATH, // todo make list component
+            index: 2
+        }, 
+    ];
+    }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {

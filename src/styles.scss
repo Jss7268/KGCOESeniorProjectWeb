@@ -34,3 +34,10 @@ mat-tooltip-component > .mat-tooltip {
   padding: 0!important;
   background-color: rgba(0,0,0,.01);
 }
+
+.experiment-select .mat-form-field-wrapper {
+  padding: 0!important;
+}
+.experiment-select .mat-form-field-underline {
+  position: static;
+}

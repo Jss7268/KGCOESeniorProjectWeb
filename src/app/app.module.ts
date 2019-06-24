@@ -22,7 +22,8 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule,
   MatTooltipModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTabsModule
 } from '@angular/material';
 
 import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
@@ -92,6 +93,7 @@ import { ExperimentsRoutingModule } from './components/experiments/experiments-r
     MatTooltipModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatTabsModule,
   ],
   providers: [LoginService,
     AuthService,

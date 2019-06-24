@@ -9,7 +9,7 @@ import { CreateDeviceExperimentComponent } from '../create-device-experiment/cre
 
 export const EXPERIMENTS_ROUTES: any = [
   //{ path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
-  { path: ExportExperimentComponent.PATH, component: ExportExperimentComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
+  { path: ExportExperimentComponent.PATH, component: ExportExperimentComponent, authLevel: 0, canActivate: [AuthGuard] },
   { path: CreateDeviceOutputComponent.PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
 ];
