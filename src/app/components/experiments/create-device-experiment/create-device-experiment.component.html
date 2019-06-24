@@ -20,25 +20,8 @@
                 <mat-error *ngIf="deviceExperimentForm.get('deviceId').hasError('required')">
                   Device Name is required.
                 </mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="w-100"
-                [ngClass]="submitted && deviceExperimentForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
-                <mat-label>Experiment Name</mat-label>
-                <mat-select formControlName="experimentId" required>
-                  <mat-option *ngFor="let experiment of experiments" [value]="experiment.id"
-                    [matTooltip]="tooltipService.generateExperimentTooltip(experiment)" matTooltipClass>
-                    {{experiment.description}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="deviceExperimentForm.get('experimentId').hasError('required')">
-                  Experiment Name is required.
-                </mat-error>
-                <mat-error *ngIf="deviceExperimentForm.get('experimentId').hasError('duplicate')">
-                  {{deviceExperimentForm.get('experimentId').getError('duplicate')}}
+                <mat-error *ngIf="deviceExperimentForm.get('deviceId').hasError('duplicate')">
+                  {{deviceExperimentForm.get('deviceId').getError('duplicate')}}
                 </mat-error>
               </mat-form-field>
             </td>

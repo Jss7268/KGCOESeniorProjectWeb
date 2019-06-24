@@ -19,22 +19,22 @@ export class ExperimentSubheaderComponent implements OnInit {
 
   constructor(private experimentService: ExperimentService, private router: Router,
     private route: ActivatedRoute) {
-      this.navLinks = [
-        {
-            label: 'Export',
-            link: ExportExperimentComponent.PATH,
-            index: 0
-        }, {
-            label: 'Device Outputs',
-            link: CreateDeviceOutputComponent.PATH, // todo make list component
-            index: 1
-        }, {
-            label: 'Linked Devices',
-            link: CreateDeviceExperimentComponent.PATH, // todo make list component
-            index: 2
-        }, 
+    this.navLinks = [
+      {
+        label: 'Export',
+        link: ExportExperimentComponent.PATH,
+        index: 0
+      }, {
+        label: 'Device Outputs',
+        link: CreateDeviceOutputComponent.PATH, // todo make list component
+        index: 1
+      }, {
+        label: 'Linked Devices',
+        link: CreateDeviceExperimentComponent.PATH, // todo make list component
+        index: 2
+      },
     ];
-    }
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -50,9 +50,12 @@ export class ExperimentSubheaderComponent implements OnInit {
 
   onExperimentChange() {
     this.experimentService.$experimentId.next(this.experimentId);
-    this.router.navigate(this.route.children.length
-      ? ['experiment', this.experimentId, this.route.firstChild.snapshot.url.toString()]
-      : ['experiment', this.experimentId]);
+    if (this.route.children.length) {
+      this.router.navigate(['experiment', this.experimentId].concat(this.route.firstChild.snapshot.url.join('/').split('/')),
+        { queryParams: this.route.firstChild.snapshot.queryParams });
+    } else {
+      this.router.navigate(['experiment', this.experimentId]);
+    }
   }
 
 }

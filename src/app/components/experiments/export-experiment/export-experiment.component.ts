@@ -50,7 +50,7 @@ export class ExportExperimentComponent implements OnInit {
     this.updateForm([]);
     this.experimentService.$experimentId.subscribe((experimentId) => {
       this.experimentId = experimentId;
-      this.onChange();
+      this.onExperimentUpdate();
     })
     this.route.queryParams.subscribe(( queryParams) => {
         this.updateForm(queryParams);
@@ -71,17 +71,10 @@ export class ExportExperimentComponent implements OnInit {
     if (queryParams['user']) {
       user = queryParams['user'];
     }
-    let doUpdate;
-    if (!this.listExperimentsForm) {
-      doUpdate = true;
-    }
     this.listExperimentsForm = this.formBuilder.group({
       outputType: new FormControl(outputType),
       user: new FormControl(user)
-    })
-    if (doUpdate && this.experimentId) {
-      this.updateRoute();
-    }
+    });
   }
 
   updateRoute() {
@@ -90,8 +83,7 @@ export class ExportExperimentComponent implements OnInit {
         outputType: this.listExperimentsForm.get('outputType').value,
         user: this.listExperimentsForm.get('user').value
       }
-    })
-      .then(() => this.onChange());
+    });
   }
 
   getDeviceOutputFields(data) {
@@ -108,7 +100,7 @@ export class ExportExperimentComponent implements OnInit {
     return list;
   }
 
-  onChange() {
+  onExperimentUpdate() {
     this.downloadName = `${this.experimentId}.json`;
     this.deviceOutputService.listByQuery(this.experimentId, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value).subscribe(
       (data: any) => {

@@ -18,21 +18,25 @@ export class CreateDeviceExperimentComponent implements OnInit {
   ngUnsubscribe = new Subject();
   deviceExperimentForm: FormGroup;
   submitted: boolean;
+  experimentId: string;
   @Input('callbackUrl') callbackUrl: string = '';
   static PATH: any = 'device-experiments/create';
 
   constructor(private deviceExperimentService: DeviceExperimentService, private deviceService: DeviceService,
     private experimentService: ExperimentService, private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private router: Router, private tooltipService: TooltipService) {
+    private route: ActivatedRoute, private router: Router, public tooltipService: TooltipService) { }
+
+  ngOnInit() {
+    this.experimentId = this.experimentService.experimentId;
+    this.experimentService.$experimentId.subscribe((experimentId) => {
+      this.experimentId = experimentId;
+      this.onExperimentUpdate();
+    });
 
     this.route.queryParams.subscribe(params => {
       let deviceId = '';
-      let experimentId = '';
       if (params['deviceId']) {
         deviceId = params['deviceId'];
-      }
-      if (params['experimentId']) {
-        experimentId = params['experimentId'];
       }
       if (params['callbackUrl']) {
         this.callbackUrl = params['callbackUrl'];
@@ -40,12 +44,8 @@ export class CreateDeviceExperimentComponent implements OnInit {
 
       this.deviceExperimentForm = this.formBuilder.group({
         deviceId: new FormControl(deviceId, [Validators.required]),
-        experimentId: new FormControl(experimentId, [Validators.required])
       })
     });
-  }
-
-  ngOnInit() {
 
     this.deviceService.listDevices().subscribe(
       (data: any) => this.devices = data,
@@ -57,12 +57,15 @@ export class CreateDeviceExperimentComponent implements OnInit {
     );
   }
 
+  onExperimentUpdate() {
+    this.callbackUrl = null;
+  }
+
   updateRoute() {
     this.router.navigate(
       CreateDeviceExperimentComponent.PATH.split('/'), {
         queryParams: {
           deviceId: this.deviceExperimentForm.controls.deviceId.value,
-          experimentId: this.deviceExperimentForm.controls.experimentId.value,
         }
       });
   }
@@ -72,13 +75,13 @@ export class CreateDeviceExperimentComponent implements OnInit {
     if (this.deviceExperimentForm.invalid) {
       return;
     }
-    this.deviceExperimentService.createDeviceExperiment(this.deviceExperimentForm.controls.deviceId.value, this.deviceExperimentForm.controls.experimentId.value)
+    this.deviceExperimentService.createDeviceExperiment(this.deviceExperimentForm.controls.deviceId.value, this.experimentId)
       .subscribe(
         (data: any) => {
-          this.router.navigateByUrl(this.callbackUrl + this.deviceExperimentForm.controls.experimentId.value);
+          this.router.navigateByUrl(this.callbackUrl + this.deviceExperimentForm.controls.deviceId.value);
         },
         (error: any) => {
-          this.deviceExperimentForm.controls.experimentId.setErrors({ duplicate: 'Device is already linked to this experiment' });
+          this.deviceExperimentForm.controls.deviceId.setErrors({ duplicate: 'Device is already linked to this experiment' });
 
         }
       );
