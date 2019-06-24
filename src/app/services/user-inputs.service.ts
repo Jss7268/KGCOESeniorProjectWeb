@@ -20,7 +20,7 @@ export class UserInputsService {
         device_id: deviceId,
         description: description,
         experiment_id: experimentId,
-        timestamp: timeStamp ? timeStamp : new Date().getTime(),
+        timestamp: timeStamp ? new Date(timeStamp).getTime() : new Date().getTime(),
     });
   }
 

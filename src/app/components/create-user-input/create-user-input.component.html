@@ -9,8 +9,8 @@
               <tr>
                   <td>
                       <mat-form-field class="w-100" [ngClass]="submitted && userInputForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
-                          <input matInput placeholder="Experiment Name" formControlName="experimentId" required>
-                          <mat-select formControlName="experimentId" required>
+                          <mat-label>Experiment Name</mat-label>
+                          <mat-select formControlName="experimentId" (selectionChange)="onExperimentUpdate()" required>
                                 <mat-option *ngFor="let experiment of experiments" [value]="experiment.id" [matTooltip]="tooltipService.generateExperimentTooltip(experiment)" matTooltipClass>
                                     {{experiment.description}}
                                 </mat-option>
@@ -21,8 +21,8 @@
               </tr>
               <tr>
                   <td>
-                      <mat-form-field class="w-100" [ngClass]="submitted && userInputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
-                          <input matInput placeholder="Device Name" formControlName="deviceId" required>
+                      <mat-form-field class="action-form-field" [ngClass]="submitted && userInputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
+                          <mat-label>Device Name</mat-label>
                           <mat-select formControlName="deviceId" required>
                               <mat-option *ngFor="let device of devices" [value]="device.id" [matTooltip]="tooltipService.generateDeviceTooltip(device)" matTooltipClass>
                                   {{device.name}}
@@ -30,6 +30,10 @@
                           </mat-select>
                           <mat-error *ngIf="userInputForm.get('deviceId').hasError('required')">You must link your input to an existing device</mat-error>
                       </mat-form-field>
+                      <button mat-icon-button color="accent" (click)="addDeviceExperiment()">
+                            <mat-icon aria-label="Link device to experiment" matTooltip="Link device to experiment"
+                              matTooltipClass>link</mat-icon>
+                      </button>
                   </td>
               </tr>
               <tr>
@@ -40,18 +44,16 @@
                         </mat-form-field>
                     </td>
                 </tr>
-                <!-- <tr>
-                        <td>
-                          <mat-form-field class="w-100"
-                            [ngClass]="submitted && userInputForm.controls.inputTimestamp.errors ? 'mat-form-field-invalid' : ''">
-                            <input matInput placeholder="Inout time" formControlName="inputTimestamp" (focus)="picker.open()" (dateChange)="updateRoute()" [matDatepicker]="picker" required>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker type="datetime" #picker></mat-datepicker>
-                            
-                          </mat-form-field>
-                        </td>
-                      </tr> -->
-            
+                <tr>
+                    <td>
+                      <mat-form-field class="w-100"
+                        [ngClass]="submitted && userInputForm.controls.inputTimestamp.errors ? 'mat-form-field-invalid' : ''">
+                        <input matInput placeholder="Input time" formControlName="inputTimestamp" (focus)="picker.open()" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker type="datetime" #picker></mat-datepicker>
+                      </mat-form-field>
+                  </td>
+                  </tr>
           </table>
         </form>
       </mat-card-content>

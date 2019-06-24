@@ -58,10 +58,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([CreateDeviceOutputComponent.PATH]);
   }
 
-  userInputs() {
-    this.router.navigate([CreateUserInputComponent.PATH]);
-  }
-
   newExperiment() {
     this.router.navigate([CreateExperimentComponent.PATH]);
   }
