@@ -131,7 +131,7 @@ export class CreateDeviceOutputComponent implements OnInit {
       ${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
 
     this.updateRoute().then((success: boolean) => {
-      this.router.navigate([CreateOutputTypeComponent.PATH], {
+      this.router.navigate(CreateOutputTypeComponent.PATH.split('/'), {
         queryParams: {
           callbackUrl: cb,
         }
@@ -147,11 +147,12 @@ export class CreateDeviceOutputComponent implements OnInit {
       ${this.deviceOutputForm.controls.outputValue.value}&experimentId=`;
 
     this.updateRoute().then((success: boolean) => {
-      this.router.navigate([CreateDeviceExperimentComponent.PATH], {
+      this.router.navigate(CreateDeviceExperimentComponent.PATH.split('/'), {
         queryParams: {
           deviceId: this.deviceOutputForm.controls.deviceId.value,
           callbackUrl: cb,
-        }
+        },
+        relativeTo: this.route.parent
       })
     }
     );

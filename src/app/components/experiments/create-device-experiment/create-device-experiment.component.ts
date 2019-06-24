@@ -59,7 +59,7 @@ export class CreateDeviceExperimentComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      [CreateDeviceExperimentComponent.PATH], {
+      CreateDeviceExperimentComponent.PATH.split('/'), {
         queryParams: {
           deviceId: this.deviceExperimentForm.controls.deviceId.value,
           experimentId: this.deviceExperimentForm.controls.experimentId.value,

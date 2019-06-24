@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   outputData() {
-    this.router.navigate([CreateDeviceOutputComponent.PATH]);
+    this.router.navigate(CreateDeviceOutputComponent.PATH.split('/'));
   }
 
   newDevice() {
@@ -53,10 +53,10 @@ export class HeaderComponent implements OnInit {
   }
 
   newDeviceOutput() {
-    this.router.navigate([CreateDeviceOutputComponent.PATH]);
+    this.router.navigate(CreateDeviceOutputComponent.PATH.split('/'));
   }
 
   newExperiment() {
-    this.router.navigate([CreateExperimentComponent.PATH]);
+    this.router.navigate(CreateExperimentComponent.PATH.split('/'));
   }
 }

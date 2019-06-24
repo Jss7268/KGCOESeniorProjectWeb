@@ -130,7 +130,7 @@ export class ExportExperimentComponent implements OnInit {
   }
 
   getDownloadLink() {
-    return this.deviceOutputService.getQueryUrl(this.experimentId, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value)
+    return this.deviceOutputService.getAuthorizedQueryUrl(this.experimentId, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value);
   }
 
   containsDevice(device, list) {
