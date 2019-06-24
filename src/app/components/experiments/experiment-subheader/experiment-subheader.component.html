@@ -1,17 +1,4 @@
-<!--<mat-card class="sub-header">
-    <mat-form-field class="experiment-select">
-      <mat-label>Experiment</mat-label>
-      <mat-select [(value)]="experimentId" (selectionChange)="onExperimentChange()">
-        <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-button [routerLink]="listExperimentsPath" [disabled]="!experimentId">Export</button>
-    <button mat-button [routerLink]="listDeviceOutputsPath" [disabled]="!experimentId"></button>
-  </mat-card>
--->
-
-  <nav mat-tab-nav-bar>
+  <nav mat-tab-nav-bar class="experiment-subheader" color="warn">
       <mat-form-field class="experiment-select">
           <mat-label>Experiment</mat-label>
           <mat-select [(value)]="experimentId" (selectionChange)="onExperimentChange()">
