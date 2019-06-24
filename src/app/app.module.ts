@@ -9,7 +9,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { LoginService } from './services/login.service';
 import { ExperimentService } from './services/experiment.service';
 import { AuthService } from './services/auth.service';
@@ -50,7 +49,6 @@ import { ExperimentsRoutingModule } from './components/experiments/experiments-r
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     SignupComponent,
     LoginComponent,
     HomeComponent,
