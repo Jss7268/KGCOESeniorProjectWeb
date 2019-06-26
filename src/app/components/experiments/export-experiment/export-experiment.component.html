@@ -8,23 +8,19 @@
         <table class="w-100" cellspacing="0">
           <tr>
             <td>
-              <mat-card-header>Filter Data By</mat-card-header>
-            </td>
-          </tr>
-          <tr>
-            <td>
               <mat-form-field class="w-100">
-                <mat-label>(Optional) Type</mat-label>
+                <mat-label>Filter By Type (Optional)</mat-label>
                 <mat-select [(ngModel)]="outputType" (selectionChange)="updateRoute()" name="outputType">
                   <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_id">{{outputType.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </td>
-
+          </tr>
+          <tr>
             <td>
               <mat-form-field class="w-100">
-                <mat-label>(Optional) Device</mat-label>
+                <mat-label>Filter By Device (Optional)</mat-label>
                 <mat-select [(ngModel)]="device" (selectionChange)="updateRoute()" name="device">
                   <mat-option *ngFor="let device of devices" [value]="device.device_id">{{device.name}}
                   </mat-option>
