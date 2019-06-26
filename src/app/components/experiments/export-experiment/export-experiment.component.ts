@@ -33,7 +33,6 @@ import { combineLatest } from 'rxjs';
 })
 export class ExportExperimentComponent implements OnInit {
   static PATH = 'experiments';
-  experiments: any[] = [];
   listExperimentsForm: FormGroup;
   downloadLink: string;
   downloadName: string;
@@ -47,7 +46,8 @@ export class ExportExperimentComponent implements OnInit {
 
   ngOnInit() {
     this.experimentId = this.experimentService.experimentId;
-    this.updateForm([]);
+    //this.updateForm([]);
+    this.onExperimentUpdate();
     this.experimentService.$experimentId.subscribe((experimentId) => {
       this.experimentId = experimentId;
       this.onExperimentUpdate();
@@ -56,10 +56,6 @@ export class ExportExperimentComponent implements OnInit {
         this.updateForm(queryParams);
       });
 
-    this.experimentService.listExperiments().subscribe(
-      (data: any) => this.experiments = data,
-      (error: any) => console.log(error)
-    )
   }
 
   updateForm(queryParams) {
