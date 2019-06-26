@@ -33,12 +33,13 @@ import { combineLatest } from 'rxjs';
 })
 export class ExportExperimentComponent implements OnInit {
   static PATH = 'experiments';
-  listExperimentsForm: FormGroup;
   downloadLink: string;
   downloadName: string;
-  output_types: any[] = [];
+  outputTypes: any[] = [];
   devices: any[] = [];
   experimentId: string;
+  device: string;
+  outputType: string;
 
   constructor(private experimentService: ExperimentService, private deviceOutputService: DeviceOutputService,
     private sanitizer: DomSanitizer, private route: ActivatedRoute, private formBuilder: FormBuilder,
@@ -46,38 +47,37 @@ export class ExportExperimentComponent implements OnInit {
 
   ngOnInit() {
     this.experimentId = this.experimentService.experimentId;
-    this.updateForm([]);
     this.onExperimentUpdate();
     this.experimentService.$experimentId.subscribe((experimentId) => {
       this.experimentId = experimentId;
       this.onExperimentUpdate();
+      this.updateRoute();
+
     })
-    this.route.queryParams.subscribe(( queryParams) => {
-        this.updateForm(queryParams);
-      });
+    this.route.queryParams.subscribe((queryParams) => {
+      this.updateForm(queryParams);
+    });
 
   }
 
   updateForm(queryParams) {
     let outputType = '';
-    let user = '';
+    let device = '';
     if (queryParams['outputType']) {
       outputType = queryParams['outputType'];
     }
-    if (queryParams['user']) {
-      user = queryParams['user'];
+    if (queryParams['device']) {
+      device = queryParams['device'];
     }
-    this.listExperimentsForm = this.formBuilder.group({
-      outputType: new FormControl(outputType),
-      user: new FormControl(user)
-    });
+    this.device = device;
+    this.outputType = outputType;
   }
 
   updateRoute() {
     this.router.navigate([], {
       queryParams: {
-        outputType: this.listExperimentsForm.get('outputType').value,
-        user: this.listExperimentsForm.get('user').value
+        outputType: this.outputType,
+        device: this.device
       }
     });
   }
@@ -97,15 +97,16 @@ export class ExportExperimentComponent implements OnInit {
   }
 
   onExperimentUpdate() {
+    this.updateForm([]);
     this.downloadName = `${this.experimentId}.json`;
-    this.deviceOutputService.listByQuery(this.experimentId, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value).subscribe(
+    this.deviceOutputService.listByQuery(this.experimentId, this.outputType, this.device).subscribe(
       (data: any) => {
         this.downloadLink = this.sanitizer.bypassSecurityTrustUrl(`data:text/plain;charset=utf-8, ${JSON.stringify(this.getDeviceOutputFields(data))}`) as string
         this.devices = [];
-        this.output_types = [];
+        this.outputTypes = [];
         if (data.length > 0) {
           for (let obj of data) {
-            this.containsOutputType({ name: obj.output_type_name, output_type_id: obj.output_type_id }, this.output_types) ? {} : this.output_types.push({ name: obj.output_type_name, output_type_id: obj.output_type_id });
+            this.containsOutputType({ name: obj.output_type_name, output_type_id: obj.output_type_id }, this.outputTypes) ? {} : this.outputTypes.push({ name: obj.output_type_name, output_type_id: obj.output_type_id });
             this.containsDevice({ device_id: obj.device_id, name: obj.name }, this.devices) ? {} : this.devices.push({ device_id: obj.device_id, name: obj.name });
           }
           this.downloadName = `${data[0].description}.json`;
@@ -118,7 +119,7 @@ export class ExportExperimentComponent implements OnInit {
   }
 
   getDownloadLink() {
-    return this.deviceOutputService.getAuthorizedQueryUrl(this.experimentId, this.listExperimentsForm.get('outputType').value, this.listExperimentsForm.get('user').value);
+    return this.deviceOutputService.getAuthorizedQueryUrl(this.experimentId, this.outputType, this.device);
   }
 
   containsDevice(device, list) {
