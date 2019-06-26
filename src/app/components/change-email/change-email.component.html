@@ -6,39 +6,19 @@
     <mat-card-content>
       <form class="example-form" [formGroup]="createEmailForm">
         <table class="w-100" cellspacing="0">
-            <tr>
-                <td>
-                  <mat-form-field class="w-100"
-                    [ngClass]="submitted && createEmailForm.controls.currentEmail.errors ? 'mat-form-field-invalid' : ''">
-                    <input matInput placeholder="Current Email" formControlName="currentEmail" name="currentEmail" type="email"
-                      readonly>
-                  </mat-form-field>
-                </td>
-              </tr>
           <tr>
             <td>
               <mat-form-field class="w-100"
-                [ngClass]="submitted && createEmailForm.controls.newEmail.errors ? 'mat-form-field-invalid' : ''">
-                <input matInput placeholder="New Email" formControlName="newEmail" name="newEmail" type="email"
+                [ngClass]="submitted && createEmailForm.controls.email.errors ? 'mat-form-field-invalid' : ''">
+                <input matInput placeholder="Email address" formControlName="email" name="email" type="email"
                   required (keyup.enter)="submit()">
-                <mat-error *ngIf="createEmailForm.get('newEmail').hasError('required')">
-                  Name is required.
+                <mat-error *ngIf="createEmailForm.get('email').hasError('required')">
+                  Email is required.
                 </mat-error>
               </mat-form-field>
             </td>
           </tr>
-          <tr>
-              <td>
-                <mat-form-field class="w-100"
-                  [ngClass]="submitted && createEmailForm.controls.confirmNewEmail.errors ? 'mat-form-field-invalid' : ''">
-                  <input title = "Confirm new email" matInput placeholder="Confirm Email" formControlName="confirmNewEmail" type="email" name="confirmNewEmail"
-                    required (keyup.enter)="submit()">
-                  <mat-error *ngIf="createEmailForm.get('confirmNewEmail').hasError('required')">
-                    Device ID is required.
-                  </mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
+         
           <tr>
             <td>
               <mat-form-field class="w-100"
@@ -46,7 +26,7 @@
                 <input title = "Confirm password" matInput placeholder="Password" formControlName="password" type="password" name="password"
                   required (keyup.enter)="submit()">
                 <mat-error *ngIf="createEmailForm.get('password').hasError('required')">
-                  Device Secret is required.
+                  Password is required.
                 </mat-error>
               </mat-form-field>
             </td>
