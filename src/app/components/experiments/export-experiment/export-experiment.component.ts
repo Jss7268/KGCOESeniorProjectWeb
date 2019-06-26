@@ -46,7 +46,7 @@ export class ExportExperimentComponent implements OnInit {
 
   ngOnInit() {
     this.experimentId = this.experimentService.experimentId;
-    //this.updateForm([]);
+    this.updateForm([]);
     this.onExperimentUpdate();
     this.experimentService.$experimentId.subscribe((experimentId) => {
       this.experimentId = experimentId;
