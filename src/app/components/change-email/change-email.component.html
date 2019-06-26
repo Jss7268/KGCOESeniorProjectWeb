@@ -1,3 +1,13 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <mat-nav-list>
+        <a mat-list-item href="settings"> Overview </a>
+        <a mat-list-item> Change Email </a>
+        <a *ngIf="auth.getAccess() < 3" mat-list-item href="settings/request"> Request Elevated Access </a>
+        <a *ngIf="auth.hasAccessLevel(3)" mat-list-item href="settings/manage"> Manage User Access Levels </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
 <div class="card-container">
   <mat-card class="example-card">
     <mat-card-header>
@@ -58,4 +68,6 @@
       <button mat-raised-button (click)="submit()" color="primary">Save</button>
     </mat-card-actions>
   </mat-card>
-  <div class="card-container">
+  </div>
+</mat-drawer-content>
+</mat-drawer-container>

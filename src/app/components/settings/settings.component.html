@@ -14,7 +14,7 @@
 		</mat-card-header>
 		<mat-card-content>
 			<h2>Current access level: {{userService.ACCESSES[auth.getAccess()].description}}</h2>
-			<h2>Current email address: {{auth.getLoggedInUser()[0].email}}</h2>
+			<h2>Current email address: {{changeEmailService.getCurrentUser().email}}</h2>
 		</mat-card-content>
 		</mat-card>
 	</mat-drawer-content>

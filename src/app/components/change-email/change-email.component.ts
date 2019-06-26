@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
+import { AuthService } from './../../services/auth.service';
 
 @Component({
   selector: 'app-change-email',
@@ -20,18 +21,17 @@ export class ChangeEmailComponent implements OnInit {
 
   constructor(private changeEmailService: ChangeEmailService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar, private auth: AuthService) { 
+
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      let currentEmail = '';
+      let currentEmail = this.changeEmailService.getCurrentUser().email;
       let newEmail = '';
       let confirmNewEmail = '';
       let password = '';
 
-      if (params.currentEmail) {
-        currentEmail = params.currentEmail;
-      }
       if (params.newEmail) {
         newEmail = params.newEmail;
       }
