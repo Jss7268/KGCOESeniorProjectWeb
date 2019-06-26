@@ -13,6 +13,7 @@ import { CreateDeviceExperimentComponent } from './components/create-device-expe
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { RequestAccessComponent } from './components/request-access/request-access.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
 
 
 const routes: any = [
@@ -28,7 +29,8 @@ const routes: any = [
   { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
   { path: CreateNewDeviceComponent.PATH, component: CreateNewDeviceComponent, authLevel: 2, canActivate: [AuthGuard]},
   { path: SettingsComponent.PATH, component: SettingsComponent, authLevel: 0, canActivate: [AuthGuard]},
-  { path: RequestAccessComponent.PATH, component: RequestAccessComponent, authLevel: 0, canActivate: [AuthGuard]}
+  { path: RequestAccessComponent.PATH, component: RequestAccessComponent, authLevel: 0, canActivate: [AuthGuard]},
+  { path: ChangeEmailComponent.PATH, component: ChangeEmailComponent, authLevel: 2, canActivate: [AuthGuard]}
 ];
 
 export const routing = RouterModule.forRoot(routes, { useHash: true });
