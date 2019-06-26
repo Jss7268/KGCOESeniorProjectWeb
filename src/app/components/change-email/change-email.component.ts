@@ -30,7 +30,10 @@ export class ChangeEmailComponent implements OnInit {
       let password = '';
 
       if (params.currentEmail) {
-        currentEmail = params.currentEmail;
+        this.changeEmailService.getCurrentUser().subscribe(
+          (data: any) => currentEmail = data['email'],
+          (error: any) => console.log(error)
+        );
       }
       if (params.newEmail) {
         newEmail = params.newEmail;
@@ -58,7 +61,7 @@ export class ChangeEmailComponent implements OnInit {
     }
 
     this.changeEmailService.changeEmail(
-      this.createEmailForm.controls.newEmail.value,
+      'b4eb45a3-63fc-414b-8112-e6c2569596ea',
       this.createEmailForm.controls.newEmail.value
       ).subscribe(
         (data: any) => {
