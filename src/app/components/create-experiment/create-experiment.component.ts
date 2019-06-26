@@ -82,7 +82,9 @@ export class CreateExperimentComponent implements OnInit {
             duration: 5000,
           });
         for (let deviceId of this.experimentForm.controls.deviceId.value) {
-          this.deviceExperimentService.createDeviceExperiment(deviceId, data.id);
+          this.deviceExperimentService.createDeviceExperiment(deviceId, data.id).subscribe(
+            (data: any) => console.log(`Linked device ${deviceId}`)
+          );
         }
       },
       (error: any) => console.log(error)
