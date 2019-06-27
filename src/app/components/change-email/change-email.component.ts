@@ -21,7 +21,7 @@ export class ChangeEmailComponent implements OnInit {
 
   constructor(private changeEmailService: ChangeEmailService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
-    private snackBar: MatSnackBar, private auth: AuthService) { 
+    private snackBar: MatSnackBar, private auth: AuthService) {
 
   }
 
@@ -29,14 +29,10 @@ export class ChangeEmailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let currentEmail = this.changeEmailService.getCurrentUser().email;
       let newEmail = '';
-      let confirmNewEmail = '';
       let password = '';
 
       if (params.newEmail) {
         newEmail = params.newEmail;
-      }
-      if (params.confirmNewEmail) {
-        confirmNewEmail = params.confirmNewEmail;
       }
       if (params.password) {
         password = params.password;
@@ -45,7 +41,6 @@ export class ChangeEmailComponent implements OnInit {
       this.createEmailForm = this.formBuilder.group({
         currentEmail: new FormControl(currentEmail),
         newEmail: new FormControl(newEmail, [Validators.required]),
-        confirmNewEmail: new FormControl(confirmNewEmail, [Validators.required]),
         password: new FormControl(password, [Validators.required])
       });
     });
@@ -57,21 +52,30 @@ export class ChangeEmailComponent implements OnInit {
       return;
     }
 
-    this.changeEmailService.changeEmail(
-      this.createEmailForm.controls.newEmail.value,
-      this.createEmailForm.controls.newEmail.value
-      ).subscribe(
-        (data: any) => {
-          const date = new Date();
-          this.snackBar.open(`Changed email on:
-          ${date.toLocaleDateString('en-US')} at:
-          ${date.toLocaleTimeString('en-US')}`,
-            'Dismiss', {
-              duration: 5000,
-            });
-        },
-        (error: any) => console.log(error)
-      );
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: { info: `Are you sure you want to change your email?`, cancelDialog: 'Cancel', confirmDialog: 'Continue' }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.changeEmailService.changeEmail(
+          this.changeEmailService.getCurrentUser().id,
+          this.createEmailForm.controls.newEmail.value
+          ).subscribe(
+            (data: any) => {
+              const date = new Date();
+              this.snackBar.open(`Changed email on:
+              ${date.toLocaleDateString('en-US')} at:
+              ${date.toLocaleTimeString('en-US')}`,
+                'Dismiss', {
+                  duration: 5000,
+                });
+            },
+            (error: any) => console.log(error)
+          );
+      }
+    });
   }
 
   ngOnDestroy() {

@@ -38,18 +38,6 @@
             </td>
           </tr>
           <tr>
-              <td>
-                <mat-form-field class="w-100"
-                  [ngClass]="submitted && createEmailForm.controls.confirmNewEmail.errors ? 'mat-form-field-invalid' : ''">
-                  <input title = "Confirm new email" matInput placeholder="Confirm Email" formControlName="confirmNewEmail" type="email" name="confirmNewEmail"
-                    required (keyup.enter)="submit()">
-                  <mat-error *ngIf="createEmailForm.get('confirmNewEmail').hasError('required')">
-                    Device ID is required.
-                  </mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
-          <tr>
             <td>
               <mat-form-field class="w-100"
                 [ngClass]="submitted && createEmailForm.controls.password.errors ? 'mat-form-field-invalid' : ''">

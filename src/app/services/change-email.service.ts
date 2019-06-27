@@ -30,7 +30,7 @@ export class ChangeEmailService {
   }
 
   changeEmail(id: string, email: string): Observable<any> {
-    return this.http.put(AppRoutes.V1_ENDPOINT + '/' + id + '/email', {
+    return this.http.put(AppRoutes.V1_ENDPOINT + '/users/' + id + '/email', {
       email: email
     });
   }
