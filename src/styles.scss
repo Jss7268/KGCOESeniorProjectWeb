@@ -3,14 +3,14 @@
 html, body {
   height: 100%;
   margin: 0;
-  background-color: rgb(240, 245, 250)
+  background-color: rgb(237, 238, 239)
 }
 .wrapper {
   min-height: 100%;
 
   /* Equal to height of footer */
   /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: -50px;
+  /*margin-bottom: -50px;*/
 }
 .footer {
   height: 50px;
@@ -33,4 +33,11 @@ mat-tooltip-component > .mat-tooltip {
 .mat-menu-content {
   padding: 0!important;
   background-color: rgba(0,0,0,.01);
+}
+
+.experiment-select .mat-form-field-wrapper {
+  padding: 0!important;
+}
+.experiment-select .mat-form-field-underline {
+  position: static;
 }
