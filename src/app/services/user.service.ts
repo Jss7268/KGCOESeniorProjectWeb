@@ -33,7 +33,7 @@ const ACCESSES: Access[] = [
 export class UserService {
   public ACCESSES = ACCESSES;
   constructor(private http: HttpClient) { }
-  
+
   getAccessName(accessLevel: number): string {
     return ACCESSES[accessLevel].description;
   }

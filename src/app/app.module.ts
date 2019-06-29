@@ -45,6 +45,7 @@ import { CreateNewDeviceComponent } from './components/create-new-device/create-
 import { SettingsComponent } from './components/settings/settings.component';
 import { RequestAccessComponent } from './components/request-access/request-access.component';
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
+import { ManageAccessComponent } from './components/manage-access/manage-access.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { ChangeEmailComponent } from './components/change-email/change-email.com
     SettingsComponent,
     RequestAccessComponent,
     ChangeEmailComponent,
+    ManageAccessComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 
