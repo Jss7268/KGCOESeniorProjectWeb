@@ -19,13 +19,13 @@ export class ManageAccessService {
       );
   }
 
-  users: User[];
+  users: string;
 
   setUserList(users: User[]) {
-    this.users = users;
-  };
+    localStorage.setItem(this.users, JSON.stringify(users));
+  }
 
   getUsers() {
-    return this.users;
+    return JSON.parse(localStorage.getItem(this.users));
   }
 }
