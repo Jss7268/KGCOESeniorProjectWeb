@@ -30,6 +30,9 @@ export class DeviceOutputService {
 
     let queryParams = querystring.stringify(obj);
 
+    queryParams = queryParams.replace(/output_type_id=/g, "output_type_id__in=");
+    queryParams = queryParams.replace(/device_id=/g, "device_id__in=");
+
     return `${AppRoutes.DEVICE_OUTPUTS}?${queryParams}`;
   }
 
