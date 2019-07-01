@@ -67,7 +67,7 @@ export class CreateDeviceOutputComponent implements OnInit {
   }
 
   onExperimentUpdate() {
-    this.deviceExperimentService.listByExperiment(this.experimentId).subscribe(
+    this.deviceExperimentService.listDevicesByExperiment(this.experimentId).subscribe(
       (data: any) => this.devices = data,
       (error: any) => console.log(error)
     );

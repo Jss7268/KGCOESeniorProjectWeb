@@ -35,6 +35,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { CreateUserInputComponent } from './components/experiments/create-user-input/create-user-input.component';
+
 import { NotificationComponent } from './components/notification/notification.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 import { ExperimentSubheaderComponent } from './components/experiments/experiment-subheader/experiment-subheader.component';
@@ -59,6 +61,7 @@ import { ExperimentsRoutingModule } from './components/experiments/experiments-r
     ConfirmationDialogComponent,
     CreateDeviceExperimentComponent,
     NotificationComponent,
+    CreateUserInputComponent,
     CreateNewDeviceComponent,
     ExperimentSubheaderComponent,
     ExperimentsComponent,

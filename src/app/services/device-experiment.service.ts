@@ -25,8 +25,8 @@ export class DeviceExperimentService {
   listByDevice(deviceId: string) {
     return this.http.get(`${AppRoutes.DEVICE_EXPERIMENT}/${deviceId}/experiments`);
   }
- 
-  listByExperiment(experimentId: string) {
+
+  listDevicesByExperiment(experimentId: string) {
     return this.http.get(`${AppRoutes.DEVICE_EXPERIMENT}/${experimentId}/devices`);
   }
 }

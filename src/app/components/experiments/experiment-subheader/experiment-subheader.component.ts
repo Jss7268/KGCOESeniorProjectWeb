@@ -5,6 +5,7 @@ import { Experiment } from 'src/app/classes/experiment';
 import { ExperimentService } from 'src/app/services/experiment.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ExportExperimentComponent } from '../export-experiment/export-experiment.component';
+import { CreateUserInputComponent } from '../create-user-input/create-user-input.component';
 
 @Component({
   selector: 'app-experiment-subheader',
@@ -25,13 +26,17 @@ export class ExperimentSubheaderComponent implements OnInit {
         link: ExportExperimentComponent.PATH,
         index: 0
       }, {
-        label: 'Device Outputs',
-        link: CreateDeviceOutputComponent.PATH, // todo make list component
+        label: 'User Inputs',
+        link: CreateUserInputComponent.PATH, // todo make list component
         index: 1
       }, {
         label: 'Linked Devices',
         link: CreateDeviceExperimentComponent.PATH, // todo make list component
         index: 2
+      }, {
+        label: 'Device Outputs',
+        link: CreateDeviceOutputComponent.PATH, // todo make list component
+        index: 3
       },
     ];
   }

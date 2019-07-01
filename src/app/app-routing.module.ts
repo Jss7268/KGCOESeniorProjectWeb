@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
+import { CreateUserInputComponent } from './components/experiments/create-user-input/create-user-input.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { EXPERIMENTS_ROUTES } from './components/experiments/experiments-routing/experiments-routing.module';
