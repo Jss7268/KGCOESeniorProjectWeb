@@ -26,16 +26,16 @@ export class ExperimentSubheaderComponent implements OnInit {
         link: ExportExperimentComponent.PATH,
         index: 0
       }, {
-        label: 'Device Outputs',
-        link: CreateDeviceOutputComponent.PATH, // todo make list component
+        label: 'User Inputs',
+        link: CreateUserInputComponent.PATH, // todo make list component
         index: 1
       }, {
         label: 'Linked Devices',
         link: CreateDeviceExperimentComponent.PATH, // todo make list component
         index: 2
       }, {
-        label: 'User Inputs',
-        link: CreateUserInputComponent.PATH, // todo make list component
+        label: 'Device Outputs',
+        link: CreateDeviceOutputComponent.PATH, // todo make list component
         index: 3
       },
     ];
