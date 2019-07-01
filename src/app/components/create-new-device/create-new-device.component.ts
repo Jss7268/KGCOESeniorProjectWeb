@@ -48,7 +48,7 @@ export class CreateNewDeviceComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      [CreateNewDeviceComponent.PATH], {
+      CreateNewDeviceComponent.PATH.split('/'), {
         queryParams: {
           name: this.createDeviceForm.controls.name.value,
           id: this.createDeviceForm.controls.id.value,

@@ -8,19 +8,6 @@
           <table class="w-100" cellspacing="0">
               <tr>
                   <td>
-                      <mat-form-field class="w-100" [ngClass]="submitted && userInputForm.controls.experimentId.errors ? 'mat-form-field-invalid' : ''">
-                          <mat-label>Experiment Name</mat-label>
-                          <mat-select formControlName="experimentId" (selectionChange)="onExperimentUpdate()" required>
-                                <mat-option *ngFor="let experiment of experiments" [value]="experiment.id" [matTooltip]="tooltipService.generateExperimentTooltip(experiment)" matTooltipClass>
-                                    {{experiment.description}}
-                                </mat-option>
-                            </mat-select>
-                          <mat-error *ngIf="userInputForm.get('experimentId').hasError('required')">You must link your input to an Experiment</mat-error>
-                      </mat-form-field>
-                  </td>
-              </tr>
-              <tr>
-                  <td>
                       <mat-form-field class="action-form-field" [ngClass]="submitted && userInputForm.controls.deviceId.errors ? 'mat-form-field-invalid' : ''">
                           <mat-label>Device Name</mat-label>
                           <mat-select formControlName="deviceId" required>
