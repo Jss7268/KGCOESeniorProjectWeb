@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { CreateExperimentComponent } from './components/create-experiment/create-experiment.component';
-import { CreateUserInputComponent } from './components/create-user-input/create-user-input.component';
+import { CreateUserInputComponent } from './components/experiments/create-user-input/create-user-input.component';
 import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { EXPERIMENTS_ROUTES } from './components/experiments/experiments-routing/experiments-routing.module';
@@ -22,7 +22,6 @@ const routes: any = [
   { path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
   { path: CreateExperimentComponent.PATH, component: CreateExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
   { path: CreateOutputTypeComponent.PATH, component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard] },
-  { path: CreateUserInputComponent.PATH, component: CreateUserInputComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: CreateNewDeviceComponent.PATH, component: CreateNewDeviceComponent, authLevel: 2, canActivate: [AuthGuard]}
 ];
 

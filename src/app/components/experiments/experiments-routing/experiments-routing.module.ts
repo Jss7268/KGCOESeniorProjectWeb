@@ -5,6 +5,7 @@ import { HomeComponent } from '../../home/home.component';
 import { AuthGuard } from 'src/app/auth.guard';
 import { CreateDeviceOutputComponent } from '../create-device-output/create-device-output.component';
 import { CreateDeviceExperimentComponent } from '../create-device-experiment/create-device-experiment.component';
+import { CreateUserInputComponent } from '../create-user-input/create-user-input.component';
 
 
 export const EXPERIMENTS_ROUTES: any = [
@@ -12,6 +13,8 @@ export const EXPERIMENTS_ROUTES: any = [
   { path: ExportExperimentComponent.PATH, component: ExportExperimentComponent, authLevel: 0, canActivate: [AuthGuard] },
   { path: CreateDeviceOutputComponent.PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: CreateUserInputComponent.PATH, component: CreateUserInputComponent, authLevel: 1, canActivate: [AuthGuard] },
+
 ];
 
 export const routing = RouterModule.forChild(EXPERIMENTS_ROUTES);

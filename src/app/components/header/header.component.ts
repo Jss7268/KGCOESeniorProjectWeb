@@ -1,14 +1,10 @@
 import { CreateExperimentComponent } from './../create-experiment/create-experiment.component';
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Inject } from '@angular/core'
-import { LoginService } from '../../services/login.service';
 import { DOCUMENT } from '@angular/common';
-import {AppSettings} from '../../app.settings';
 import { Router } from '@angular/router';
-import { CreateUserInputComponent } from './../create-user-input/create-user-input.component';
 import { CreateNewDeviceComponent } from '../create-new-device/create-new-device.component';
-import { CreateDeviceOutputComponent } from '../experiments/create-device-output/create-device-output.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +12,7 @@ import { CreateDeviceOutputComponent } from '../experiments/create-device-output
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(@Inject(DOCUMENT) private document: any, public auth: AuthService, private router: Router) {
+  constructor(public auth: AuthService, private router: Router) {
 
   }
 
@@ -41,20 +37,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['experiment']);
   }
 
-  outputData() {
-    this.router.navigate(CreateDeviceOutputComponent.PATH.split('/'));
-  }
-
   newDevice() {
     this.router.navigate(CreateNewDeviceComponent.PATH);
-  }
-
-  newUserInput() {
-    this.router.navigate([CreateUserInputComponent.PATH]);
-  }
-
-  newDeviceOutput() {
-    this.router.navigate(CreateDeviceOutputComponent.PATH.split('/'));
   }
 
   newExperiment() {
