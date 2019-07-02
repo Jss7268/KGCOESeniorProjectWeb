@@ -1,7 +1,7 @@
 import { ConfirmationDialogComponent } from './../confirmation-dialog/confirmation-dialog.component';
 import { ChangeEmailService } from './../../services/change-email.service';
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -17,7 +17,11 @@ export class ChangeEmailComponent implements OnInit {
   ngUnsubscribe = new Subject();
   createEmailForm: FormGroup;
   submitted: boolean;
+  $currentUser: Subscription;
   static PATH: any = 'settings/email';
+
+  userInfo = '';
+  userId = '';
 
   constructor(private changeEmailService: ChangeEmailService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
@@ -27,9 +31,28 @@ export class ChangeEmailComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      let currentEmail = this.changeEmailService.getCurrentUser().email;
       let newEmail = '';
       let password = '';
+
+      this.changeEmailService.getCurrentUser().subscribe(
+        (data: any) => this.userId = data.id
+      );
+
+      if (this.$currentUser) {
+        this.$currentUser.unsubscribe();
+      }
+
+      if (!params.currentEmail) {
+        this.createFormGroup('');
+        this.$currentUser = this.changeEmailService.getCurrentUser().subscribe(
+          (data: any) => {
+            this.createFormGroup(data.email);
+          },
+          (error: any) => console.log(error)
+        );
+      } else {
+        this.createFormGroup(params.currentEmail);
+      }
 
       if (params.newEmail) {
         newEmail = params.newEmail;
@@ -37,16 +60,25 @@ export class ChangeEmailComponent implements OnInit {
       if (params.password) {
         password = params.password;
       }
+    });
+  }
 
-      this.createEmailForm = this.formBuilder.group({
-        currentEmail: new FormControl(currentEmail),
-        newEmail: new FormControl(newEmail, [Validators.required]),
-        password: new FormControl(password, [Validators.required])
-      });
+  createFormGroup(currentEmail: string) {
+    this.createEmailForm = this.formBuilder.group({
+      currentEmail: new FormControl(currentEmail),
+      newEmail: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
     });
   }
 
   submit() {
+    this.$currentUser = this.changeEmailService.getCurrentUser().subscribe(
+      (data: any) => {
+        this.userId = data.id;
+      },
+      (error: any) => console.log(error)
+    );
+
     this.submitted = true;
     if (this.createEmailForm.invalid) {
       return;
@@ -60,7 +92,7 @@ export class ChangeEmailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.changeEmailService.changeEmail(
-          this.changeEmailService.getCurrentUser().id,
+          this.userId,
           this.createEmailForm.controls.newEmail.value
           ).subscribe(
             (data: any) => {

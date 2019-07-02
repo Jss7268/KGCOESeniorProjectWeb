@@ -13,7 +13,7 @@ import { AuthService } from './../../services/auth.service';
 })
 export class ManageAccessComponent implements OnInit {
   displayedColumns: string[] = ['name', 'access_level'];
-  dataSource: User[] = this.manageAccessService.getUsers();
+  dataSource: User[] = [];
   static PATH: any = 'settings/manage';
 
   constructor(private manageAccessService: ManageAccessService, private formBuilder: FormBuilder,
@@ -21,6 +21,9 @@ export class ManageAccessComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.manageAccessService.getUsers().subscribe(
+      (data: any) => this.dataSource = data
+    );
   }
 
 }

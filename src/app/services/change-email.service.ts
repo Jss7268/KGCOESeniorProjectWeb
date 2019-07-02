@@ -10,23 +10,10 @@ import { User } from '../classes/user';
 })
 export class ChangeEmailService {
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.http.get(AppRoutes.USERME).subscribe(
-      (data: any) => {
-        this.setUser(data);
-      },
-      (error: any) => console.log(error)
-      );
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  private currentUser;
-
-  setUser(user: User) {
-    localStorage.setItem(this.currentUser, JSON.stringify(user));
-  }
-
-  getCurrentUser() {
-    return JSON.parse(localStorage.getItem(this.currentUser));
+  getCurrentUser(): Observable<any> {
+    return this.http.get(AppRoutes.USERME);
   }
 
   changeEmail(id: string, email: string): Observable<any> {

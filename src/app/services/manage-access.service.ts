@@ -10,22 +10,9 @@ import { User } from 'src/app/classes/user';
 })
 export class ManageAccessService {
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.http.get(AppRoutes.USERS).subscribe(
-      (data: any) => {
-        this.setUserList(data);
-      },
-      (error: any) => console.log(error)
-      );
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  users: string;
-
-  setUserList(users: User[]) {
-    localStorage.setItem(this.users, JSON.stringify(users));
-  }
-
-  getUsers() {
-    return JSON.parse(localStorage.getItem(this.users));
+  getUsers(): Observable<any> {
+    return this.http.get(AppRoutes.USERS);
   }
 }
