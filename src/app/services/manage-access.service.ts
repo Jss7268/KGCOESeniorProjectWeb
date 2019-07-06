@@ -15,4 +15,10 @@ export class ManageAccessService {
   getUsers(): Observable<any> {
     return this.http.get(AppRoutes.USERS);
   }
+
+  changeAccessLevel(id: string, access_level: string): Observable<any> {
+    return this.http.put(AppRoutes.USERS + '/' + id + '/access', {
+      access_level: access_level
+    });
+  }
 }
