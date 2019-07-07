@@ -24,7 +24,7 @@
               <!-- Weight Column -->
               <ng-container matColumnDef="access_level">
                 <th mat-header-cell *matHeaderCellDef> Access Level </th>
-                <td contenteditable="true" (blur)="changeAccessLevel($event)" mat-cell *matCellDef="let element"> {{element.access_level}} </td>
+                <td contenteditable="true" (blur)="changeAccessLevel(element.id, element.access_level, $event)" mat-cell *matCellDef="let element"> {{element.access_level}} </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -28,12 +28,12 @@ export class ManageAccessComponent implements OnInit {
     );
   }
 
-  changeAccessLevel(event: any) {
-    const access_level = event.target.textContent;
+  changeAccessLevel(id: string, access: string, event: any) {
+    const accessLevel = event.target.textContent;
 
     this.manageAccessService.changeAccessLevel(
-      'c6ec2209-661f-46d4-8570-099e878d8865',
-      access_level
+      id,
+      accessLevel
     ).subscribe(
       (data: any) => {
         const date = new Date();
