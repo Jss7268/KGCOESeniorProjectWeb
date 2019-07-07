@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ManageAccessService } from './../../services/manage-access.service';
 import { User } from 'src/app/classes/user';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { AuthService } from './../../services/auth.service';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-manage-access',
@@ -19,7 +20,7 @@ export class ManageAccessComponent implements OnInit {
   static PATH: any = 'settings/manage';
 
   constructor(private manageAccessService: ManageAccessService, private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar) {
+    private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar, public dialog: MatDialog) {
     }
 
   ngOnInit() {
@@ -31,21 +32,33 @@ export class ManageAccessComponent implements OnInit {
   changeAccessLevel(id: string, access: string, event: any) {
     const accessLevel = event.target.textContent;
 
-    this.manageAccessService.changeAccessLevel(
-      id,
-      accessLevel
-    ).subscribe(
-      (data: any) => {
-        const date = new Date();
-        this.snackBar.open(`Changed access level on:
-        ${date.toLocaleDateString('en-US')} at:
-        ${date.toLocaleTimeString('en-US')}`,
-          'Dismiss', {
-            duration: 5000,
-          });
-      },
-      (error: any) => console.log(error)
-    );
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: { info: `Are you sure you want to change user with id: ` + id + ` current access level to `
+      + accessLevel, cancelDialog: 'Cancel', confirmDialog: 'Continue' }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.manageAccessService.changeAccessLevel(
+          id,
+          accessLevel
+        ).subscribe(
+          (data: any) => {
+            const date = new Date();
+            this.snackBar.open(`Changed access level for user ` + id + ` on:
+            ${date.toLocaleDateString('en-US')} at:
+            ${date.toLocaleTimeString('en-US')}`,
+              'Dismiss', {
+                duration: 5000,
+              });
+          },
+          (error: any) => console.log(error)
+        );
+      } else {
+        event.target.textContent = access;
+      }
+    });
   }
 
   ngOnDestroy() {
