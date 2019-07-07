@@ -1,4 +1,14 @@
 <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <mat-nav-list>
+            <a mat-list-item
+            *ngFor="let link of navLinks"
+            [routerLink]="link.link"
+            routerLinkActive #rla="routerLinkActive">
+            {{link.label}}
+            </a>
+        </mat-nav-list>
+      </mat-drawer>
     <mat-drawer-content>
       <mat-card>
       <mat-card-header>

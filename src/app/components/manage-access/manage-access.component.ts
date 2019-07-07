@@ -7,6 +7,8 @@ import { User } from 'src/app/classes/user';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { AuthService } from './../../services/auth.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { SettingsComponent } from '../settings/settings.component';
+import { ChangeEmailComponent } from '../change-email/change-email.component';
 
 @Component({
   selector: 'app-manage-access',
@@ -17,10 +19,26 @@ export class ManageAccessComponent implements OnInit {
   ngUnsubscribe = new Subject();
   displayedColumns: string[] = ['id', 'name', 'access_level'];
   userList: User[] = [];
+  navLinks: any[];
   static PATH: any = 'settings/manage';
 
   constructor(private manageAccessService: ManageAccessService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar, public dialog: MatDialog) {
+      this.navLinks = [
+        {
+          label: 'Overview',
+          link: '/' + SettingsComponent.PATH,
+          index: 0
+        }, {
+          label: 'Change Email',
+          link: '/' + ChangeEmailComponent.PATH,
+          index: 1
+        }, {
+          label: 'Manage User Access Levels',
+          link: '/' + ManageAccessComponent.PATH,
+          index: 2
+        }
+      ];
     }
 
   ngOnInit() {
