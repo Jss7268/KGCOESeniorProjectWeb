@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material';
 import { Experiment } from 'src/app/classes/experiment';
 import { Device } from 'src/app/classes/device';
 import { CreateDeviceExperimentComponent } from '../create-device-experiment/create-device-experiment.component';
+import { CreateDeviceOutputComponent } from '../create-device-output/create-device-output.component';
 
 @Component({
   selector: 'app-create-user-input',
@@ -116,6 +117,10 @@ export class CreateUserInputComponent implements OnInit {
     },
       (error: any) => console.log(error)
     )
+  }
+
+  getCreateDeviceOutputPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${CreateDeviceOutputComponent.PATH}`
   }
 
 }

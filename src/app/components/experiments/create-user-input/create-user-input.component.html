@@ -46,6 +46,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button (click)="submit()" color="primary">Save</button>
+        <a mat-button [routerLink]="getCreateDeviceOutputPath()" color="primary">Simulate Device Output</a>
       </mat-card-actions>
     </mat-card>
   </div>
