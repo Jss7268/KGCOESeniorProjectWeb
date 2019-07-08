@@ -7,6 +7,7 @@ import { OutputType } from 'src/app/classes/output-type';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OutputTypeService } from 'src/app/services/output-type.service';
 import { MatTable, MatTableDataSource } from '@angular/material';
+import { AppPaths } from 'src/app/app.paths';
 
 @Component({
   selector: 'app-quick-view',
@@ -112,6 +113,8 @@ export class QuickViewComponent implements OnInit {
     return new Date(Number(timestamp)).toLocaleString();
   }
 
-  
+  getCreateUserInputPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.CREATE_USER_INPUT_PATH}`
+  }  
 
 }
