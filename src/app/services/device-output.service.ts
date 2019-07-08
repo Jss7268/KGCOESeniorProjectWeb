@@ -66,6 +66,5 @@ export class DeviceOutputService {
         this.$deviceOutputsByExperiment.next(experimentId);
       }
     )
-
   }
 }
