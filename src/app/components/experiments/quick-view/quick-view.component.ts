@@ -15,8 +15,6 @@ import { MatTable, MatTableDataSource } from '@angular/material';
 })
 export class QuickViewComponent implements OnInit {
 
-  static PATH = 'quick-view';
-
   private experimentId: string;
   private deviceOutputs: DeviceOutput[];
   private selectedOutputs: any[] = [];
@@ -100,6 +98,7 @@ export class QuickViewComponent implements OnInit {
     this.updateDataSource();
     
   }
+
 
   updateDataSource() {
     let outputs = this.selectedOutputs.concat(this.userInputs);

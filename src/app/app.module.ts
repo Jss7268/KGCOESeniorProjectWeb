@@ -38,7 +38,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { CreateUserInputComponent } from './components/experiments/create-user-input/create-user-input.component';
 
 import { NotificationComponent } from './components/notification/notification.component';
-import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
+import { CreateDeviceComponent } from './components/create-device/create-device.component';
 import { ExperimentSubheaderComponent } from './components/experiments/experiment-subheader/experiment-subheader.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { ExportExperimentComponent } from "./components/experiments/export-experiment/export-experiment.component";
@@ -63,7 +63,7 @@ import { QuickViewComponent } from './components/experiments/quick-view/quick-vi
     CreateDeviceExperimentComponent,
     NotificationComponent,
     CreateUserInputComponent,
-    CreateNewDeviceComponent,
+    CreateDeviceComponent,
     ExperimentSubheaderComponent,
     ExperimentsComponent,
     QuickViewComponent,

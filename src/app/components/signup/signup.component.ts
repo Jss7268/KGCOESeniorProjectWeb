@@ -34,7 +34,6 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   submitted: boolean;
   passwordsMatcher = new RepeatPasswordEStateMatcher;
-  static PATH: any = 'signup';
 
   constructor(private service: AuthService, private formBuilder: FormBuilder,
     private router: Router, private route: ActivatedRoute, public userService: UserService) {
