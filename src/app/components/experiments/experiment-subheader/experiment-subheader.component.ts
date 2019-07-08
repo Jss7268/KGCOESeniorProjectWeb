@@ -23,21 +23,17 @@ export class ExperimentSubheaderComponent implements OnInit {
     private route: ActivatedRoute) {
     this.navLinks = [
       {
-        label: 'Export',
-        link: AppPaths.EXPORT_EXPERIMENT_PATH,
+        label: 'View Data',
+        link: AppPaths.QUICK_VIEW_PATH, // todo make list component
         index: 0
       }, {
-        label: 'User Inputs',
-        link: AppPaths.CREATE_USER_INPUT_PATH, // todo make list component
+        label: 'Export',
+        link: AppPaths.EXPORT_EXPERIMENT_PATH,
         index: 1
       }, {
-        label: 'Linked Devices',
+        label: 'Link Device',
         link: AppPaths.CREATE_DEVICE_EXPERIMENT_PATH, // todo make list component
         index: 2
-      }, {
-        label: 'Device Outputs',
-        link: AppPaths.QUICK_VIEW_PATH, // todo make list component
-        index: 3
       },
     ];
   }
