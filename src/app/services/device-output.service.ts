@@ -1,7 +1,7 @@
 import { AuthService } from 'src/app/services/auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AppRoutes } from '../app.routes';
 import { Router } from '@angular/router';
 import * as querystring from 'querystring';
@@ -10,6 +10,9 @@ import * as querystring from 'querystring';
   providedIn: 'root'
 })
 export class DeviceOutputService {
+  public deviceOutputsByExperiment: any[];
+  public $deviceOutputsByExperiment: Subject<string> = new Subject<string>();
+
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
@@ -54,5 +57,15 @@ export class DeviceOutputService {
     });
 
     return this.http.get(`${AppRoutes.DEVICE_OUTPUTS}/experiment/${experimentId}?${queryParams}`);
+  }
+
+  fillByExperiment(experimentId: string) {
+    this.http.get(`${AppRoutes.DEVICE_OUTPUTS}/experiment/${experimentId}`).subscribe(
+      (data: any) => {
+        this.deviceOutputsByExperiment = data;
+        this.$deviceOutputsByExperiment.next(experimentId);
+      }
+    )
+
   }
 }
