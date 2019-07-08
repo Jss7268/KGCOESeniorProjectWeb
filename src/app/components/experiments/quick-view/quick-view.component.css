@@ -1,0 +1,10 @@
+table {
+    width: 50%;
+    min-width: 350px;
+    margin: auto;
+    margin-top: 16px;
+}
+
+.w-50 {
+    width: 50%;
+}

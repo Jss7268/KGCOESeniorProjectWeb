@@ -1,3 +1,4 @@
+import { QuickViewComponent } from './../quick-view/quick-view.component';
 import { ExportExperimentComponent } from './../export-experiment/export-experiment.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -13,7 +14,8 @@ export const EXPERIMENTS_ROUTES: any = [
   { path: ExportExperimentComponent.PATH, component: ExportExperimentComponent, authLevel: 0, canActivate: [AuthGuard] },
   { path: CreateDeviceOutputComponent.PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
-  { path: CreateUserInputComponent.PATH, component: CreateUserInputComponent, authLevel: 1, canActivate: [AuthGuard] },
+  { path: CreateUserInputComponent.PATH, component: CreateUserInputComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: QuickViewComponent.PATH, component: QuickViewComponent, authLevel: 2, canActivate: [AuthGuard] },
 
 ];
 

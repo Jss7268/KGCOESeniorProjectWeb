@@ -5,14 +5,15 @@ import { Observable, Subject } from 'rxjs';
 import { AppRoutes } from '../app.routes';
 import { Router } from '@angular/router';
 import * as querystring from 'querystring';
+import { OutputType } from '../classes/output-type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceOutputService {
   public deviceOutputsByExperiment: any[];
+  public outputTypeIds: string[];
   public $deviceOutputsByExperiment: Subject<string> = new Subject<string>();
-
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
@@ -63,6 +64,11 @@ export class DeviceOutputService {
     this.http.get(`${AppRoutes.DEVICE_OUTPUTS}/experiment/${experimentId}`).subscribe(
       (data: any) => {
         this.deviceOutputsByExperiment = data;
+        let outputTypeObj = {};
+        for (let output of data) {
+          outputTypeObj[output['output_type_id']] = true;
+        }
+        this.outputTypeIds = Object.keys(outputTypeObj);
         this.$deviceOutputsByExperiment.next(experimentId);
       }
     )

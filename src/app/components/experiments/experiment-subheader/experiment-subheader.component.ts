@@ -1,3 +1,4 @@
+import { QuickViewComponent } from './../quick-view/quick-view.component';
 import { CreateDeviceExperimentComponent } from './../create-device-experiment/create-device-experiment.component';
 import { CreateDeviceOutputComponent } from './../create-device-output/create-device-output.component';
 import { Component, OnInit } from '@angular/core';
@@ -35,7 +36,7 @@ export class ExperimentSubheaderComponent implements OnInit {
         index: 2
       }, {
         label: 'Device Outputs',
-        link: CreateDeviceOutputComponent.PATH, // todo make list component
+        link: QuickViewComponent.PATH, // todo make list component
         index: 3
       },
     ];
