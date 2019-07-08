@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ExperimentService } from 'src/app/services/experiment.service';
 import { TooltipService } from 'src/app/services/tooltip.service';
 import { MatSnackBar } from '@angular/material';
+import { AppPaths } from 'src/app/app.paths';
 
 @Component({
   selector: 'app-create-experiment',
@@ -13,7 +14,6 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./create-experiment.component.css']
 })
 export class CreateExperimentComponent implements OnInit {
-  static PATH: any = 'experiments/create';
 
   devices: any[] = [];
   experimentForm: FormGroup;
@@ -60,7 +60,7 @@ export class CreateExperimentComponent implements OnInit {
 
   updateRoute(): Promise<boolean> {
     return this.router.navigate(
-      CreateExperimentComponent.PATH.split('/'), {
+      AppPaths.CREATE_EXPERIMENT_PATH.split('/'), {
         queryParams: {
           deviceId: this.experimentForm.controls.deviceId.value,
           description: this.experimentForm.controls.description.value,

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { AppPaths } from 'src/app/app.paths';
 
 @Component({
   selector: 'app-create-output-type',
@@ -16,7 +17,6 @@ export class CreateOutputTypeComponent implements OnInit {
   outputTypeForm: FormGroup;
   submitted: boolean;
   @Input('callbackUrl') callbackUrl: string = '';
-  static PATH: any = 'output-types/create';
 
   constructor(private outputTypeService: OutputTypeService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {
@@ -43,7 +43,7 @@ export class CreateOutputTypeComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      CreateOutputTypeComponent.PATH.split('/'), {
+      AppPaths.CREATE_OUTPUT_TYPE_PATH.split('/'), {
         queryParams: {
           name: this.outputTypeForm.controls.name.value,
           units: this.outputTypeForm.controls.units.value,

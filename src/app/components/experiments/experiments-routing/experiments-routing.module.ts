@@ -1,8 +1,8 @@
+import { AppPaths } from './../../../app.paths';
 import { QuickViewComponent } from './../quick-view/quick-view.component';
 import { ExportExperimentComponent } from './../export-experiment/export-experiment.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from '../../home/home.component';
 import { AuthGuard } from 'src/app/auth.guard';
 import { CreateDeviceOutputComponent } from '../create-device-output/create-device-output.component';
 import { CreateDeviceExperimentComponent } from '../create-device-experiment/create-device-experiment.component';
@@ -11,11 +11,11 @@ import { CreateUserInputComponent } from '../create-user-input/create-user-input
 
 export const EXPERIMENTS_ROUTES: any = [
   //{ path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
-  { path: ExportExperimentComponent.PATH, component: ExportExperimentComponent, authLevel: 0, canActivate: [AuthGuard] },
-  { path: CreateDeviceOutputComponent.PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
-  { path: CreateDeviceExperimentComponent.PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
-  { path: CreateUserInputComponent.PATH, component: CreateUserInputComponent, authLevel: 2, canActivate: [AuthGuard] },
-  { path: QuickViewComponent.PATH, component: QuickViewComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: AppPaths.EXPORT_EXPERIMENT_PATH, component: ExportExperimentComponent, authLevel: 0, canActivate: [AuthGuard] },
+  { path: AppPaths.CREATE_DEVICE_OUTPUT_PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
+  { path: AppPaths.CREATE_DEVICE_EXPERIMENT_PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: AppPaths.CREATE_USER_INPUT_PATH, component: CreateUserInputComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: AppPaths.QUICK_VIEW_PATH, component: QuickViewComponent, authLevel: 2, canActivate: [AuthGuard] },
 
 ];
 
