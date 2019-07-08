@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material';
 import { Experiment } from 'src/app/classes/experiment';
 import { Device } from 'src/app/classes/device';
 import { AppPaths } from 'src/app/app.paths';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-create-user-input',
@@ -51,7 +52,7 @@ export class CreateUserInputComponent implements OnInit {
         deviceId = params['deviceId'];
       }
       if (params['inputTimestamp']) {
-        inputTimestamp = new Date(Number(params['inputTimestamp']));
+        inputTimestamp = moment(Number(params['inputTimestamp']));
       }
 
       this.userInputForm = this.formBuilder.group({
@@ -68,7 +69,7 @@ export class CreateUserInputComponent implements OnInit {
         queryParams: {
           description: this.userInputForm.controls.description.value,
           deviceId: this.userInputForm.controls.deviceId.value,
-          inputTimestamp: new Date().getTime(),
+          inputTimestamp: this.userInputForm.controls.inputTimestamp ? this.userInputForm.controls.inputTimestamp.valueOf() : null,
         }
       });
   }
@@ -104,7 +105,7 @@ export class CreateUserInputComponent implements OnInit {
       this.userInputForm.controls.deviceId.value,
       this.userInputForm.controls.description.value,
       this.experimentId,
-      this.userInputForm.controls.inputTimestamp.value ? this.userInputForm.controls.inputTimestamp.value : null,
+      this.userInputForm.controls.inputTimestamp.value ? this.userInputForm.controls.inputTimestamp.value.valueOf() : null,
     ).subscribe((data: any) => {
       this.snackBar.open('Created new user input',
         'Dismiss', {

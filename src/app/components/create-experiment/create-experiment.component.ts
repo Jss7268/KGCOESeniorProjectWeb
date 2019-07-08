@@ -7,6 +7,8 @@ import { ExperimentService } from 'src/app/services/experiment.service';
 import { TooltipService } from 'src/app/services/tooltip.service';
 import { MatSnackBar } from '@angular/material';
 import { AppPaths } from 'src/app/app.paths';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-create-experiment',
@@ -36,7 +38,7 @@ export class CreateExperimentComponent implements OnInit {
         description = params['description'];
       }
       if (params['startTime']) {
-        startTime = new Date(Number(params['startTime']));
+        startTime = moment(Number(params['startTime']));
       }
       if (params['notes']) {
         notes = params['notes'];
@@ -64,7 +66,7 @@ export class CreateExperimentComponent implements OnInit {
         queryParams: {
           deviceId: this.experimentForm.controls.deviceId.value,
           description: this.experimentForm.controls.description.value,
-          startTime: this.experimentForm.controls.startTime.value,
+          startTime: this.experimentForm.controls.startTime.value ? this.experimentForm.controls.startTime.value.valueOf() : null,
           notes: this.experimentForm.controls.notes.value,
         }
       });
@@ -73,7 +75,7 @@ export class CreateExperimentComponent implements OnInit {
   submit() {
     this.experimentService.createExperiment(
       this.experimentForm.controls.description.value,
-      this.experimentForm.controls.startTime.value.getTime(),
+      this.experimentForm.controls.inputTimestamp.value ? this.experimentForm.controls.inputTimestamp.value.valueOf() : null,
       this.experimentForm.controls.notes.value,
     ).subscribe(
       (data: any) => {
