@@ -19,11 +19,12 @@ export class QuickViewComponent implements OnInit {
 
   private experimentId: string;
   private deviceOutputs: DeviceOutput[];
-  private userInputs: any[];
+  private selectedOutputs: any[] = [];
+  private userInputs: any[] = [];
   private outputTypes: OutputType[];
   private currentType: OutputType;
   columnsToDisplay = ['timestamp', 'output_value'];
-  public dataSource: MatTableDataSource<any> = new MatTableDataSource([{timestamp: 12, output_value: 11}]);
+  public dataSource: any = new MatTableDataSource();
 
   @ViewChild(MatTable) table: MatTable<any>;
 
@@ -39,6 +40,7 @@ export class QuickViewComponent implements OnInit {
           this.deviceOutputs = this.deviceOutputService.deviceOutputsByExperiment;
           delete this.currentType;
           delete this.dataSource;
+
           this.updateTypes();
         }
       }
@@ -47,6 +49,7 @@ export class QuickViewComponent implements OnInit {
       (experimentId: string)  => {
         if (experimentId == this.experimentId) {
           this.userInputs = this.userInputsService.userInputsByExperiment;
+          this.updateDataSource();
         }
       }
     );
@@ -65,6 +68,8 @@ export class QuickViewComponent implements OnInit {
   }
 
   onExperimentUpdate() {
+    this.selectedOutputs = [];
+    this.userInputs = [];
     this.deviceOutputService.fillByExperiment(this.experimentId);
     this.userInputsService.fillByExperiment(this.experimentId);
   }
@@ -91,8 +96,15 @@ export class QuickViewComponent implements OnInit {
         selectedOutputs.push(deviceOutput);
       }
     }
-    selectedOutputs.sort((a: DeviceOutput, b: DeviceOutput) => b.timestamp - a.timestamp);
-    this.dataSource = new MatTableDataSource(selectedOutputs);
+    this.selectedOutputs = selectedOutputs;
+    this.updateDataSource();
+    
+  }
+
+  updateDataSource() {
+    let outputs = this.selectedOutputs.concat(this.userInputs);
+    outputs.sort((a: any, b: any) => b.timestamp - a.timestamp);
+    this.dataSource = outputs;
 
     this.table.renderRows();
   }

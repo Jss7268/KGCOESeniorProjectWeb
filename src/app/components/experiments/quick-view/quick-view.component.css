@@ -2,9 +2,27 @@ table {
     width: 50%;
     min-width: 350px;
     margin: auto;
-    margin-top: 16px;
 }
 
 .w-50 {
     width: 50%;
 }
+
+.accent {
+    color: white;
+    background-color: #607d8b;
+}
+
+.mat-fab {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+.table-div {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    height: calc(100% - 147px);
+
+}
+
