@@ -25,7 +25,6 @@ export class CreateDeviceComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let name = '';
       let deviceId = '';
-      let deviceSecret = '';
 
       if (params.name) {
         name = params.name;
@@ -33,27 +32,13 @@ export class CreateDeviceComponent implements OnInit {
       if (params.id) {
         deviceId = params.id;
       }
-      if (params.password) {
-        deviceSecret = params.password;
-      }
 
       this.createDeviceForm = this.formBuilder.group({
         name: new FormControl(name, [Validators.required]),
         id: new FormControl(deviceId, [Validators.required]),
-        password: new FormControl(deviceSecret, [Validators.required]),
+        password: new FormControl('', [Validators.required]),
       });
     });
-  }
-
-  updateRoute() {
-    this.router.navigate(
-      AppPaths.CREATE_NEW_DEVICE_PATH.split('/'), {
-        queryParams: {
-          name: this.createDeviceForm.controls.name.value,
-          id: this.createDeviceForm.controls.id.value,
-          password: this.createDeviceForm.controls.password.value
-        }
-      });
   }
 
   submit() {
