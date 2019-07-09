@@ -43,7 +43,7 @@ export class CreateOutputTypeComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      [CreateOutputTypeComponent.PATH], {
+      CreateOutputTypeComponent.PATH.split('/'), {
         queryParams: {
           name: this.outputTypeForm.controls.name.value,
           units: this.outputTypeForm.controls.units.value,

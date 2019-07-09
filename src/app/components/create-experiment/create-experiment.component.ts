@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ExperimentService } from 'src/app/services/experiment.service';
 import { TooltipService } from 'src/app/services/tooltip.service';
 import { MatSnackBar } from '@angular/material';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-create-experiment',
@@ -36,7 +38,7 @@ export class CreateExperimentComponent implements OnInit {
         description = params['description'];
       }
       if (params['startTime']) {
-        startTime = new Date(Number(params['startTime']));
+        startTime = moment(Number(params['startTime']));
       }
       if (params['notes']) {
         notes = params['notes'];
@@ -60,11 +62,11 @@ export class CreateExperimentComponent implements OnInit {
 
   updateRoute(): Promise<boolean> {
     return this.router.navigate(
-      [CreateExperimentComponent.PATH], {
+      CreateExperimentComponent.PATH.split('/'), {
         queryParams: {
           deviceId: this.experimentForm.controls.deviceId.value,
           description: this.experimentForm.controls.description.value,
-          startTime: this.experimentForm.controls.startTime.value,
+          startTime: this.experimentForm.controls.startTime.value ? this.experimentForm.controls.startTime.value.valueOf() : null,
           notes: this.experimentForm.controls.notes.value,
         }
       });
@@ -73,7 +75,7 @@ export class CreateExperimentComponent implements OnInit {
   submit() {
     this.experimentService.createExperiment(
       this.experimentForm.controls.description.value,
-      this.experimentForm.controls.startTime.value.getTime(),
+      this.experimentForm.controls.inputTimestamp.value ? this.experimentForm.controls.inputTimestamp.value.valueOf() : null,
       this.experimentForm.controls.notes.value,
     ).subscribe(
       (data: any) => {
@@ -82,7 +84,9 @@ export class CreateExperimentComponent implements OnInit {
             duration: 5000,
           });
         for (let deviceId of this.experimentForm.controls.deviceId.value) {
-          this.deviceExperimentService.createDeviceExperiment(deviceId, data.id);
+          this.deviceExperimentService.createDeviceExperiment(deviceId, data.id).subscribe(
+            (data: any) => console.log(`Linked device ${deviceId}`)
+          );
         }
       },
       (error: any) => console.log(error)

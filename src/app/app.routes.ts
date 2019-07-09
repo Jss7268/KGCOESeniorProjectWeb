@@ -11,4 +11,6 @@ export class AppRoutes {
     public static OUTPUT_TYPES_NAME=`${AppRoutes.V1_ENDPOINT}/output_types/name`;
     public static LIST_DEVICES=`${AppRoutes.V1_ENDPOINT}/users/access/1`;
     public static DEVICE_EXPERIMENT=`${AppRoutes.V1_ENDPOINT}/devices_experiments`;
+    public static USER_INPUTS=`${AppRoutes.V1_ENDPOINT}/user_inputs`;
  }
+ 

@@ -4,7 +4,7 @@ import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http'
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
-import { ListExperimentsComponent } from './list-experiments.component';
+import { ExportExperimentComponent } from './export-experiment.component';
 
 class MockRouter{
   navigate(someString, someObservable) {};
@@ -16,13 +16,13 @@ class MockActivatedRoute{
   queryParams = new MockQueryParams();
 };
 
-describe('ListExperimentsComponent', () => {
-  let component: ListExperimentsComponent;
-  let fixture: ComponentFixture<ListExperimentsComponent>;
+describe('ExportExperimentComponent', () => {
+  let component: ExportExperimentComponent;
+  let fixture: ComponentFixture<ExportExperimentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListExperimentsComponent ],
+      declarations: [ ExportExperimentComponent ],
       imports: [
         HttpClientModule,
         FormsModule,
@@ -38,7 +38,7 @@ describe('ListExperimentsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListExperimentsComponent);
+    fixture = TestBed.createComponent(ExportExperimentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
