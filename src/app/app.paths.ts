@@ -9,6 +9,6 @@ export class AppPaths {
     public static CREATE_DEVICE_OUTPUT_PATH = 'device-outputs/create';
     public static CREATE_DEVICE_EXPERIMENT_PATH = 'device-experiments/create';
     public static CREATE_OUTPUT_TYPE_PATH = 'output-types/create';
-    public static CREATE_NEW_DEVICE_PATH = 'devices/create';
+    public static CREATE_DEVICE_PATH = 'devices/create';
  }
  

@@ -21,7 +21,7 @@ const routes: any = [
   { path: 'home', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
   { path: AppPaths.CREATE_EXPERIMENT_PATH, component: CreateExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
   { path: AppPaths.CREATE_OUTPUT_TYPE_PATH, component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard] },
-  { path: AppPaths.CREATE_NEW_DEVICE_PATH, component: CreateDeviceComponent, authLevel: 2, canActivate: [AuthGuard]}
+  { path: AppPaths.CREATE_DEVICE_PATH, component: CreateDeviceComponent, authLevel: 2, canActivate: [AuthGuard]}
 ];
 
 export const routing = RouterModule.forRoot(routes, { useHash: true });

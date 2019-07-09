@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   newDevice() {
-    this.router.navigate(AppPaths.CREATE_NEW_DEVICE_PATH.split('/'));
+    this.router.navigate(AppPaths.CREATE_DEVICE_PATH.split('/'));
   }
 
   newExperiment() {
