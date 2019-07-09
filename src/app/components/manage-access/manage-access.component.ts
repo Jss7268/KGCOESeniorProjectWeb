@@ -9,6 +9,7 @@ import { AuthService } from './../../services/auth.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { ChangeEmailComponent } from '../change-email/change-email.component';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-manage-access',
@@ -19,52 +20,41 @@ export class ManageAccessComponent implements OnInit {
   ngUnsubscribe = new Subject();
   displayedColumns: string[] = ['id', 'name', 'access_level'];
   userList: User[] = [];
-  navLinks: any[];
+  userDictionary: { [id: string]: number; } = { };
   static PATH: any = 'settings/manage';
 
   constructor(private manageAccessService: ManageAccessService, private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar, public dialog: MatDialog) {
-      this.navLinks = [
-        {
-          label: 'Overview',
-          link: '/' + SettingsComponent.PATH,
-          index: 0
-        }, {
-          label: 'Change Email',
-          link: '/' + ChangeEmailComponent.PATH,
-          index: 1
-        }, {
-          label: 'Manage User Access Levels',
-          link: '/' + ManageAccessComponent.PATH,
-          index: 2
-        }
-      ];
-    }
+    private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar,
+    public dialog: MatDialog, private auth: AuthService, public userService: UserService) {}
 
   ngOnInit() {
     this.manageAccessService.getUsers().subscribe(
-      (data: any) => this.userList = data
+      (data: any) => {
+        this.userList = data;
+        this.userList.forEach(element => {
+          this.userDictionary[element.id] = element.access_level;
+        });
+      }
     );
   }
 
-  changeAccessLevel(id: string, access: string, event: any) {
-    const accessLevel = event.target.textContent;
-
+  changeAccessLevel(selectedUser: User) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
-      data: { info: `Are you sure you want to change user with id: ` + id + ` current access level to `
-      + accessLevel, cancelDialog: 'Cancel', confirmDialog: 'Continue' }
+      data: { info: `Are you sure you want to change user with id: ` + selectedUser.id + ` current access level to `
+      + selectedUser.access_level, cancelDialog: 'Cancel', confirmDialog: 'Continue' }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.userDictionary[selectedUser.id] = selectedUser.access_level;
         this.manageAccessService.changeAccessLevel(
-          id,
-          accessLevel
+          selectedUser.id,
+          selectedUser.access_level
         ).subscribe(
           (data: any) => {
             const date = new Date();
-            this.snackBar.open(`Changed access level for user ` + id + ` on:
+            this.snackBar.open(`Changed access level for user ` + selectedUser.id + ` on:
             ${date.toLocaleDateString('en-US')} at:
             ${date.toLocaleTimeString('en-US')}`,
               'Dismiss', {
@@ -74,7 +64,7 @@ export class ManageAccessComponent implements OnInit {
           (error: any) => console.log(error)
         );
       } else {
-        event.target.textContent = access;
+        selectedUser.access_level = this.userDictionary[selectedUser.id];
       }
     });
   }

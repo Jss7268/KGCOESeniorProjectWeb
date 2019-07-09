@@ -21,30 +21,13 @@ export class ChangeEmailComponent implements OnInit {
   submitted: boolean;
   $currentUser: Subscription;
   static PATH: any = 'settings/email';
-  navLinks: any[];
 
   userInfo = '';
   userId = '';
 
   constructor(private changeEmailService: ChangeEmailService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
-    private snackBar: MatSnackBar, private auth: AuthService) {
-      this.navLinks = [
-        {
-          label: 'Overview',
-          link: '/' + SettingsComponent.PATH,
-          index: 0
-        }, {
-          label: 'Change Email',
-          link: '/' + ChangeEmailComponent.PATH,
-          index: 1
-        }, {
-          label: 'Manage User Access Levels',
-          link: '/' + ManageAccessComponent.PATH,
-          index: 2
-        }
-      ];
-  }
+    private snackBar: MatSnackBar, private auth: AuthService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
