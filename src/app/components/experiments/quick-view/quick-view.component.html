@@ -1,0 +1,36 @@
+<div class="table-div">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td [ngClass]="element.output_value ? '' : 'accent'" mat-cell *matCellDef="let element">
+        {{getDate(element.timestamp)}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="output_value">
+      <th mat-header-cell *matHeaderCellDef>
+        Output Type
+        <mat-select [(ngModel)]="currentType" (selectionChange)="onTypeUpdate()" name="outputType">
+          <mat-option *ngFor="let outputType of outputTypes" [value]="outputType">{{outputType?.output_type_name}}
+            <i>({{outputType?.units}})</i>
+          </mat-option>
+        </mat-select>
+      </th>
+      <td [ngClass]="element.output_value ? '' : 'accent'" mat-cell *matCellDef="let element">
+        {{element.output_value ? element.output_value : element.description}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>
+</div>
+
+<button mat-fab [routerLink]="getCreateUserInputPath()">
+  <mat-icon>add</mat-icon>
+</button>
