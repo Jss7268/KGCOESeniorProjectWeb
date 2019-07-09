@@ -14,7 +14,7 @@
                   <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_id">{{outputType.name}}
                   </mat-option>
                 </mat-select>
-                <mat-select *ngIf="outputTypes?.length <= 1" [(ngModel)]="device" (selectionChange)="updateRoute()" name="device">
+                <mat-select *ngIf="outputTypes?.length <= 1" [(ngModel)]="outputType" (selectionChange)="updateRoute()" name="device">
                   <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_id">{{outputType.name}}
                   </mat-option>
                 </mat-select>
