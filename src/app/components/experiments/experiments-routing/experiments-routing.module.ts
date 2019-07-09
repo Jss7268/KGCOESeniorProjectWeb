@@ -10,12 +10,12 @@ import { CreateUserInputComponent } from '../create-user-input/create-user-input
 
 
 export const EXPERIMENTS_ROUTES: any = [
-  //{ path: '', component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
+  { path: '', component: QuickViewComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
   { path: AppPaths.EXPORT_EXPERIMENT_PATH, component: ExportExperimentComponent, authLevel: 0, canActivate: [AuthGuard] },
   { path: AppPaths.CREATE_DEVICE_OUTPUT_PATH, component: CreateDeviceOutputComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: AppPaths.CREATE_DEVICE_EXPERIMENT_PATH, component: CreateDeviceExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
   { path: AppPaths.CREATE_USER_INPUT_PATH, component: CreateUserInputComponent, authLevel: 2, canActivate: [AuthGuard] },
-  { path: AppPaths.QUICK_VIEW_PATH, component: QuickViewComponent, authLevel: 2, canActivate: [AuthGuard] },
+  { path: AppPaths.QUICK_VIEW_PATH, component: QuickViewComponent, authLevel: 0, canActivate: [AuthGuard] },
 
 ];
 

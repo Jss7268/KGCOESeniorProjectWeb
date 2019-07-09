@@ -33,6 +33,7 @@ export class QuickViewComponent implements OnInit {
     private outputTypeService: OutputTypeService) { }
 
   ngOnInit() {
+    this.router.navigate(`${this.route.parent.snapshot.url.join('/')}/${AppPaths.QUICK_VIEW_PATH}`.split('/'));
     this.deviceOutputService.$deviceOutputsByExperiment.subscribe(
       (experimentId: string)  => {
         if (experimentId == this.experimentId) {
