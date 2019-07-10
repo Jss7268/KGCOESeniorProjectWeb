@@ -1,3 +1,4 @@
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -9,11 +10,13 @@ import { CreateExperimentComponent } from './components/create-experiment/create
 import { CreateDeviceComponent } from './components/create-device/create-device.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { EXPERIMENTS_ROUTES } from './components/experiments/experiments-routing/experiments-routing.module';
+import { NoAuthGuard } from './no-auth.guard';
 import { AppPaths } from './app.paths';
 
 const routes: any = [
-  { path: AppPaths.LOGIN_PATH, component: LoginComponent },
-  { path: AppPaths.SIGNUP_PATH, component: SignupComponent },
+  { path: 'welcome', component: WelcomeComponent, canActivate: [NoAuthGuard]},
+  { path: AppPaths.LOGIN_PATH, component: LoginComponent, canActivate: [NoAuthGuard]  },
+  { path: AppPaths.SIGNUP_PATH, component: SignupComponent, canActivate: [NoAuthGuard]  },
   { path: 'unauthorized', component: HomeComponent, pathMatch: 'full' },
   { path: AppPaths.HOME_PATH, component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
   { path: 'experiment', component: ExperimentsComponent, pathMatch: 'full' },

@@ -45,6 +45,7 @@ import { ExportExperimentComponent } from "./components/experiments/export-exper
 import { CreateDeviceOutputComponent } from './components/experiments/create-device-output/create-device-output.component';
 import { CreateDeviceExperimentComponent } from './components/experiments/create-device-experiment/create-device-experiment.component';
 import { ExperimentsRoutingModule } from './components/experiments/experiments-routing/experiments-routing.module';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import { QuickViewComponent } from './components/experiments/quick-view/quick-view.component';
 
 
@@ -66,6 +67,7 @@ import { QuickViewComponent } from './components/experiments/quick-view/quick-vi
     CreateDeviceComponent,
     ExperimentSubheaderComponent,
     ExperimentsComponent,
+    WelcomeComponent,
     QuickViewComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
