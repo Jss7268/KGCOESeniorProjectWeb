@@ -1,3 +1,5 @@
+import { AppPaths } from 'src/app/app.paths';
+import { QuickViewComponent } from './../quick-view/quick-view.component';
 import { CreateDeviceExperimentComponent } from './../create-device-experiment/create-device-experiment.component';
 import { CreateDeviceOutputComponent } from './../create-device-output/create-device-output.component';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +15,6 @@ import { CreateUserInputComponent } from '../create-user-input/create-user-input
   styleUrls: ['./experiment-subheader.component.css']
 })
 export class ExperimentSubheaderComponent implements OnInit {
-  listExperimentsPath = ExportExperimentComponent.PATH;
   experiments: Experiment[];
   experimentId: string;
   navLinks: any[];
@@ -22,21 +23,17 @@ export class ExperimentSubheaderComponent implements OnInit {
     private route: ActivatedRoute) {
     this.navLinks = [
       {
-        label: 'Export',
-        link: ExportExperimentComponent.PATH,
+        label: 'View Data',
+        link: AppPaths.QUICK_VIEW_PATH, // todo make list component
         index: 0
       }, {
-        label: 'User Inputs',
-        link: CreateUserInputComponent.PATH, // todo make list component
+        label: 'Export',
+        link: AppPaths.EXPORT_EXPERIMENT_PATH,
         index: 1
       }, {
-        label: 'Linked Devices',
-        link: CreateDeviceExperimentComponent.PATH, // todo make list component
+        label: 'Link Device',
+        link: AppPaths.CREATE_DEVICE_EXPERIMENT_PATH, // todo make list component
         index: 2
-      }, {
-        label: 'Device Outputs',
-        link: CreateDeviceOutputComponent.PATH, // todo make list component
-        index: 3
       },
     ];
   }

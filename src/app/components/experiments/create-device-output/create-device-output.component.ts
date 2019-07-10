@@ -1,5 +1,4 @@
-import { CreateDeviceExperimentComponent } from '../create-device-experiment/create-device-experiment.component';
-import { CreateOutputTypeComponent } from '../../create-output-type/create-output-type.component';
+import { AppPaths } from './../../../app.paths';
 import { DeviceExperimentService } from '../../../services/device-experiment.service';
 import { OutputTypeService } from '../../../services/output-type.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,7 +24,6 @@ export class CreateDeviceOutputComponent implements OnInit {
   submitted: boolean;
   timestamp: number;
   experimentId: string;
-  static PATH: any = 'device-outputs/create';
 
   constructor(private deviceOutputService: DeviceOutputService, private deviceService: DeviceService,
     private route: ActivatedRoute, private formBuilder: FormBuilder, private deviceExperimentService: DeviceExperimentService,
@@ -108,10 +106,10 @@ export class CreateDeviceOutputComponent implements OnInit {
   }
 
   addOutputType() {
-    let cb = `${this.route.parent.snapshot.url.join('/')}/${CreateDeviceOutputComponent.PATH}?deviceId=${this.deviceOutputForm.controls.deviceId.value}&outputValue=${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
+    let cb = `${this.route.parent.snapshot.url.join('/')}/${AppPaths.CREATE_DEVICE_OUTPUT_PATH}?deviceId=${this.deviceOutputForm.controls.deviceId.value}&outputValue=${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
 
     this.updateRoute().then((success: boolean) => {
-      this.router.navigate(CreateOutputTypeComponent.PATH.split('/'), {
+      this.router.navigate(AppPaths.CREATE_DEVICE_PATH.split('/'), {
         queryParams: {
           callbackUrl: cb,
         }
@@ -121,10 +119,10 @@ export class CreateDeviceOutputComponent implements OnInit {
   }
 
   addDeviceExperiment() {
-    let cb = `/${this.route.parent.snapshot.url.join('/')}/${CreateDeviceOutputComponent.PATH}?outputTypeName=${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=${this.deviceOutputForm.controls.outputValue.value}&deviceId=`;
+    let cb = `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.CREATE_DEVICE_OUTPUT_PATH}?outputTypeName=${this.deviceOutputForm.controls.outputTypeName.value}&outputValue=${this.deviceOutputForm.controls.outputValue.value}&deviceId=`;
 
     this.updateRoute().then((success: boolean) => {
-      this.router.navigate(CreateDeviceExperimentComponent.PATH.split('/'), {
+      this.router.navigate(AppPaths.CREATE_DEVICE_EXPERIMENT_PATH.split('/'), {
         queryParams: {
           callbackUrl: cb,
         },

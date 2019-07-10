@@ -1,19 +1,4 @@
-<!--<div class="flex-container">
-  <div class="mat-elevation-z6" style="padding: 8px;">
-    <div class="wrapper">
-      <img class="logo" src="../../../assets/EDCS min.png">
-    </div>
-    <div class="wrapper login-container" style="margin-left: auto; width: min-content">
-      <div *ngIf="auth">
-        <button mat-raised-button color="primary" (click)="signOut()">Sign Out</button>
-      </div>
-      <div *ngIf="!auth">
-        <button mat-raised-button color="primary" (click)="signIn()">Sign In</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
+
 <mat-toolbar class="mat-elevation-z2 edcs-header" color="primary">
   <mat-toolbar-row>
     <span>
@@ -23,8 +8,6 @@
     </span>
     <button mat-button (click)="home()">Home</button>
     <button mat-button (click)="experiments()">Experiments</button>
-    <button *ngIf="auth.hasAccessLevel(1)"  mat-button (click)="outputData()">Output data</button>
-
 
       <span class="spacer"></span>
       <app-notification *ngIf="auth.hasAccessLevel(3)"></app-notification>

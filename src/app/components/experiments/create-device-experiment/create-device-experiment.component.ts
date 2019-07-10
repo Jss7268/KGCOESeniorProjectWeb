@@ -1,3 +1,4 @@
+import { AppPaths } from 'src/app/app.paths';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,7 +21,6 @@ export class CreateDeviceExperimentComponent implements OnInit {
   submitted: boolean;
   experimentId: string;
   @Input('callbackUrl') callbackUrl: string = '';
-  static PATH: any = 'device-experiments/create';
 
   constructor(private deviceExperimentService: DeviceExperimentService, private deviceService: DeviceService,
     private experimentService: ExperimentService, private formBuilder: FormBuilder,
@@ -63,7 +63,7 @@ export class CreateDeviceExperimentComponent implements OnInit {
 
   updateRoute() {
     this.router.navigate(
-      CreateDeviceExperimentComponent.PATH.split('/'), {
+      AppPaths.CREATE_DEVICE_EXPERIMENT_PATH.split('/'), {
         queryParams: {
           deviceId: this.deviceExperimentForm.controls.deviceId.value,
         }

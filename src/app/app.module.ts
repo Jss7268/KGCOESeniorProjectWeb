@@ -40,7 +40,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { CreateUserInputComponent } from './components/experiments/create-user-input/create-user-input.component';
 
 import { NotificationComponent } from './components/notification/notification.component';
-import { CreateNewDeviceComponent } from './components/create-new-device/create-new-device.component';
+import { CreateDeviceComponent } from './components/create-device/create-device.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { RequestAccessComponent } from './components/request-access/request-access.component';
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
@@ -51,6 +51,7 @@ import { ExportExperimentComponent } from "./components/experiments/export-exper
 import { CreateDeviceOutputComponent } from './components/experiments/create-device-output/create-device-output.component';
 import { CreateDeviceExperimentComponent } from './components/experiments/create-device-experiment/create-device-experiment.component';
 import { ExperimentsRoutingModule } from './components/experiments/experiments-routing/experiments-routing.module';
+import { QuickViewComponent } from './components/experiments/quick-view/quick-view.component';
 
 
 @NgModule({
@@ -68,13 +69,14 @@ import { ExperimentsRoutingModule } from './components/experiments/experiments-r
     CreateDeviceExperimentComponent,
     NotificationComponent,
     CreateUserInputComponent,
-    CreateNewDeviceComponent,
+    CreateDeviceComponent,
     SettingsComponent,
     RequestAccessComponent,
     ChangeEmailComponent,
     ManageAccessComponent,
     ExperimentSubheaderComponent,
     ExperimentsComponent,
+    QuickViewComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 

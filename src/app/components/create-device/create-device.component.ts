@@ -1,22 +1,21 @@
-import { ConfirmationDialogComponent } from './../confirmation-dialog/confirmation-dialog.component';
-import { DeviceService } from './../../services/device.service';
+import { DeviceService } from '../../services/device.service';
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
+import { AppPaths } from 'src/app/app.paths';
 
 @Component({
-  selector: 'app-create-new-device',
-  templateUrl: './create-new-device.component.html',
-  styleUrls: ['./create-new-device.component.css']
+  selector: 'app-create-device',
+  templateUrl: './create-device.component.html',
+  styleUrls: ['./create-device.component.css']
 })
-export class CreateNewDeviceComponent implements OnInit {
+export class CreateDeviceComponent implements OnInit {
   ngUnsubscribe = new Subject();
   createDeviceForm: FormGroup;
   submitted: boolean;
-  static PATH: any = 'devices/create';
 
   constructor(private createDeviceService: DeviceService, private formBuilder: FormBuilder,
               private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
@@ -26,7 +25,6 @@ export class CreateNewDeviceComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let name = '';
       let deviceId = '';
-      let deviceSecret = '';
 
       if (params.name) {
         name = params.name;
@@ -34,27 +32,13 @@ export class CreateNewDeviceComponent implements OnInit {
       if (params.id) {
         deviceId = params.id;
       }
-      if (params.password) {
-        deviceSecret = params.password;
-      }
 
       this.createDeviceForm = this.formBuilder.group({
         name: new FormControl(name, [Validators.required]),
         id: new FormControl(deviceId, [Validators.required]),
-        password: new FormControl(deviceSecret, [Validators.required]),
+        password: new FormControl('', [Validators.required]),
       });
     });
-  }
-
-  updateRoute() {
-    this.router.navigate(
-      CreateNewDeviceComponent.PATH.split('/'), {
-        queryParams: {
-          name: this.createDeviceForm.controls.name.value,
-          id: this.createDeviceForm.controls.id.value,
-          password: this.createDeviceForm.controls.password.value
-        }
-      });
   }
 
   submit() {
