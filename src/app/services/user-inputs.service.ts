@@ -39,6 +39,10 @@ export class UserInputsService {
       });
   }
 
+  listByExperiment(experimentId: string): Observable<any> {
+    return this.http.get(`${AppRoutes.USER_INPUTS}?experiment_id=${experimentId}`);
+  }
+
   fillByExperiment(experimentId: string) {
     this.http.get(`${AppRoutes.USER_INPUTS}?experiment_id=${experimentId}`).subscribe(
       (data: any) => {
