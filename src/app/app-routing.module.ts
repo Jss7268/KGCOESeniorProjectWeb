@@ -15,8 +15,8 @@ import { EXPERIMENTS_ROUTES } from './components/experiments/experiments-routing
 import { NoAuthGuard } from './no-auth.guard';
 
 const routes: any = [
-  { path: LoginComponent.PATH, component: LoginComponent },
-  { path: SignupComponent.PATH, component: SignupComponent },
+  { path: LoginComponent.PATH, component: LoginComponent, canActivate: [NoAuthGuard] },
+  { path: SignupComponent.PATH, component: SignupComponent, canActivate: [NoAuthGuard] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [NoAuthGuard]},
   { path: 'unauthorized', component: HomeComponent, pathMatch: 'full' },
   { path: HomeComponent.PATH, component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
