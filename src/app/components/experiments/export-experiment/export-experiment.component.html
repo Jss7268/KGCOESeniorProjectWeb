@@ -10,7 +10,11 @@
             <td>
               <mat-form-field class="w-100">
                 <mat-label>Filter By Type (Optional)</mat-label>
-                <mat-select [(ngModel)]="outputType" (selectionChange)="updateRoute()" name="outputType">
+                <mat-select *ngIf="outputTypes?.length > 1" [(ngModel)]="outputType" (selectionChange)="updateRoute()" name="outputType" multiple>
+                  <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_id">{{outputType.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-select *ngIf="outputTypes?.length <= 1" [(ngModel)]="outputType" (selectionChange)="updateRoute()" name="device">
                   <mat-option *ngFor="let outputType of outputTypes" [value]="outputType.output_type_id">{{outputType.name}}
                   </mat-option>
                 </mat-select>
@@ -21,7 +25,11 @@
             <td>
               <mat-form-field class="w-100">
                 <mat-label>Filter By Device (Optional)</mat-label>
-                <mat-select [(ngModel)]="device" (selectionChange)="updateRoute()" name="device">
+                <mat-select *ngIf="devices?.length > 1" [(ngModel)]="device" (selectionChange)="updateRoute()" name="device" multiple>
+                  <mat-option *ngFor="let device of devices" [value]="device.device_id">{{device.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-select *ngIf="devices?.length <= 1" [(ngModel)]="device" (selectionChange)="updateRoute()" name="device">
                   <mat-option *ngFor="let device of devices" [value]="device.device_id">{{device.name}}
                   </mat-option>
                 </mat-select>

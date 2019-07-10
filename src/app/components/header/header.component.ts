@@ -1,10 +1,8 @@
-import { CreateExperimentComponent } from './../create-experiment/create-experiment.component';
+import { AppPaths } from 'src/app/app.paths';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Inject } from '@angular/core'
-import { DOCUMENT } from '@angular/common';
+
 import { Router } from '@angular/router';
-import { CreateNewDeviceComponent } from '../create-new-device/create-new-device.component';
 
 @Component({
   selector: 'app-header',
@@ -38,10 +36,10 @@ export class HeaderComponent implements OnInit {
   }
 
   newDevice() {
-    this.router.navigate(CreateNewDeviceComponent.PATH);
+    this.router.navigate(AppPaths.CREATE_DEVICE_PATH.split('/'));
   }
 
   newExperiment() {
-    this.router.navigate(CreateExperimentComponent.PATH.split('/'));
+    this.router.navigate(AppPaths.CREATE_EXPERIMENT_PATH.split('/'));
   }
 }

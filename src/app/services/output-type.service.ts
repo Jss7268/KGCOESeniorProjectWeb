@@ -27,4 +27,8 @@ export class OutputTypeService {
       units: units,
     });
   }
+
+  getOutputType(id: string): Observable<any> {
+    return this.http.get(`${AppRoutes.OUTPUT_TYPES}/${id}`);
+  }
 }

@@ -32,7 +32,6 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./export-experiment.component.css']
 })
 export class ExportExperimentComponent implements OnInit {
-  static PATH = 'experiments';
   downloadLink: string;
   downloadName: string;
   outputTypes: any[] = [];
