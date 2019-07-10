@@ -16,7 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ManageAccessComponent implements OnInit {
   ngUnsubscribe = new Subject();
-  displayedColumns: string[] = ['id', 'name', 'access_level'];
+  displayedColumns: string[] = ['name', 'email', 'access_level'];
   userList: User[] = [];
   userDictionary: { [id: string]: number; } = { };
   static PATH: any = 'settings/manage';
