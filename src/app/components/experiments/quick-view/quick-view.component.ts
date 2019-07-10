@@ -40,7 +40,6 @@ export class QuickViewComponent implements OnInit {
     this.onExperimentUpdate();
     this.experimentService.$experimentId.subscribe((experimentId) => {
       this.experimentId = experimentId;
-      console.log('exp change')
       this.onExperimentUpdate();
     })
     this.route.queryParams.subscribe((queryParams) => {
