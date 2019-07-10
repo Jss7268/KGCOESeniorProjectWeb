@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { AngularFullpageModule } from '@fullpage/angular-fullpage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,9 @@ import {
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule,
   MatTooltipModule,
   MatSnackBarModule,
-  MatTabsModule
+  MatTabsModule,
+  MatDividerModule,
+  MatGridListModule,
 } from '@angular/material';
 
 import { MatDatepickerModule, MatMomentDateModule } from '@coachcare/datepicker';
@@ -97,6 +100,9 @@ import { QuickViewComponent } from './components/experiments/quick-view/quick-vi
     MatDatepickerModule,
     MatMomentDateModule,
     MatTabsModule,
+    MatDividerModule,
+    MatGridListModule,
+    AngularFullpageModule
   ],
   providers: [LoginService,
     AuthService,

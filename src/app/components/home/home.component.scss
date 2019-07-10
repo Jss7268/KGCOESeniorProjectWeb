@@ -1,0 +1,134 @@
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.heading-font{
+    font-weight: 320;
+}
+
+.grid-list-item{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} */
+
+/* .parallax {  */
+    /* The image used */
+    /* background-image: url("https://www.rit.edu/sites/rit.edu/files/2019-03/robofish-main.jpg"); */
+  
+    /* Full height */
+    /* height: 100%;  */
+  
+    /* Create the parallax scrolling effect */
+    /* background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */
+
+  * {
+    box-sizing: border-box; 
+  }
+  
+  body {
+    margin: 0; 
+    font-weight: 500;
+    font-family: 'HelveticaNeue';
+  }
+  
+  section {
+    width: 100%;
+    padding: 0 7%;
+    display: table;
+    margin: 0;
+    max-width: none;
+    // background-color: #373B44;
+    height: 100vh;
+    
+    &:nth-of-type(2n) {
+      background-color: rgba(102, 124, 137, 0.705);
+      // opacity: 0.8;
+    }
+  }
+  
+  .intro {
+    height: 90vh;
+  }
+  
+  .content {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  h1 {
+    font-size: 3em;
+    display: block;
+    // color: white;
+    color: #D65B26;
+    font-weight: 300;
+  }
+  
+  p {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #373B43;
+    margin-right: 200px;
+  }
+
+  mat-grid-tile {
+      font-size: 1.5em;
+      font-weight: 500;
+      color: #373B43;
+      list-style-type: none;
+      margin-top: 0;
+  }
+
+  li {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #373B43;
+    list-style-type: circle;
+    margin-top: 0;
+}
+  
+  a {
+    font-weight: 700;
+    color: #C3CAD9;
+    position: relative;
+    
+    &:hover{ 
+      opacity: 0.8;
+    }
+    
+    &:active {
+      top: 1px;
+    }
+  }
+  
+  button {
+    background-color: none; /* Green */
+    border: #373B43;
+    // color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    // font-size: 24px;
+    border-radius: 12px;
+    border-color: #373B43;
+
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #373B43;
+  }
+
+  footer {
+    padding: 1% 5%;
+    text-align:center;
+    background-color: #373B44;
+    color: white;
+    
+    a {
+      color: #FE4B74;
+      font-weight: 500;
+      text-decoration: none;
+    }
+  }
