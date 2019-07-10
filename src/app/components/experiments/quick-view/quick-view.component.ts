@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { DeviceOutput } from './../../../classes/device-output';
 import { UserInputsService } from 'src/app/services/user-inputs.service';
 import { DeviceOutputService } from 'src/app/services/device-output.service';
@@ -30,34 +31,16 @@ export class QuickViewComponent implements OnInit {
 
   constructor(private deviceOutputService: DeviceOutputService, private userInputsService: UserInputsService,
     private experimentService: ExperimentService, private router: Router, private route: ActivatedRoute,
-    private outputTypeService: OutputTypeService) { }
+    private outputTypeService: OutputTypeService, public auth: AuthService) { }
 
   ngOnInit() {
     this.router.navigate(`${this.route.parent.snapshot.url.join('/')}/${AppPaths.QUICK_VIEW_PATH}`.split('/'));
-    this.deviceOutputService.$deviceOutputsByExperiment.subscribe(
-      (experimentId: string)  => {
-        if (experimentId == this.experimentId) {
-          this.deviceOutputs = this.deviceOutputService.deviceOutputsByExperiment;
-          delete this.currentType;
-          delete this.dataSource;
-
-          this.updateTypes();
-        }
-      }
-    );
-    this.userInputsService.$userInputsByExperiment.subscribe(
-      (experimentId: string)  => {
-        if (experimentId == this.experimentId) {
-          this.userInputs = this.userInputsService.userInputsByExperiment;
-          this.updateDataSource();
-        }
-      }
-    );
 
     this.experimentId = this.experimentService.experimentId;
     this.onExperimentUpdate();
     this.experimentService.$experimentId.subscribe((experimentId) => {
       this.experimentId = experimentId;
+      console.log('exp change')
       this.onExperimentUpdate();
     })
     this.route.queryParams.subscribe((queryParams) => {
@@ -70,17 +53,42 @@ export class QuickViewComponent implements OnInit {
   onExperimentUpdate() {
     this.selectedOutputs = [];
     this.userInputs = [];
-    this.deviceOutputService.fillByExperiment(this.experimentId);
-    this.userInputsService.fillByExperiment(this.experimentId);
+    this.deviceOutputService.listByExperiment(this.experimentId).subscribe(
+      (data:any ) => {
+          console.log("new outputs");
+          this.deviceOutputs = data;
+          let outputTypeObj = {};
+          for (let output of data) {
+            outputTypeObj[output['output_type_id']] = true;
+          }
+          let outputTypeIds = Object.keys(outputTypeObj);
+
+          delete this.currentType;
+          delete this.dataSource;
+
+          this.updateTypes(outputTypeIds);
+        
+      }
+    );
+    this.userInputsService.listByExperiment(this.experimentId).subscribe(
+      (data: any) => {
+          this.userInputs = data;
+          this.updateDataSource();
+        
+      }
+    );
   }
 
-  updateTypes() {
+  updateTypes(outputTypeIds: string[]) {
     this.outputTypes = [];
-    for (let outputTypeId of this.deviceOutputService.outputTypeIds) {
+    for (let outputTypeId of outputTypeIds) {
+      if (!this.currentType) {
+        var currentId = outputTypeId;
+      }
       this.outputTypeService.getOutputType(outputTypeId).subscribe(
         (data: any) => {
           this.outputTypes.push(data);
-          if (!this.currentType) {
+          if (data.id == currentId) {
             this.currentType = data;
             this.onTypeUpdate();
           }
@@ -98,9 +106,8 @@ export class QuickViewComponent implements OnInit {
     }
     this.selectedOutputs = selectedOutputs;
     this.updateDataSource();
-    
-  }
 
+  }
 
   updateDataSource() {
     let outputs = this.selectedOutputs.concat(this.userInputs);
@@ -116,6 +123,6 @@ export class QuickViewComponent implements OnInit {
 
   getCreateUserInputPath() {
     return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.CREATE_USER_INPUT_PATH}`
-  }  
+  }
 
 }
