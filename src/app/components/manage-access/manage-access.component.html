@@ -33,7 +33,8 @@
             <td mat-cell *matCellDef="let element">
                 <mat-select [(value)]="element.access_level" (selectionChange)="changeAccessLevel(element)">
                     <mat-option *ngFor="let access of userService.ACCESSES"
-                      [value]="access.access_level">
+                      [value]="access.access_level"
+                      [disabled]="element.access_level == 3">
                       {{access.description}}
                     </mat-option>
                   </mat-select>
