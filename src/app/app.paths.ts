@@ -1,7 +1,7 @@
 export class AppPaths {
     public static CREATE_EXPERIMENT_PATH = 'experiments/create';
     public static SIGNUP_PATH = 'signup';
-    public static LOGIN_PATH = 'foo';
+    public static LOGIN_PATH = 'login';
     public static HOME_PATH = '';
     public static QUICK_VIEW_PATH = 'quick-view';
     public static EXPORT_EXPERIMENT_PATH = 'experiments';
