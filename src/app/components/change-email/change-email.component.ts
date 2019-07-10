@@ -7,8 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 import { AuthService } from './../../services/auth.service';
-import { SettingsComponent } from '../settings/settings.component';
-import { ManageAccessComponent } from '../manage-access/manage-access.component';
 
 @Component({
   selector: 'app-change-email',

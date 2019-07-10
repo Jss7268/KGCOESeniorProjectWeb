@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ManageAccessService } from './../../services/manage-access.service';
@@ -7,8 +7,6 @@ import { User } from 'src/app/classes/user';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { AuthService } from './../../services/auth.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { SettingsComponent } from '../settings/settings.component';
-import { ChangeEmailComponent } from '../change-email/change-email.component';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
