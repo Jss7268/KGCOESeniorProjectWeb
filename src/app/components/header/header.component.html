@@ -30,9 +30,11 @@
         </button>-->
       </mat-menu>
 
-      <button mat-icon-button (click)="settings()" aria-label="Settings">
-        <mat-icon>settings</mat-icon>
-      </button>
+      <div *ngIf="auth.isLoggedIn()">
+        <button mat-icon-button (click)="settings()" aria-label="Settings">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </div>
 
       <div *ngIf="auth.isLoggedIn()">
         <button mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
