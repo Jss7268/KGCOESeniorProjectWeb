@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { AppPaths } from 'src/app/app.paths';
 import { QuickViewComponent } from './../quick-view/quick-view.component';
 import { CreateDeviceExperimentComponent } from './../create-device-experiment/create-device-experiment.component';
@@ -20,20 +21,23 @@ export class ExperimentSubheaderComponent implements OnInit {
   navLinks: any[];
 
   constructor(private experimentService: ExperimentService, private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, public auth: AuthService) {
     this.navLinks = [
       {
         label: 'View Data',
         link: AppPaths.QUICK_VIEW_PATH, // todo make list component
-        index: 0
+        index: 0,
+        auth: 0,
       }, {
         label: 'Export',
         link: AppPaths.EXPORT_EXPERIMENT_PATH,
-        index: 1
+        index: 1,
+        auth: 0,
       }, {
         label: 'Link Device',
         link: AppPaths.CREATE_DEVICE_EXPERIMENT_PATH, // todo make list component
-        index: 2
+        index: 2,
+        auth: 1,
       },
     ];
   }

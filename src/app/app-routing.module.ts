@@ -1,3 +1,4 @@
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import { CreateOutputTypeComponent } from './components/create-output-type/create-output-type.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -13,11 +14,13 @@ import { RequestAccessComponent } from './components/request-access/request-acce
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
 import { ManageAccessComponent } from './components/manage-access/manage-access.component';
 import { EXPERIMENTS_ROUTES } from './components/experiments/experiments-routing/experiments-routing.module';
+import { NoAuthGuard } from './no-auth.guard';
 import { AppPaths } from './app.paths';
 
 const routes: any = [
-  { path: AppPaths.LOGIN_PATH, component: LoginComponent },
-  { path: AppPaths.SIGNUP_PATH, component: SignupComponent },
+  { path: 'welcome', component: WelcomeComponent, canActivate: [NoAuthGuard]},
+  { path: AppPaths.LOGIN_PATH, component: LoginComponent, canActivate: [NoAuthGuard]  },
+  { path: AppPaths.SIGNUP_PATH, component: SignupComponent, canActivate: [NoAuthGuard]  },
   { path: 'unauthorized', component: HomeComponent, pathMatch: 'full' },
   { path: AppPaths.HOME_PATH, component: HomeComponent, pathMatch: 'full', authLevel: 0, canActivate: [AuthGuard] },
   { path: 'experiment', component: ExperimentsComponent, pathMatch: 'full' },

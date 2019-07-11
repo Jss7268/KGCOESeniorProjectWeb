@@ -21,6 +21,8 @@
 .edcs-header {
     background-image: url("/assets/edcs header.jpg");
     background-size: 100%;
+    position: relative;
+    z-index: 10;
 }
 
 .dropdown-caret {

@@ -54,14 +54,15 @@ mat-tooltip-component > .mat-tooltip {
     table-layout:fixed;/* even columns width , fix width of table too*/
 }
 .table-div thead {
-    width: calc( 100% - 8px )
+    width: calc( 100% - 8px );
+    background: transparent!important;
 }
 .table-div table {
     width:400px;
     height: 100%;
     position: relative;
     display: block;
-    border-radius: 4px;
+    border-radius: 4px 4px 0px 0px;
 }
 
 ::-webkit-scrollbar {
