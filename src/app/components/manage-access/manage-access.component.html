@@ -1,9 +1,9 @@
-<mat-drawer-container class="example-container">
+<mat-drawer-container class="manage-access-container">
     <mat-drawer mode="side" opened>
         <mat-nav-list>
-            <a mat-list-item routerLink="/settings"> Overview </a>
-            <a mat-list-item routerLink="/settings/email"> Change Email </a>
-            <a *ngIf="auth.getAccess() < 3" mat-list-item routerLink="/settings/request"> Request Elevated Access </a>
+            <a mat-list-item [routerLink]="getSettingsPath()"> Overview </a>
+            <a mat-list-item [routerLink]="getChangeEmailPath()"> Change Email </a>
+            <a *ngIf="!auth.hasAccessLevel(3)" mat-list-item [routerLink]="getRequestAccessPath()"> Request Elevated Access </a>
             <a *ngIf="auth.hasAccessLevel(3)" mat-list-item> Manage User Access Levels </a>
         </mat-nav-list>
       </mat-drawer>
@@ -14,20 +14,16 @@
       </mat-card-header>
       </mat-card>
       <table mat-table [dataSource]="userList" class="mat-elevation-z1">
-
-          <!-- Name Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
 
-          <!-- Email Column -->
           <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef> Email </th>
             <td mat-cell *matCellDef="let element"> {{element.email}} </td>
           </ng-container>
 
-          <!-- Access Level Column -->
           <ng-container matColumnDef="access_level">
             <th mat-header-cell *matHeaderCellDef> Access Level </th>
             <td mat-cell *matCellDef="let element">
@@ -37,7 +33,7 @@
                       [disabled]="element.access_level == 3">
                       {{access.description}}
                     </mat-option>
-                  </mat-select>
+                </mat-select>
             </td>
           </ng-container>
 

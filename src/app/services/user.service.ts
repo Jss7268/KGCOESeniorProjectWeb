@@ -42,6 +42,10 @@ export class UserService {
     return ACCESSES;
   }
 
+  getCurrentUser(): Observable<any> {
+    return this.http.get(AppRoutes.USERME);
+  }
+
   requestAccessLevel(id: string, accessLevel: number): Observable<any> {
     let o: Observable<any> = this.http.put(`${AppRoutes.USERS}/${id}/request_access?access_level`, { access_level: accessLevel });
     return o;

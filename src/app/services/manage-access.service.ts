@@ -17,7 +17,7 @@ export class ManageAccessService {
   }
 
   changeAccessLevel(id: string, access_level: number): Observable<any> {
-    return this.http.put(AppRoutes.USERS + '/' + id + '/access', {
+    return this.http.put(`${AppRoutes.USERS}/${id}/access`, {
       access_level: access_level
     });
   }

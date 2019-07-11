@@ -26,10 +26,10 @@ const routes: any = [
   { path: AppPaths.CREATE_EXPERIMENT_PATH, component: CreateExperimentComponent, authLevel: 2, canActivate: [AuthGuard] },
   { path: AppPaths.CREATE_OUTPUT_TYPE_PATH, component: CreateOutputTypeComponent, authLevel: 1, canActivate: [AuthGuard] },
   { path: AppPaths.CREATE_DEVICE_PATH, component: CreateDeviceComponent, authLevel: 2, canActivate: [AuthGuard]},
-  { path: SettingsComponent.PATH, component: SettingsComponent, authLevel: 0, canActivate: [AuthGuard]},
-  { path: RequestAccessComponent.PATH, component: RequestAccessComponent, authLevel: 0, canActivate: [AuthGuard]},
-  { path: ChangeEmailComponent.PATH, component: ChangeEmailComponent, authLevel: 2, canActivate: [AuthGuard]},
-  { path: ManageAccessComponent.PATH, component: ManageAccessComponent, authLevel: 3, canActivate: [AuthGuard]}
+  { path: AppPaths.SETTINGS_PATH, component: SettingsComponent, authLevel: 0, canActivate: [AuthGuard]},
+  { path: AppPaths.REQUEST_ACCESS_PATH, component: RequestAccessComponent, authLevel: 0, canActivate: [AuthGuard]},
+  { path: AppPaths.CHANGE_EMAIL_PATH, component: ChangeEmailComponent, authLevel: 2, canActivate: [AuthGuard]},
+  { path: AppPaths.MANAGE_ACCESS_PATH, component: ManageAccessComponent, authLevel: 3, canActivate: [AuthGuard]}
 ];
 
 export const routing = RouterModule.forRoot(routes, { useHash: true });

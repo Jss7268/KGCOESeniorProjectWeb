@@ -8,6 +8,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { AuthService } from './../../services/auth.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { UserService } from 'src/app/services/user.service';
+import { AppPaths } from 'src/app/app.paths';
 
 @Component({
   selector: 'app-manage-access',
@@ -19,7 +20,6 @@ export class ManageAccessComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'access_level'];
   userList: User[] = [];
   userDictionary: { [id: string]: number; } = { };
-  static PATH: any = 'settings/manage';
 
   constructor(private manageAccessService: ManageAccessService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar,
@@ -65,6 +65,18 @@ export class ManageAccessComponent implements OnInit {
         selectedUser.access_level = this.userDictionary[selectedUser.id];
       }
     });
+  }
+
+  getRequestAccessPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.REQUEST_ACCESS_PATH}`;
+  }
+
+  getSettingsPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.SETTINGS_PATH}`;
+  }
+
+  getChangeEmailPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.CHANGE_EMAIL_PATH}`;
   }
 
   ngOnDestroy() {

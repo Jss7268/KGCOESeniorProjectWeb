@@ -12,12 +12,8 @@ export class ChangeEmailService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getCurrentUser(): Observable<any> {
-    return this.http.get(AppRoutes.USERME);
-  }
-
   changeEmail(id: string, email: string): Observable<any> {
-    return this.http.put(AppRoutes.USERS + '/' + id + '/email', {
+    return this.http.put(`${AppRoutes.USERS}/${id}/email`, {
       email: email
     });
   }

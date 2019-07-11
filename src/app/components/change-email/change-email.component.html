@@ -1,10 +1,10 @@
-<mat-drawer-container class="example-container">
+<mat-drawer-container class="change-email-container">
   <mat-drawer mode="side" opened>
     <mat-nav-list>
-        <a mat-list-item routerLink="/settings"> Overview </a>
+        <a mat-list-item [routerLink]="getSettingsPath()"> Overview </a>
         <a mat-list-item> Change Email </a>
-        <a *ngIf="auth.getAccess() < 3" mat-list-item routerLink="/settings/request"> Request Elevated Access </a>
-        <a *ngIf="auth.hasAccessLevel(3)" mat-list-item routerLink="/settings/manage"> Manage User Access Levels </a>
+        <a *ngIf="!auth.hasAccessLevel(3)" mat-list-item [routerLink]="getRequestAccessPath()"> Request Elevated Access </a>
+        <a *ngIf="auth.hasAccessLevel(3)" mat-list-item [routerLink]="getManageAccessPath()"> Manage User Access Levels </a>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
@@ -14,36 +14,35 @@
       <mat-card-title>Change Email</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="example-form" [formGroup]="createEmailForm">
+      <form class="example-form" [formGroup]="changeEmailForm">
         <table class="w-100" cellspacing="0">
             <tr>
                 <td>
                   <mat-form-field class="w-100"
-                    [ngClass]="submitted && createEmailForm.controls.currentEmail.errors ? 'mat-form-field-invalid' : ''">
-                    <input matInput placeholder="Current Email" formControlName="currentEmail" name="currentEmail" type="email"
-                      readonly>
+                    [ngClass]="submitted && changeEmailForm.controls.currentEmail.errors ? 'mat-form-field-invalid' : ''">
+                    <input matInput formControlName="currentEmail" name="currentEmail" type="email">
                   </mat-form-field>
                 </td>
               </tr>
           <tr>
             <td>
               <mat-form-field class="w-100"
-                [ngClass]="submitted && createEmailForm.controls.newEmail.errors ? 'mat-form-field-invalid' : ''">
+                [ngClass]="submitted && changeEmailForm.controls.newEmail.errors ? 'mat-form-field-invalid' : ''">
                 <input matInput placeholder="New Email" formControlName="newEmail" name="newEmail" type="email"
                   required (keyup.enter)="submit()">
-                <mat-error *ngIf="createEmailForm.get('newEmail').hasError('required')">
-                  Name is required.
-                </mat-error>
+              <mat-error *ngIf="changeEmailForm.get('newEmail').hasError('required')">
+                Name is required.
+              </mat-error>
               </mat-form-field>
             </td>
           </tr>
           <tr>
             <td>
               <mat-form-field class="w-100"
-                [ngClass]="submitted && createEmailForm.controls.password.errors ? 'mat-form-field-invalid' : ''">
-                <input title = "Confirm password" matInput placeholder="Password" formControlName="password" type="password" name="password"
+                [ngClass]="submitted && changeEmailForm.controls.password.errors ? 'mat-form-field-invalid' : ''">
+                <input title = "Password" matInput placeholder="Password" formControlName="password" type="password" name="password"
                   required (keyup.enter)="submit()">
-                <mat-error *ngIf="createEmailForm.get('password').hasError('required')">
+                <mat-error *ngIf="changeEmailForm.get('password').hasError('required')">
                   Device Secret is required.
                 </mat-error>
               </mat-form-field>

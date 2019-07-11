@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from
 import { UserService } from './../../services/user.service';
 import { User } from 'src/app/classes/user';
 import { MatSnackBar } from '@angular/material';
+import { AppPaths } from 'src/app/app.paths';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-request-access',
@@ -11,11 +13,10 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./request-access.component.css']
 })
 export class RequestAccessComponent implements OnInit {
-  static PATH = 'settings/request';
   requestForm: FormGroup;
 
   constructor(public auth: AuthService, private formBuilder: FormBuilder, public userService: UserService,
-  	private snackBar: MatSnackBar) { }
+  	           private snackBar: MatSnackBar, private route: ActivatedRoute) { }
 
   ngOnInit() {
   	this.requestForm = this.formBuilder.group(
@@ -42,6 +43,18 @@ export class RequestAccessComponent implements OnInit {
   	this.snackBar.open(`Request sent`, 'Dismiss', {
             duration: 5000,
           });
+  }
+
+  getChangeEmailPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.CHANGE_EMAIL_PATH}`;
+  }
+
+  getSettingsPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.SETTINGS_PATH}`;
+  }
+
+  getManageAccessPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.MANAGE_ACCESS_PATH}`;
   }
 
 }

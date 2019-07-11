@@ -1,5 +1,6 @@
 import { ConfirmationDialogComponent } from './../confirmation-dialog/confirmation-dialog.component';
 import { ChangeEmailService } from './../../services/change-email.service';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -7,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 import { AuthService } from './../../services/auth.service';
+import { AppPaths } from 'src/app/app.paths';
 
 @Component({
   selector: 'app-change-email',
@@ -15,15 +17,13 @@ import { AuthService } from './../../services/auth.service';
 })
 export class ChangeEmailComponent implements OnInit {
   ngUnsubscribe = new Subject();
-  createEmailForm: FormGroup;
+  changeEmailForm: FormGroup;
   submitted: boolean;
   $currentUser: Subscription;
-  static PATH: any = 'settings/email';
 
-  userInfo = '';
   userId = '';
 
-  constructor(private changeEmailService: ChangeEmailService, private formBuilder: FormBuilder,
+  constructor(private changeEmailService: ChangeEmailService, private userService: UserService, private formBuilder: FormBuilder,
     private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
     private snackBar: MatSnackBar, private auth: AuthService) {}
 
@@ -32,18 +32,15 @@ export class ChangeEmailComponent implements OnInit {
       let newEmail = '';
       let password = '';
 
-      this.changeEmailService.getCurrentUser().subscribe(
-        (data: any) => this.userId = data.id
-      );
-
       if (this.$currentUser) {
         this.$currentUser.unsubscribe();
       }
 
       if (!params.currentEmail) {
         this.createFormGroup('');
-        this.$currentUser = this.changeEmailService.getCurrentUser().subscribe(
+        this.$currentUser = this.userService.getCurrentUser().subscribe(
           (data: any) => {
+            this.userId = data.id;
             this.createFormGroup(data.email);
           },
           (error: any) => console.log(error)
@@ -62,23 +59,16 @@ export class ChangeEmailComponent implements OnInit {
   }
 
   createFormGroup(currentEmail: string) {
-    this.createEmailForm = this.formBuilder.group({
-      currentEmail: new FormControl(currentEmail),
+    this.changeEmailForm = this.formBuilder.group({
+      currentEmail: new FormControl({value: currentEmail, disabled: true}),
       newEmail: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     });
   }
 
   submit() {
-    this.$currentUser = this.changeEmailService.getCurrentUser().subscribe(
-      (data: any) => {
-        this.userId = data.id;
-      },
-      (error: any) => console.log(error)
-    );
-
     this.submitted = true;
-    if (this.createEmailForm.invalid) {
+    if (this.changeEmailForm.invalid) {
       return;
     }
 
@@ -91,7 +81,7 @@ export class ChangeEmailComponent implements OnInit {
       if (result) {
         this.changeEmailService.changeEmail(
           this.userId,
-          this.createEmailForm.controls.newEmail.value
+          this.changeEmailForm.controls.newEmail.value
           ).subscribe(
             (data: any) => {
               const date = new Date();
@@ -106,6 +96,18 @@ export class ChangeEmailComponent implements OnInit {
           );
       }
     });
+  }
+
+  getRequestAccessPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.REQUEST_ACCESS_PATH}`;
+  }
+
+  getSettingsPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.SETTINGS_PATH}`;
+  }
+
+  getManageAccessPath() {
+    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.MANAGE_ACCESS_PATH}`;
   }
 
   ngOnDestroy() {
