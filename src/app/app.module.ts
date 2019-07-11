@@ -53,6 +53,7 @@ import { CreateDeviceExperimentComponent } from './components/experiments/create
 import { ExperimentsRoutingModule } from './components/experiments/experiments-routing/experiments-routing.module';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { QuickViewComponent } from './components/experiments/quick-view/quick-view.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { QuickViewComponent } from './components/experiments/quick-view/quick-vi
     ExperimentsComponent,
     WelcomeComponent,
     QuickViewComponent,
+    SideNavComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 
