@@ -18,16 +18,4 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
   }
 
-  getChangeEmailPath() {
-    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.CHANGE_EMAIL_PATH}`;
-  }
-
-  getRequestAccessPath() {
-    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.REQUEST_ACCESS_PATH}`;
-  }
-
-  getManageAccessPath() {
-    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.MANAGE_ACCESS_PATH}`;
-  }
-
 }

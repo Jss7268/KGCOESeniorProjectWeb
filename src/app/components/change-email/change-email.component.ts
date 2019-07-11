@@ -24,8 +24,8 @@ export class ChangeEmailComponent implements OnInit {
   userId = '';
 
   constructor(private changeEmailService: ChangeEmailService, private userService: UserService, private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
-    private snackBar: MatSnackBar, private auth: AuthService) {}
+              private route: ActivatedRoute, private router: Router, public dialog: MatDialog,
+              private snackBar: MatSnackBar, private auth: AuthService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -96,18 +96,6 @@ export class ChangeEmailComponent implements OnInit {
           );
       }
     });
-  }
-
-  getRequestAccessPath() {
-    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.REQUEST_ACCESS_PATH}`;
-  }
-
-  getSettingsPath() {
-    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.SETTINGS_PATH}`;
-  }
-
-  getManageAccessPath() {
-    return `/${this.route.parent.snapshot.url.join('/')}/${AppPaths.MANAGE_ACCESS_PATH}`;
   }
 
   ngOnDestroy() {

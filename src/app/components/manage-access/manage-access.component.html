@@ -1,12 +1,7 @@
 <mat-drawer-container class="manage-access-container">
     <mat-drawer mode="side" opened>
-        <mat-nav-list>
-            <a mat-list-item [routerLink]="getSettingsPath()"> Overview </a>
-            <a mat-list-item [routerLink]="getChangeEmailPath()"> Change Email </a>
-            <a *ngIf="!auth.hasAccessLevel(3)" mat-list-item [routerLink]="getRequestAccessPath()"> Request Elevated Access </a>
-            <a *ngIf="auth.hasAccessLevel(3)" mat-list-item> Manage User Access Levels </a>
-        </mat-nav-list>
-      </mat-drawer>
+        <app-side-nav></app-side-nav>
+    </mat-drawer>
     <mat-drawer-content>
       <mat-card>
       <mat-card-header>
