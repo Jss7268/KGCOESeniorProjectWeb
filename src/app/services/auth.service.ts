@@ -67,6 +67,10 @@ export class AuthService {
     return access != null && Number(access) >= accessLevel
   }
 
+  getLoggedInUser() {
+    return this.http.get(`${AppSettings.API_ENDPOINT}/v1/users/current`)
+  }
+
   logout() {
     localStorage.removeItem(this.STORAGE_KEY);
     localStorage.removeItem(this.ACCESS_KEY);

@@ -17,11 +17,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
+import {MatListModule} from '@angular/material/list';
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatSelectModule,
   MatTooltipModule,
   MatSnackBarModule,
+  MatSidenavModule,
   MatTabsModule
 } from '@angular/material';
 
@@ -39,6 +41,10 @@ import { CreateUserInputComponent } from './components/experiments/create-user-i
 
 import { NotificationComponent } from './components/notification/notification.component';
 import { CreateDeviceComponent } from './components/create-device/create-device.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { RequestAccessComponent } from './components/request-access/request-access.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
+import { ManageAccessComponent } from './components/manage-access/manage-access.component';
 import { ExperimentSubheaderComponent } from './components/experiments/experiment-subheader/experiment-subheader.component';
 import { ExperimentsComponent } from './components/experiments/experiments.component';
 import { ExportExperimentComponent } from "./components/experiments/export-experiment/export-experiment.component";
@@ -47,6 +53,7 @@ import { CreateDeviceExperimentComponent } from './components/experiments/create
 import { ExperimentsRoutingModule } from './components/experiments/experiments-routing/experiments-routing.module';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { QuickViewComponent } from './components/experiments/quick-view/quick-view.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 
 @NgModule({
@@ -65,10 +72,15 @@ import { QuickViewComponent } from './components/experiments/quick-view/quick-vi
     NotificationComponent,
     CreateUserInputComponent,
     CreateDeviceComponent,
+    SettingsComponent,
+    RequestAccessComponent,
+    ChangeEmailComponent,
+    ManageAccessComponent,
     ExperimentSubheaderComponent,
     ExperimentsComponent,
     WelcomeComponent,
     QuickViewComponent,
+    SideNavComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
 
@@ -98,6 +110,8 @@ import { QuickViewComponent } from './components/experiments/quick-view/quick-vi
     MatTooltipModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatSidenavModule,
+    MatListModule,
     MatTabsModule,
   ],
   providers: [LoginService,
