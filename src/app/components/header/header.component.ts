@@ -3,6 +3,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
   selector: 'app-header',
@@ -41,5 +42,9 @@ export class HeaderComponent implements OnInit {
 
   newExperiment() {
     this.router.navigate(AppPaths.CREATE_EXPERIMENT_PATH.split('/'));
+  }
+
+  settings() {
+    this.router.navigate([AppPaths.SETTINGS_PATH]);
   }
 }

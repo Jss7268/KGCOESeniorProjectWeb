@@ -31,6 +31,6 @@
   </table>
 </div>
 
-<button mat-fab [routerLink]="getCreateUserInputPath()">
+<button *ngIf="auth.hasAccessLevel(2)" mat-fab [routerLink]="getCreateUserInputPath()">
   <mat-icon>add</mat-icon>
 </button>

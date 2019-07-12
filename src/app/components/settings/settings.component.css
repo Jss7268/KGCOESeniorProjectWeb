@@ -1,0 +1,4 @@
+.mat-drawer-container {
+	/* full height minus header */
+	height: calc(100vh - 75px);
+}

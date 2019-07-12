@@ -1,17 +1,15 @@
-  <nav mat-tab-nav-bar class="experiment-subheader" color="warn">
-      <mat-form-field class="experiment-select">
-          <mat-label>Experiment</mat-label>
-          <mat-select [(value)]="experimentId" (selectionChange)="onExperimentChange()">
-            <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-    <a mat-tab-link
-    *ngFor="let link of navLinks"
-    [routerLink]="link.link"
-    routerLinkActive #rla="routerLinkActive"
-    [active]="rla.isActive"
-    [disabled]="!experimentId">
-    {{link.label}}
+<nav mat-tab-nav-bar class="experiment-subheader" color="warn">
+  <mat-form-field class="experiment-select">
+    <mat-label>Experiment</mat-label>
+    <mat-select [(value)]="experimentId" (selectionChange)="onExperimentChange()">
+      <mat-option *ngFor="let experiment of experiments" [value]="experiment.id">{{experiment.description}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngFor="let link of navLinks">
+    <a mat-tab-link *ngIf="auth.hasAccessLevel(link.auth)" [routerLink]="link.link" routerLinkActive
+      #rla="routerLinkActive" [active]="rla.isActive" [disabled]="!experimentId">
+      {{link.label}}
     </a>
-    </nav>
+  </div>
+</nav>

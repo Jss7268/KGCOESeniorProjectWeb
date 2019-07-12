@@ -1,5 +1,8 @@
 import { Access } from './../classes/access';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AppRoutes } from './../app.routes';
+import { Observable } from 'rxjs';
 
 const ACCESSES: Access[] = [
   {
@@ -29,13 +32,22 @@ const ACCESSES: Access[] = [
 })
 export class UserService {
   public ACCESSES = ACCESSES;
-  constructor() { }
-  
+  constructor(private http: HttpClient) { }
+
   getAccessName(accessLevel: number): string {
     return ACCESSES[accessLevel].description;
   }
 
   getAccesses(): Access[] {
     return ACCESSES;
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this.http.get(AppRoutes.USERME);
+  }
+
+  requestAccessLevel(id: string, accessLevel: number): Observable<any> {
+    let o: Observable<any> = this.http.put(`${AppRoutes.USERS}/${id}/request_access?access_level`, { access_level: accessLevel });
+    return o;
   }
 }

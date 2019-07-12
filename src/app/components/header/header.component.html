@@ -7,7 +7,7 @@
       </a>
     </span>
     <button mat-button (click)="home()">Home</button>
-    <button mat-button (click)="experiments()">Experiments</button>
+    <button *ngIf="auth.hasAccessLevel(0)" mat-button (click)="experiments()">Experiments</button>
 
       <span class="spacer"></span>
       <app-notification *ngIf="auth.hasAccessLevel(3)"></app-notification>
@@ -29,6 +29,12 @@
           <span>Add new Device Output</span>
         </button>-->
       </mat-menu>
+
+      <div *ngIf="auth.isLoggedIn()">
+        <button mat-icon-button (click)="settings()" aria-label="Settings">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </div>
 
       <div *ngIf="auth.isLoggedIn()">
         <button mat-raised-button color="accent" (click)="signOut()">Sign Out</button>
