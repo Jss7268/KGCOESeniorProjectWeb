@@ -5,7 +5,7 @@
   body {
     margin: 0; 
     font-weight: 500;
-    font-family: 'HelveticaNeue';
+    font-family: 'Helvetica Neue';
   }
   
   section {
@@ -15,9 +15,11 @@
     margin: 0;
     max-width: none;
     height: 100vh;
+    background-color: rgba(230, 76, 10, 0.623);
+    font-family: 'Helvetica Neue';
     
     &:nth-of-type(2n) {
-      background-color: rgba(102, 124, 137, 0.705);
+      background-color:    rgba(102, 124, 137, 0.705);
     }
   }
   
@@ -33,14 +35,14 @@
   h1 {
     font-size: 3em;
     display: block;
-    color: #D65B26;
+    color: white;
     font-weight: 300;
   }
   
   p {
     font-size: 1.5em;
-    font-weight: 500;
-    color: #373B43;
+    font-weight: 400;
+    color: white;
     margin-right: 200px;
   }
 
@@ -48,7 +50,6 @@
       font-size: 1.5em;
       font-weight: 500;
       color: #373B43;
-      list-style-type: none;
       margin-top: 0;
   }
 
@@ -62,7 +63,8 @@
   
   a {
     font-weight: 700;
-    color: #373B43;
+    color: white;
+
     position: relative;
     
     &:hover{ 
@@ -74,15 +76,15 @@
     }
   }
 
-  // may remove footer altogether
   footer {
     padding: 1% 5%;
     text-align:center;
     background-color: #373B44;
     color: white;
+    font-family: 'Helvetica Neue'
     
     a {
-      color: #FE4B74;
+      color: rgba(230, 76, 10, 0.623);
       font-weight: 500;
       text-decoration: none;
     }
