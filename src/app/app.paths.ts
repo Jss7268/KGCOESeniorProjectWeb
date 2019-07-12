@@ -10,5 +10,8 @@ export class AppPaths {
     public static CREATE_DEVICE_EXPERIMENT_PATH = 'device-experiments/create';
     public static CREATE_OUTPUT_TYPE_PATH = 'output-types/create';
     public static CREATE_DEVICE_PATH = 'devices/create';
+    public static MANAGE_ACCESS_PATH = 'settings/manage';
+    public static CHANGE_EMAIL_PATH = 'settings/email';
+    public static REQUEST_ACCESS_PATH = 'settings/request';
+    public static SETTINGS_PATH = 'settings';
  }
- 

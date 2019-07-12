@@ -67,8 +67,8 @@ export class SignupComponent implements OnInit {
       this.signupForm.controls.name.value,
       this.signupForm.controls.email.value,
       this.signupForm.controls.password.value,
-      this.signupForm.controls.requestedAccessLevel.value,
-      this.signupForm.controls.requestedReason.value,
+      this.signupForm.controls.requestedAccessLevel.value == '' ? undefined : this.signupForm.controls.requestedAccessLevel.value,
+      this.signupForm.controls.requestedReason.value == '' ? undefined : this.signupForm.controls.requestedReason.value,
 
     ).subscribe(
       (data: any) => {

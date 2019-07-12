@@ -1,0 +1,42 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+      <app-side-nav></app-side-nav>
+  </mat-drawer>
+	<mat-drawer-content>
+		<mat-card>
+		<mat-card-header>
+    		<mat-card-title>Request Elevated Access</mat-card-title>
+    		<mat-card-title>(Current access level: {{userService.ACCESSES[auth.getAccess()].description}})</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<form class="example-form" [formGroup]="requestForm">
+			    <mat-form-field class="w-100"
+                  [ngClass]="submitted && requestForm.controls.requestedAccessLevel.errors ? 'mat-form-field-invalid' : ''">
+                  <mat-label>Request Access Level</mat-label>
+                  <mat-select formControlName="requestedAccessLevel" required>
+                    <mat-option *ngFor="let access of userService.ACCESSES"
+                      [value]="access.access_level ? access.access_level : null">
+                      {{access.description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="requestForm.get('requestedAccessLevel').hasError('required')">
+                  	Access Level is required.
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-100"
+                  [ngClass]="submitted && requestForm.controls.requestedReason.errors ? 'mat-form-field-invalid' : ''">
+                  <input matInput placeholder="Reason for requesting access level" formControlName="requestedReason"
+                    name="requestedReason">
+                  <mat-error *ngIf="requestForm.get('requestedReason').hasError('maxlength')">
+                    Reason cannot be more than 256 characters long.
+                  </mat-error>
+                </mat-form-field>
+            </form>
+		</mat-card-content>
+		<mat-card-actions>
+      		<button mat-raised-button (click)="request()" color="primary">Request</button>
+    	</mat-card-actions>
+		</mat-card>
+	</mat-drawer-content>
+</mat-drawer-container>
