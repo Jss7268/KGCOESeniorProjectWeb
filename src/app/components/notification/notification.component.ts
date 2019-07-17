@@ -13,7 +13,7 @@ import { MatSnackBar, MatSnackBarRef, SimpleSnackBar, MatDialog } from '@angular
 })
 export class NotificationComponent implements OnInit {
 
-  private requestedUsers: User[]
+  public requestedUsers: User[]
   constructor(public auth: AuthService, private notificationService: NotificationService, public userService: UserService,
     private snackBar: MatSnackBar, public dialog: MatDialog) { }
 
