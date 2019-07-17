@@ -14,8 +14,10 @@
     display: table;
     margin: 0;
     max-width: none;
-    height: 100vh;
-    background-color: rgba(230, 76, 10, 0.623);
+    height: 70vh;
+    // background-color: rgba(230, 76, 10, 0.623);
+    // background-color: #DDAA88;
+    background-color: rgba(115, 189, 207, 0.815);
     font-family: 'Helvetica Neue';
     
     &:nth-of-type(2n) {
@@ -24,7 +26,7 @@
   }
   
   .intro {
-    height: 90vh;
+    height: 50vh;
   }
   
   .content {
@@ -36,6 +38,7 @@
     font-size: 3em;
     display: block;
     color: white;
+    // color: black;
     font-weight: 300;
   }
   
@@ -43,7 +46,14 @@
     font-size: 1.5em;
     font-weight: 400;
     color: white;
+    // color: black;
+
     margin-right: 200px;
+  }
+
+  .featureList {
+    color: #233C61;
+
   }
 
   mat-grid-tile {
@@ -74,6 +84,21 @@
     &:active {
       top: 1px;
     }
+  }
+
+  #bioselLogo {
+    width: 200px;
+  }
+
+  .labimage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    // border-radius: 4px;
+    padding: 5px;
+    width: 300px;
   }
 
   footer {

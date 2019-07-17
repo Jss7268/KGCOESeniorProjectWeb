@@ -1,18 +1,34 @@
 <section class="intro">  
     <div class="content">
-        <h1>Welcome Home!</h1>
-        <p>Autonomous System Tracking: Measuring, Evaluating and Collecting
-            Decisions Made by UAVs, Bioinspired Devices, and other Autonomous
-            Systems.
+        <!-- <img id="bioselLogo" src="assets/bio_sel.svg"> -->
+        <h1>Welcome Home {{name}}!</h1>
+        <p>The Embedded Data Collection serves to collect and display realtime data from bio-inspired devices from the Kate Gleason College of Engineering.
         </p>
+        <button matTooltip="Current Access Level: {{accessLevel}}" matTooltipClass aria-label="request-access" mat-raised-button color="primary" *ngIf="!auth.hasAccessLevel(3)" [routerLink]="getRequestAccessPath()">
+                Request Access
+        </button>
     </div>
 </section>
-      
+
+<section>
+    <div class="content">
+        <h1>Main Features/Benefits</h1>
+        <p>Created by students of the SE department, this website is loaded with features which you can use to your advantage. Check them out!</p>
+        <div class="featureList" style="display: flex">
+            <p class="featureList" >Feature 1</p>
+            <p class="featureList">Feature 2</p>
+            <p class="featureList">Feature 3</p>
+            <img src="assets/features.png">
+        </div>
+    </div>
+</section>
 <section>  
     <div class="content">
         <h1>Contact Us</h1>
-        <p>If you would like to request higher access contact <a href="mailto:kaleme@rit.edu">Kathleen Lamkin-Kenard</a> 
-        </p>
+        <p>Have problems? Need help? Contact <a href="mailto:kaleme@rit.edu">Kathleen Lamkin-Kennard</a> </p>
+        <div id="bioselLogo" style="width: 200px">
+                <img  src="assets/bio_sel.svg">
+        </div>
     </div>
 </section>
       
