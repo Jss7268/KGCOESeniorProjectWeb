@@ -1,4 +1,13 @@
 # EDCS Front-End
+[EDCS Backend](./KGCOESeniorProjectAPI)
+
+## Prerequisites
+You need to install node/npm and the Angular CLI
+```
+sudo apt-get update
+sudo apt-get install npm postgresql postgresql-contrib
+npm install -g @angular/cli
+```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
 
