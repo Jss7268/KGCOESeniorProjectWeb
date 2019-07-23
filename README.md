@@ -1,5 +1,5 @@
 # EDCS Front-End
-[EDCS Backend](./KGCOESeniorProjectAPI)
+[EDCS Backend](https://github.com/Jss7268/KGCOESeniorProjectAPI)
 
 ## Prerequisites
 You need to install node/npm and the Angular CLI
