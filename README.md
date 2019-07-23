@@ -7,6 +7,8 @@ You need to copy the `app.settings.ts.example` file:
 ```
 cp src/app/app.settings.ts.example src/app/app.settings.ts
 ```
+__Don't edit the `app.settings.ts.example` file, instead, make changes to the `app.settings.ts` file__
+
 If running in a deployed environment, change the `API_ENDPOINT` to point to the location that you are running the [backend](https://github.com/Jss7268/KGCOESeniorProjectAPI)
 If running with ssl, you need to use https. (Not necessary to run locally)
 
