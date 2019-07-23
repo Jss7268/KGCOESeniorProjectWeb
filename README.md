@@ -78,6 +78,7 @@ sudo cp -R dist/edcs/* /var/www/html/
 sudo systemctl restart nginx
 ```
 Or to wherever you have set your root in your nginx conf file.
+To check if it is running properly, navigate to https://www.your-site.com, replacing `www.your-site.com` with your site address
 
 # Continued Development
 
