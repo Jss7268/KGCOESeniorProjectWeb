@@ -2,6 +2,7 @@
 [EDCS Backend](https://github.com/Jss7268/KGCOESeniorProjectAPI)
 
 ## Prerequisites
+This README is assuming this is running on Ubuntu.
 You need to install nginx, node/npm and the Angular CLI
 ```
 sudo apt-get update
