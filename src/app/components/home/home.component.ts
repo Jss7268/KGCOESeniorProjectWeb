@@ -24,13 +24,11 @@ export class HomeComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, public userService: UserService, private route: ActivatedRoute ) { }
 
   ngOnInit() {
-    // this.user = this.userService.getCurrentUser();
     this.$user = this.userService.getCurrentUser().subscribe(
       (data: any) => {
         this.userId = data.id;
         this.name = data.name;
         this.accessLevel = data.access_level;
-        console.log(`User is ${this.accessLevel}`);
       },
       (error: any) => console.log(error)
     );
@@ -46,7 +44,6 @@ export class HomeComponent implements OnInit {
 
   test() {
     this.auth.getUsers().subscribe((data: any) => {
-      console.log(data);
       this.info = data;
     })
   }
