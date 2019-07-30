@@ -15,8 +15,6 @@
     margin: 0;
     max-width: none;
     height: 70vh;
-    // background-color: rgba(230, 76, 10, 0.623);
-    // background-color: #DDAA88;
     background-color: rgba(115, 189, 207, 0.815);
     font-family: 'Helvetica Neue';
     
@@ -38,7 +36,6 @@
     font-size: 3em;
     display: block;
     color: white;
-    // color: black;
     font-weight: 300;
   }
   
@@ -46,14 +43,17 @@
     font-size: 1.5em;
     font-weight: 400;
     color: white;
-    // color: black;
-
-    margin-right: 200px;
+    margin-right: 10%;
   }
 
   .featureList {
-    color: #233C61;
+    font-weight: 350;
+  }
 
+  mat-card.features{
+    width: 180px;
+    padding: 15px;
+    margin: 30px;
   }
 
   mat-grid-tile {
@@ -88,6 +88,28 @@
 
   #bioselLogo {
     width: 200px;
+    padding-top: 5%
+  }
+
+  #emailIcon {
+    width: 5%;
+  } 
+  
+  #phoneIcon {
+    width: 5%;
+  } 
+
+  #contactInfo {
+    vertical-align:middle;
+    color: white;
+    display:inline-block;
+    vertical-align:baseline;
+    vertical-align:-webkit-baseline-middle;
+  }
+
+  #credit {
+    font-size: 9px;
+    text-align: right;
   }
 
   .labimage {
@@ -96,7 +118,6 @@
     margin-right: auto;
     border-radius: 8px;
     border: 1px solid #ddd;
-    // border-radius: 4px;
     padding: 5px;
     width: 300px;
   }
