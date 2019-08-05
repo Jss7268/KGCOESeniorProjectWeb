@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RequestAccessComponent implements OnInit {
   requestForm: FormGroup;
+  submitted = false;
 
   constructor(public auth: AuthService, private formBuilder: FormBuilder, public userService: UserService,
   	           private snackBar: MatSnackBar, private route: ActivatedRoute) { }
