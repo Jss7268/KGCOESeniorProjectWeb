@@ -19,7 +19,6 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((data: any) => {
-      console.log(data);
       this.user = data;
     });
   }

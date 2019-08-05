@@ -109,7 +109,7 @@ export class CreateDeviceOutputComponent implements OnInit {
     let cb = `${this.route.parent.snapshot.url.join('/')}/${AppPaths.CREATE_DEVICE_OUTPUT_PATH}?deviceId=${this.deviceOutputForm.controls.deviceId.value}&outputValue=${this.deviceOutputForm.controls.outputValue.value}&outputTypeName=`;
 
     this.updateRoute().then((success: boolean) => {
-      this.router.navigate(AppPaths.CREATE_DEVICE_PATH.split('/'), {
+      this.router.navigate(AppPaths.CREATE_OUTPUT_TYPE_PATH.split('/'), {
         queryParams: {
           callbackUrl: cb,
         }
