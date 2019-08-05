@@ -75,7 +75,7 @@ export class CreateExperimentComponent implements OnInit {
   submit() {
     this.experimentService.createExperiment(
       this.experimentForm.controls.description.value,
-      this.experimentForm.controls.inputTimestamp.value ? this.experimentForm.controls.inputTimestamp.value.valueOf() : null,
+      this.experimentForm.controls.startTime.value ? this.experimentForm.controls.startTime.value.valueOf() : null,
       this.experimentForm.controls.notes.value,
     ).subscribe(
       (data: any) => {
