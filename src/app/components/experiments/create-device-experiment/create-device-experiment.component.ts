@@ -7,6 +7,7 @@ import { TooltipService } from 'src/app/services/tooltip.service';
 import { DeviceExperimentService } from '../../../services/device-experiment.service';
 import { DeviceService } from '../../../services/device.service';
 import { ExperimentService } from '../../../services/experiment.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-create-device-experiment',
@@ -24,7 +25,8 @@ export class CreateDeviceExperimentComponent implements OnInit {
 
   constructor(private deviceExperimentService: DeviceExperimentService, private deviceService: DeviceService,
     private experimentService: ExperimentService, private formBuilder: FormBuilder,
-    private route: ActivatedRoute, private router: Router, public tooltipService: TooltipService) { }
+    private route: ActivatedRoute, private router: Router, public tooltipService: TooltipService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.experimentId = this.experimentService.experimentId;
@@ -78,11 +80,17 @@ export class CreateDeviceExperimentComponent implements OnInit {
     this.deviceExperimentService.createDeviceExperiment(this.deviceExperimentForm.controls.deviceId.value, this.experimentId)
       .subscribe(
         (data: any) => {
-          this.router.navigateByUrl(this.callbackUrl + this.deviceExperimentForm.controls.deviceId.value);
+          if (this.callbackUrl) {
+            this.router.navigateByUrl(this.callbackUrl + this.deviceExperimentForm.controls.deviceId.value);
+          } else {
+            this.snackBar.open(`Device linked to experiment`,
+              'Dismiss', {
+                duration: 5000,
+              });
+          }
         },
         (error: any) => {
           this.deviceExperimentForm.controls.deviceId.setErrors({ duplicate: 'Device is already linked to this experiment' });
-
         }
       );
   }
