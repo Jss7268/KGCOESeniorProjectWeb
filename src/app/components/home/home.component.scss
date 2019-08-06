@@ -1,0 +1,137 @@
+  * {
+    box-sizing: border-box; 
+  }
+  
+  body {
+    margin: 0; 
+    font-weight: 500;
+    font-family: 'Helvetica Neue';
+  }
+  
+  section {
+    width: 100%;
+    padding: 0 7%;
+    display: table;
+    margin: 0;
+    max-width: none;
+    height: 70vh;
+    background-color: rgba(115, 189, 207, 0.815);
+    font-family: 'Helvetica Neue';
+    
+    &:nth-of-type(2n) {
+      background-color:    rgba(102, 124, 137, 0.705);
+    }
+  }
+  
+  .intro {
+    height: 50vh;
+  }
+  
+  .content {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  h1 {
+    font-size: 3em;
+    display: block;
+    color: white;
+    font-weight: 300;
+  }
+  
+  p {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: white;
+    margin-right: 10%;
+  }
+
+  .featureList {
+    font-weight: 350;
+  }
+
+  mat-card.features{
+    width: 180px;
+    padding: 15px;
+    margin: 30px;
+  }
+
+  mat-grid-tile {
+      font-size: 1.5em;
+      font-weight: 500;
+      color: #373B43;
+      margin-top: 0;
+  }
+
+  li {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #373B43;
+    list-style-type: circle;
+    margin-top: 0;
+}
+  
+  a {
+    font-weight: 700;
+    color: white;
+
+    position: relative;
+    
+    &:hover{ 
+      opacity: 0.8;
+    }
+    
+    &:active {
+      top: 1px;
+    }
+  }
+
+  #bioselLogo {
+    width: 200px;
+    padding-top: 5%
+  }
+
+  #emailIcon {
+    width: 5%;
+  } 
+  
+  #phoneIcon {
+    width: 5%;
+  } 
+
+  #contactInfo {
+    vertical-align:middle;
+    color: white;
+    display:inline-block;
+    vertical-align:baseline;
+    vertical-align:-webkit-baseline-middle;
+  }
+
+  #credit {
+    font-size: 9px;
+    text-align: right;
+  }
+
+  .labimage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 300px;
+  }
+
+  footer {
+    padding: 1% 5%;
+    text-align:center;
+    background-color: #373B44;
+    color: white;
+    font-family: 'Helvetica Neue'
+    
+    a {
+      color: rgba(230, 76, 10, 0.623);
+      font-weight: 500;
+      text-decoration: none;
+    }
+  }
