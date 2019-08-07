@@ -5,7 +5,7 @@
   body {
     margin: 0; 
     font-weight: 500;
-    font-family: 'Helvetica Neue';
+    font-family: Roboto, "Helvetica Neue", sans-serif;
   }
   
   section {
@@ -16,7 +16,7 @@
     max-width: none;
     height: 70vh;
     background-color: rgba(115, 189, 207, 0.815);
-    font-family: 'Helvetica Neue';
+    font-family: Roboto, "Helvetica Neue", sans-serif;
     
     &:nth-of-type(2n) {
       background-color:    rgba(102, 124, 137, 0.705);
@@ -30,6 +30,7 @@
   .content {
     display: table-cell;
     vertical-align: middle;
+    padding-bottom: 16px;
   }
   
   h1 {
@@ -127,7 +128,7 @@
     text-align:center;
     background-color: #373B44;
     color: white;
-    font-family: 'Helvetica Neue'
+    font-family: Roboto, "Helvetica Neue", sans-serif
     
     a {
       color: rgba(230, 76, 10, 0.623);
