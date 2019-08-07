@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   accessLevel= '';
 
 
-  constructor(private auth: AuthService, private router: Router, public userService: UserService, private route: ActivatedRoute ) { }
+  constructor(public auth: AuthService, private router: Router, public userService: UserService, private route: ActivatedRoute ) { }
 
   ngOnInit() {
     this.$user = this.userService.getCurrentUser().subscribe(
