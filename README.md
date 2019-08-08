@@ -1,5 +1,6 @@
 # EDCS Front-End
 [EDCS Backend](https://github.com/Jss7268/KGCOESeniorProjectAPI)
+
 [EDCS Hardware](https://github.com/mll8657/KGCOESeniorProjectHardware)
 
 ## Prerequisites
