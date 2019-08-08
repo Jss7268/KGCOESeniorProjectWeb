@@ -15,11 +15,18 @@ import { ActivatedRoute } from '@angular/router';
 export class RequestAccessComponent implements OnInit {
   requestForm: FormGroup;
   submitted = false;
+  userId = '';
 
   constructor(public auth: AuthService, private formBuilder: FormBuilder, public userService: UserService,
   	           private snackBar: MatSnackBar, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.auth.getLoggedInUser().subscribe(
+      (data: any) => {
+        this.userId = data.id;
+      },
+      (error: any) => console.log(error)
+    );
   	this.requestForm = this.formBuilder.group(
       {
         requestedAccessLevel: new FormControl('', [Validators.required]),
@@ -29,8 +36,9 @@ export class RequestAccessComponent implements OnInit {
   }
 
   request() {
-  	this.userService.requestAccessLevel(this.auth.getLoggedInUser()[0].id,
-  		this.requestForm.controls.requestedAccessLevel.value).subscribe(
+  	this.userService.requestAccessLevel(this.userId,
+      this.requestForm.controls.requestedAccessLevel.value,
+      this.requestForm.controls.requestedReason.value).subscribe(
       (data: any) => {
         this.success_message();
       },

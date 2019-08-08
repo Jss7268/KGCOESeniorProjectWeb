@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  
+
   constructor(private http: HttpClient, private router: Router) {
 
   }
@@ -49,7 +49,7 @@ export class AuthService {
   getToken() {
     return localStorage.getItem(this.STORAGE_KEY)
   }
-  
+
   setAccess(access: string) {
     localStorage.setItem(this.ACCESS_KEY, access);
   }
@@ -68,7 +68,7 @@ export class AuthService {
   }
 
   getLoggedInUser() {
-    return this.http.get(`${AppSettings.API_ENDPOINT}/v1/users/current`)
+    return this.http.get(`${AppSettings.API_ENDPOINT}/v1/users/me`)
   }
 
   logout() {
