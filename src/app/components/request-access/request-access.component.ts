@@ -37,7 +37,8 @@ export class RequestAccessComponent implements OnInit {
 
   request() {
   	this.userService.requestAccessLevel(this.userId,
-  		this.requestForm.controls.requestedAccessLevel.value).subscribe(
+      this.requestForm.controls.requestedAccessLevel.value,
+      this.requestForm.controls.requestedReason.value).subscribe(
       (data: any) => {
         this.success_message();
       },
